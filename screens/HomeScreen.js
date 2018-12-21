@@ -1,16 +1,14 @@
 import React from 'react';
 import {
   Image,
-  Platform,
   StyleSheet,
   Text,
-  TextInput,
-  Button,
   View,
 } from 'react-native';
 import { WebBrowser } from 'expo';
 import Search from '../components/Search'
 import HeaderTitle from '../components/HeaderTitle'
+import HeaderLogo from '../components/HeaderLogo'
 import Footer from '../components/Footer'
 
 export default class HomeScreen extends React.Component {
@@ -21,21 +19,15 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.containerHeaderLogo}>{this._displayImageHeader()}</View>
 
+        <HeaderLogo/>
         <HeaderTitle/>
         <Search/>
         <Footer/>
 
-
-
       </View>
     );
   }
-    _displayImageHeader(){
-        sourceImage = require('../assets/images/header-3.png')
-        return ( <Image style={{height: 92}}  source={sourceImage}/>)
-    }
   _maybeRenderDevelopmentModeWarning() {
     if (__DEV__) {
       const learnMoreButton = (
@@ -75,19 +67,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff'
   },
-  containerHeaderLogo: {
-      alignItems: 'center',
-      flex: 1,
-      borderWidth: 1,
-      borderRadius: 2,
-      borderColor: '#ddd',
-      borderBottomWidth: 0,
-      shadowColor: '#000',
-      shadowOffset: {  height: -3 },
-      shadowOpacity: 0.5,
-      shadowRadius: 2,
-      elevation: 1,
-  },
+
 
   developmentModeText: {
     marginBottom: 20,

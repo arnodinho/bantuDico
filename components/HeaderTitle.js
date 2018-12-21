@@ -3,8 +3,12 @@ import React from 'react'
 import { View, Text,StyleSheet } from 'react-native'
 
 class HeaderTitle extends React.Component {
-    // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
-    // et retourner (return) les éléments graphiques
+
+    _displayImageHeader(){
+        sourceImage = require('../assets/images/header-3.png')
+        return ( <Image style={{height: 92}}  source={sourceImage}/>)
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -19,7 +23,7 @@ class HeaderTitle extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#eee',
+        backgroundColor: '#98ddee',
     },
     infoText: {
         marginTop: 1,

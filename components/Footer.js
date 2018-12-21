@@ -1,6 +1,6 @@
 // Components/Footer.js
 import React from 'react'
-import { View, StyleSheet,Text } from 'react-native'
+import { View, StyleSheet,Text, Platform} from 'react-native'
 import { MonoText } from '../components/StyledText';
 
 class Footer extends React.Component {
@@ -8,7 +8,7 @@ class Footer extends React.Component {
     // et retourner (return) les éléments graphiques
     render() {
         return (
-            <View style={styles.tabBarInfoContainer}>
+            <View style={styles.container}>
                 <Text style={styles.tabBarInfoText}>This is a tab</Text>
 
                 <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
@@ -20,12 +20,9 @@ class Footer extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    tabBarInfoContainer: {
+    container: {
         flex:5,
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
+
         ...Platform.select({
             ios: {
                 shadowColor: 'black',
@@ -39,8 +36,15 @@ const styles = StyleSheet.create({
         }),
         alignItems: 'center',
         backgroundColor: '#fbfbfb',
-        paddingVertical: 20,
+        borderColor: '#214c98',
+        borderWidth: 7,
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 5,
+        marginBottom:10,
+
     },
+
     tabBarInfoText: {
         marginTop: 1,
         justifyContent: "center",

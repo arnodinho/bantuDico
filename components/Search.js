@@ -1,6 +1,6 @@
 // Components/Search.js
 import React from 'react'
-import { View, TextInput, Button,StyleSheet,Picker,TouchableOpacity } from 'react-native'
+import { View, TextInput, Button,StyleSheet,Picker,Image } from 'react-native'
 
 class Search extends React.Component {
     // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
@@ -10,41 +10,76 @@ class Search extends React.Component {
             <View style={styles.container}>
                 <TextInput style={styles.textinput} placeholder='Barre de recherche'/>
 
+
                 <View style={styles.containerSearch}>
+                    
                     <View style={styles.searchSelect}>
-                        <Picker
-                            selectedValue="Français"
-                            style={{  height: 50, width: 100 }}>
-                            <Picker.Item label="Java" value="java" />
-                            <Picker.Item label="JavaScript" value="js" />
-                        </Picker>
-                        <Picker
-                            selectedValue="Lingala"
-                            style={{ height: 50, width: 100 }}>
-                            <Picker.Item label="Java" value="java" />
-                            <Picker.Item label="JavaScript" value="js" />
-                        </Picker>
+                        <View style={styles.searchItem}>
+                            <Picker
+                                selectedValue="Français"
+                                style={{  height: 50, width: 130 }}>
+                                <Picker.Item label="Français" value="java" />
+                                <Picker.Item label="JavaScript" value="js" />
+                            </Picker>
+                        </View>
+                        <View style={styles.searchArrow}>
+                            <View >{this._displayImageArrow()}</View>
+                        </View>
+                        <View style={styles.searchItem}>
+                            <Picker
+                                selectedValue="Lingala"
+                                style={{ height: 50, width: 130 }}>
+                                <Picker.Item label="Lingala" value="java" />
+                                <Picker.Item label="JavaScript" value="js" />
+                            </Picker>
+                        </View>
                     </View>
 
-                    <TouchableOpacity style={styles.searchButton}>
-                        <Button style={styles.buttonInput} title='GO' onPress={() => {}}/>
-                    </TouchableOpacity>
+                    <Button buttonStyle={styles.buttonInput} title='GO' onPress={() => {}}/>
+
                 </View>
 
             </View>
         )
+    }
+    _displayImageArrow(){
+        sourceImage = require('../assets/images/double-24.png')
+        return ( <Image   source={sourceImage}/>)
     }
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 2,
-        backgroundColor: '#eee',
+        backgroundColor: '#eeb156',
     },
+
     containerSearch: {
         flex: 1,
         flexDirection: 'row',
     },
+    searchSelect:{
+        flex:1,
+        backgroundColor: '#52ebee',
+        flexDirection: 'row',
+    },
+    searchButton:{
+        flex:1,
+        height: 65,
+    },
+    searchItem:{
+        alignItems: 'center',
+        justifyContent: "center",
+        flex: 4
+    },
+    searchArrow:{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: "center",
+    },
+
+
+
     textinput: {
         marginLeft: 5,
         marginRight: 5,
@@ -56,15 +91,15 @@ const styles = StyleSheet.create({
     },
 
     buttonInput: {
-        height: 200,
-        color:"#206c84"
+    backgroundColor: "#ee315d",
+    width: 100,
+    height: 65,
+    borderColor: "transparent",
+    borderWidth: 0,
+    borderRadius: 5
+
     },
-    searchSelect:{
-        flex:3,
-    },
-    searchButton:{
-        flex:1,
-    }
+
 
 })
 //on exporte nos éléments pour pouvoir les utiliser ailleurs.
