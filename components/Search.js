@@ -1,41 +1,47 @@
 // Components/Search.js
 import React from 'react'
-import { View, TextInput, Button,StyleSheet,Picker,Image } from 'react-native'
-
+import { View, TextInput, Button,StyleSheet,Picker,Image,TouchableOpacity,Text } from 'react-native'
+import SearchButton from '../components/SearchButton'
 class Search extends React.Component {
     // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
     // et retourner (return) les éléments graphiques
     render() {
         return (
-            <View style={styles.container}>
-                <TextInput style={styles.textinput} placeholder='Barre de recherche'/>
+            <View style={styles.wrapperContainer}>
 
+                <View style={styles.containerTitle}>
+                    <Text style={styles.infoText}>Le Dictionnaire pratique</Text>
+                    <Text style={styles.infoText}>Français - Lingala - Sango</Text>
+                </View>
 
                 <View style={styles.containerSearch}>
                     
-                    <View style={styles.searchSelect}>
-                        <View style={styles.searchItem}>
-                            <Picker
-                                selectedValue="Français"
-                                style={{  height: 50, width: 130 }}>
-                                <Picker.Item label="Français" value="java" />
-                                <Picker.Item label="JavaScript" value="js" />
-                            </Picker>
-                        </View>
-                        <View style={styles.searchArrow}>
-                            <View >{this._displayImageArrow()}</View>
-                        </View>
-                        <View style={styles.searchItem}>
-                            <Picker
-                                selectedValue="Lingala"
-                                style={{ height: 50, width: 130 }}>
-                                <Picker.Item label="Lingala" value="java" />
-                                <Picker.Item label="JavaScript" value="js" />
-                            </Picker>
+                    <View style={{ flex:3 }} >
+                        <TextInput style={styles.textinput} placeholder='Barre de recherche'/>
+                        <View style={styles.searchSelect}>
+                            <View style={styles.searchItem}>
+                                <Picker
+                                    selectedValue="Français"
+                                    style={{  height: 50, width: 130 }}>
+                                    <Picker.Item label="Français" value="java" />
+                                    <Picker.Item label="JavaScript" value="js" />
+                                </Picker>
+                            </View>
+                            <View style={styles.searchArrow}>
+                                <View >{this._displayImageArrow()}</View>
+                            </View>
+                            <View style={styles.searchItem}>
+                                <Picker
+                                    selectedValue="Lingala"
+                                    style={{ height: 50, width: 130 }}>
+                                    <Picker.Item label="Lingala" value="java" />
+                                    <Picker.Item label="JavaScript" value="js" />
+                                </Picker>
+                            </View>
                         </View>
                     </View>
 
-                    <Button buttonStyle={styles.buttonInput} title='GO' onPress={() => {}}/>
+                    <SearchButton/>
 
                 </View>
 
@@ -49,18 +55,33 @@ class Search extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 2,
-        backgroundColor: '#eeb156',
+    wrapperContainer: {
+        flex: 3,
+        backgroundColor: '#eee',
     },
-
+    containerTitle: {
+        marginTop:10,
+        height: 85,
+        backgroundColor: '#eee',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     containerSearch: {
-        flex: 1,
+        flex: 2,
         flexDirection: 'row',
     },
+    infoText: {
+        marginTop: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: 17,
+        color: '#061646',
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+
     searchSelect:{
-        flex:1,
-        backgroundColor: '#52ebee',
+        backgroundColor: '#eee',
         flexDirection: 'row',
     },
     searchButton:{
@@ -83,23 +104,26 @@ const styles = StyleSheet.create({
     textinput: {
         marginLeft: 5,
         marginRight: 5,
-        height: 50,
+        height: 40,
         borderColor: '#000000',
         borderWidth: 1,
         paddingLeft: 5,
-        color:'white'
+        color:'white',
+        backgroundColor: 'white'
     },
 
     buttonInput: {
     backgroundColor: "#ee315d",
     width: 100,
-    height: 65,
     borderColor: "transparent",
     borderWidth: 0,
     borderRadius: 5
 
     },
-
+    item_text:{
+        textAlign: 'center',
+        justifyContent: 'center',
+    }
 
 })
 //on exporte nos éléments pour pouvoir les utiliser ailleurs.

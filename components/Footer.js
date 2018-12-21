@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
             },
         }),
         alignItems: 'center',
-        backgroundColor: '#fbfbfb',
+        backgroundColor: '#d0d6d2',
         borderColor: '#214c98',
         borderWidth: 7,
         marginLeft: 5,
