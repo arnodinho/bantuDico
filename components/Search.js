@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     containerSearch: {
         flex: 2,
         flexDirection: 'row',
+        marginRight: 5,
     },
     infoText: {
         marginTop: 1,
