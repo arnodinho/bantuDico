@@ -2,27 +2,34 @@
 import React from 'react'
 import { View, StyleSheet,Text, Platform} from 'react-native'
 import { MonoText } from '../components/StyledText';
+import RandomButton from '../components/RandomButton'
 
 class Footer extends React.Component {
     // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
     // et retourner (return) les éléments graphiques
     render() {
         return (
-            <View style={styles.container}>
-                <Text style={styles.tabBarInfoText}>This is a tab</Text>
+            <View style={styles.wrapperContainer}>
+                <View style={styles.resultContainer}>
 
-                <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-                    <MonoText style={styles.codeHighlightText}>navigation/MainTabNasvigator.js</MonoText>
+                    <Text style={styles.tabBarInfoText}>This is a tab</Text>
+
+                    <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
+                        <MonoText style={styles.codeHighlightText}>navigation/MainTabNasvigator.js</MonoText>
+                    </View>
                 </View>
+                <RandomButton/>
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex:5,
-
+    wrapperContainer: {
+        flex:6,
+    },
+    resultContainer:{
+        flex:4,
         ...Platform.select({
             ios: {
                 shadowColor: 'black',
@@ -40,11 +47,7 @@ const styles = StyleSheet.create({
         borderWidth: 7,
         marginLeft: 5,
         marginRight: 5,
-        marginTop: 5,
-        marginBottom:10,
-
     },
-
     tabBarInfoText: {
         marginTop: 1,
         justifyContent: "center",
