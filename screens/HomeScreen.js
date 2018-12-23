@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
 
 
   navigationFilename: {
-    marginTop: 5,
+    marginTop: 1,
   },
   helpContainer: {
     marginTop: 15,

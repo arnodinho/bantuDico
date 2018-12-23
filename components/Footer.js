@@ -1,6 +1,6 @@
 // Components/Footer.js
 import React from 'react'
-import { View, StyleSheet,Text, Platform} from 'react-native'
+import { View, StyleSheet,Text, Platform,Image} from 'react-native'
 import { MonoText } from '../components/StyledText';
 import RandomButton from '../components/RandomButton'
 
@@ -10,17 +10,55 @@ class Footer extends React.Component {
     render() {
         return (
             <View style={styles.wrapperContainer}>
+
                 <View style={styles.resultContainer}>
-
-                    <Text style={styles.tabBarInfoText}>This is a tab</Text>
-
-                    <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-                        <MonoText style={styles.codeHighlightText}>navigation/MainTabNasvigator.js</MonoText>
+                    <View style={styles.resultShare}>
+                        {this._displayImageShare()}
                     </View>
+
+                <View style={styles.resulLangage}>
+                    <View style={{ flex:1, alignItems:'center' }} >
+                        <Text style={styles.tabBarInfoText}>Français</Text>
+                    </View>
+                    <View style={{ flex:1, alignItems:'center' }} >
+                        <Text style={styles.tabBarInfoText}>Lingala</Text>
+                    </View>
+                </View>
+
+                <View style={styles.resultDefinition}>
+                    <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
+                        <Text style={styles.textDefinition}>Bonjour</Text>
+                        <Text style={styles.textDefinition}>il etait une fois l'ouest</Text>
+
+                    </View>
+                    <View style={{ flex:1, justifyContent: "center"}} >
+                        <Text style={styles.textDefinition}>{this._displayImageTraduction()}</Text>
+                    </View>
+                    <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
+                        <Text style={styles.textDefinition}>mbote</Text>
+                        <Text style={styles.textDefinition}>il etait une fois l'ouest</Text>
+                    </View>
+                </View>
+                <View style={styles.resultExample}>
+
+                </View>
+
+                <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
+                    <MonoText style={styles.codeHighlightText}>navigation/MainTabNasvigator.js</MonoText>
+                </View>
                 </View>
                 <RandomButton/>
             </View>
         )
+    }
+
+    _displayImageShare(){
+        sourceImage = require('../assets/images/like-sm-24.png')
+        return ( <Image style={{ width:24 }}  source={sourceImage}/>)
+    }
+    _displayImageTraduction(){
+        sourceImage = require('../assets/images/transfer.png')
+        return ( <Image  source={sourceImage}/>)
     }
 }
 
@@ -57,6 +95,17 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
     },
+    textDefinition: {
+        marginTop: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: 30,
+        color: '#061646',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        borderColor: '#214c98',
+        borderWidth: 2,
+    },
     codeHighlightContainer: {
         backgroundColor: 'rgba(0,0,0,0.05)',
         borderRadius: 3,
@@ -65,6 +114,25 @@ const styles = StyleSheet.create({
     codeHighlightText: {
         color: 'rgba(96,100,109, 0.8)',
     },
+    resultShare:{
+        flex:1,
+        alignItems: 'flex-end',
+        textAlign: 'right',
+
+    },
+    resulLangage:{
+        flex:1,
+        flexDirection: 'row',
+    },
+    resultDefinition:{
+        flex:3,
+        flexDirection: 'row',
+        borderColor: '#214c98',
+        borderWidth: 2,
+    },
+    resultExample:{
+        flex:1
+    }
 })
 //on exporte nos éléments pour pouvoir les utiliser ailleurs.
 export default Footer
