@@ -10,7 +10,6 @@ class Footer extends React.Component {
     render() {
         return (
             <View style={styles.wrapperContainer}>
-
                 <View style={styles.resultContainer}>
                     <View style={styles.resultShare}>
                         <View style={{ flex:5, alignItems:'center' }}></View>
@@ -20,8 +19,6 @@ class Footer extends React.Component {
                         <View style={{ flex:1, alignItems:'flex-start' }}>
                             <Text  style={{ fontSize: 15, color: '#061646',}}>10</Text>
                         </View>
-
-
                     </View>
 
                 <View style={styles.resulLangage}>
