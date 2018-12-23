@@ -58,6 +58,8 @@ const styles = StyleSheet.create({
     wrapperContainer: {
         flex: 3,
         backgroundColor: '#eee',
+        borderColor: '#214c98',
+        borderWidth: 2,
     },
     containerTitle: {
         marginTop:10,

@@ -13,7 +13,15 @@ class Footer extends React.Component {
 
                 <View style={styles.resultContainer}>
                     <View style={styles.resultShare}>
-                        {this._displayImageShare()}
+                        <View style={{ flex:5, alignItems:'center' }}></View>
+                        <View style={{ flex:1 , alignItems:'center' }}>
+                            {this._displayImageShare()}
+                        </View>
+                        <View style={{ flex:1, alignItems:'flex-start' }}>
+                            <Text  style={{ fontSize: 15, color: '#061646',}}>10</Text>
+                        </View>
+
+
                     </View>
 
                 <View style={styles.resulLangage}>
@@ -45,9 +53,6 @@ class Footer extends React.Component {
                     <Text style={styles.textExemple}>il etait une fois le sud et je repars a la ligne</Text>
                 </View>
 
-                <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-                    <MonoText style={styles.codeHighlightText}>navigation/MainTabNasvigator.js</MonoText>
-                </View>
                 </View>
                 <RandomButton/>
             </View>
@@ -128,8 +133,9 @@ const styles = StyleSheet.create({
     },
     resultShare:{
         flex:1,
-        alignItems: 'flex-end',
-        textAlign: 'right',
+        marginTop:1,
+        flexDirection: 'row',
+
 
     },
     resulLangage:{
