@@ -27,20 +27,22 @@ class Footer extends React.Component {
 
                 <View style={styles.resultDefinition}>
                     <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
-                        <Text style={styles.textDefinition}>Bonjour</Text>
-                        <Text style={styles.textDefinition}>il etait une fois l'ouest</Text>
+                        <Text style={styles.textDefinition}>lonkasa ya maanda</Text>
+
 
                     </View>
                     <View style={{ flex:1, justifyContent: "center"}} >
                         <Text style={styles.textDefinition}>{this._displayImageTraduction()}</Text>
                     </View>
                     <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
-                        <Text style={styles.textDefinition}>mbote</Text>
-                        <Text style={styles.textDefinition}>il etait une fois l'ouest</Text>
+                        <Text style={styles.textDefinition}>mbote na nyama</Text>
+
                     </View>
                 </View>
-                <View style={styles.resultExample}>
 
+                <View style={styles.resultExample}>
+                    <Text style={styles.textExemple}>il etait une fois l'ouest</Text>
+                    <Text style={styles.textExemple}>il etait une fois le sud et je repars a la ligne</Text>
                 </View>
 
                 <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
@@ -103,8 +105,18 @@ const styles = StyleSheet.create({
         color: '#061646',
         textAlign: 'center',
         fontWeight: 'bold',
-        borderColor: '#214c98',
-        borderWidth: 2,
+        textTransform: 'uppercase'
+    },
+    textExemple:{
+        flex:1,
+        fontSize: 15,
+        color: '#061646',
+        textAlign:'center',
+        alignItems: "center",
+        marginRight:2,
+        marginLeft:2,
+
+
     },
     codeHighlightContainer: {
         backgroundColor: 'rgba(0,0,0,0.05)',
@@ -127,11 +139,13 @@ const styles = StyleSheet.create({
     resultDefinition:{
         flex:3,
         flexDirection: 'row',
-        borderColor: '#214c98',
-        borderWidth: 2,
+
     },
     resultExample:{
-        flex:1
+        flex:2,
+        flexDirection: 'row',
+        textAlign:'center',
+        alignItems: "center",
     }
 })
 //on exporte nos éléments pour pouvoir les utiliser ailleurs.
