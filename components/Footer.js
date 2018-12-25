@@ -21,34 +21,34 @@ class Footer extends React.Component {
                         </View>
                     </View>
 
-                <View style={styles.resulLangage}>
-                    <View style={{ flex:1, alignItems:'center' }} >
-                        <Text style={styles.tabBarInfoText}>Français</Text>
+                    <View style={styles.resulLangage}>
+                        <View style={{ flex:1, alignItems:'center' }} >
+                            <Text style={styles.tabBarInfoText}>Français</Text>
+                        </View>
+                        <View style={{ flex:1, alignItems:'center' }} >
+                            <Text style={styles.tabBarInfoText}>Lingala</Text>
+                        </View>
                     </View>
-                    <View style={{ flex:1, alignItems:'center' }} >
-                        <Text style={styles.tabBarInfoText}>Lingala</Text>
+
+                    <View style={styles.resultDefinition}>
+                        <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
+                            <Text style={styles.textDefinition}>lonkasa ya maanda</Text>
+
+
+                        </View>
+                        <View style={{ flex:1, justifyContent: "center"}} >
+                            <Text style={styles.textDefinition}>{this._displayImageTraduction()}</Text>
+                        </View>
+                        <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
+                            <Text style={styles.textDefinition}>mbote na nyama</Text>
+
+                        </View>
                     </View>
-                </View>
 
-                <View style={styles.resultDefinition}>
-                    <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
-                        <Text style={styles.textDefinition}>lonkasa ya maanda</Text>
-
-
+                    <View style={styles.resultExample}>
+                        <Text style={styles.textExemple}>il etait une fois l'ouest</Text>
+                        <Text style={styles.textExemple}>il etait une fois le sud et je repars a la ligne</Text>
                     </View>
-                    <View style={{ flex:1, justifyContent: "center"}} >
-                        <Text style={styles.textDefinition}>{this._displayImageTraduction()}</Text>
-                    </View>
-                    <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
-                        <Text style={styles.textDefinition}>mbote na nyama</Text>
-
-                    </View>
-                </View>
-
-                <View style={styles.resultExample}>
-                    <Text style={styles.textExemple}>il etait une fois l'ouest</Text>
-                    <Text style={styles.textExemple}>il etait une fois le sud et je repars a la ligne</Text>
-                </View>
 
                 </View>
                 <RandomButton/>

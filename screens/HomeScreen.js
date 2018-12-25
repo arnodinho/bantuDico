@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 import { WebBrowser } from 'expo';
 import Search from '../components/Search'
-import HeaderTitle from '../components/HeaderTitle'
 import HeaderLogo from '../components/HeaderLogo'
 import Footer from '../components/Footer'
 
