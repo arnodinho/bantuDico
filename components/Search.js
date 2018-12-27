@@ -15,7 +15,7 @@ class Search extends React.Component {
                 </View>
 
                 <View style={styles.containerSearch}>
-                    
+
                     <View style={{ flex:3 }} >
                         <TextInput style={styles.textinput} placeholder='Barre de recherche'/>
                         <View style={styles.searchSelect}>

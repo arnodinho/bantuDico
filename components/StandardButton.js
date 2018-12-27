@@ -10,10 +10,10 @@ class StandardButton extends React.Component {
                     colors={['#4c669f', '#3b5998', '#192f6a']}
                     style={{
                         marginTop:5,
-                        paddingTop: 5,
-                        paddingBottom: 5,
-                        paddingLeft: 15,
-                        paddingRight: 15,
+                        paddingTop: 15,
+                        paddingBottom: 15,
+                        paddingLeft: 35,
+                        paddingRight: 35,
                         alignItems: 'center',
                         borderRadius: 5 }}>
                     <Text
@@ -22,7 +22,7 @@ class StandardButton extends React.Component {
                             fontSize: 15,
                             color: '#fff',
                         }}>
-                        Aléatoire
+                        Sango
                     </Text>
                 </LinearGradient>
             </TouchableOpacity >

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet,Platform, View,Text} from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
+import StandardButton from '../components/StandardButton'
 
 export default class LinksScreen extends React.Component {
   static navigationOptions = {
@@ -10,6 +11,14 @@ export default class LinksScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
+          <View style={styles.resulButtons}>
+              <View style={{ flex:1, alignItems:'flex-end',marginRight:5 }} >
+                  <StandardButton/>
+              </View>
+              <View style={{ flex:1, alignItems:'flex-start',marginLeft:5 }} >
+                  <StandardButton/>
+              </View>
+          </View>
           <View style={styles.resulLangage}>
               <View style={{ flex:1, alignItems:'center' }} >
                   <Text style={styles.tabBarInfoText}>Français</Text>
@@ -54,6 +63,11 @@ const styles = StyleSheet.create({
     resulLangage:{
         flex:1,
         flexDirection: 'row',
+    },
+    resulButtons:{
+        flex:1,
+        flexDirection: 'row',
+        marginBottom:10,
     },
     tabBarInfoText: {
         marginTop: 1,
