@@ -1,6 +1,6 @@
 // Components/Search.js
 import React from 'react'
-import { View, TextInput, Button,StyleSheet,Picker,Image,TouchableOpacity,Text } from 'react-native'
+import { View, TextInput, Button,StyleSheet,Picker,Image,TouchableOpacity,Text, FlatList  } from 'react-native'
 import SearchButton from '../components/SearchButton'
 class Search extends React.Component {
     // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
@@ -44,7 +44,9 @@ class Search extends React.Component {
                     <SearchButton/>
 
                 </View>
-
+                <FlatList
+                    data={[{key: 'a'}, {key: 'baby kemi'}]}
+                    renderItem={({item}) => <Text>{item.key}</Text>}/>
             </View>
         )
     }

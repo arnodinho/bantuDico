@@ -21,7 +21,8 @@ export default class HomeScreen extends React.Component {
 
         <HeaderLogo/>
         <Search/>
-        <Footer/>
+
+  
 
       </View>
     );

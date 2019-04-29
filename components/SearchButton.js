@@ -1,11 +1,12 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity} from 'react-native';
 import { LinearGradient } from 'expo';
 
 class SearchButton extends React.Component {
     render() {
         return (
-             <TouchableOpacity  style={{  alignItems: 'center'}}>
+             <TouchableOpacity
+               style={{  alignItems: 'center'}} onPress={this._handleSearch}>
                 <LinearGradient
                     colors={['#4c669f', '#3b5998', '#192f6a']}
                     style={{
