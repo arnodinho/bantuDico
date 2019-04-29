@@ -21,7 +21,7 @@ export default class SettingsScreen extends React.Component {
 
                  <Text style={styles.tabBarInfoText}>
                     Nous souhaions de tout coeur que ce site contribuera à
-                    la promotion des langues bantoues  et de lAfrique centrale.
+                    la promotion des langues bantoues  et de l''Afrique centrale.
                   </Text>
                 </View>
                 <View style={styles.credits}>
