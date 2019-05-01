@@ -1,8 +1,14 @@
 import React from 'react';
 import { Text, TouchableOpacity} from 'react-native';
 import { LinearGradient } from 'expo';
+import {searchTraduction} from '../API/bantuDico'
 
 class SearchButton extends React.Component {
+    _handleSearch(){
+      console.log("on rentre ici")
+      searchTraduction("mobali").then(data => console.log(data));
+    }
+
     render() {
         return (
              <TouchableOpacity

@@ -107,7 +107,8 @@ const styles = StyleSheet.create({
         color: '#061646',
         textAlign: 'center',
         fontWeight: 'bold',
-        textTransform: 'uppercase'
+        textTransform: 'uppercase',
+        flexWrap: 'wrap', //  flexWrap: 'wrap'  permet à notre texte de passer à la ligne si celui-ci est trop long
     },
     textExemple:{
         flex:1,

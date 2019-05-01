@@ -1,53 +1,76 @@
 // Components/Search.js
 import React from 'react'
-import { View, TextInput, Button,StyleSheet,Picker,Image,TouchableOpacity,Text, FlatList  } from 'react-native'
+import {
+  View,
+  TextInput,
+  Button,
+  StyleSheet,
+  Picker,
+  Image,
+  TouchableOpacity,
+  Text,
+  FlatList  } from 'react-native'
+
 import SearchButton from '../components/SearchButton'
+import results from '../Helpers/SearchData'
+import SearchItem from './SearchItem'
+
 class Search extends React.Component {
     // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
     // et retourner (return) les éléments graphiques
+
     render() {
         return (
-            <View style={styles.wrapperContainer}>
+            <View style={styles.container}>
+              <View style={styles.searchModuleContainer}>
 
-                <View style={styles.containerTitle}>
-                    <Text style={styles.infoText}>Le Dictionnaire pratique</Text>
-                    <Text style={styles.infoText}>Français - Lingala - Sango</Text>
-                </View>
+                  <View style={styles.containerTitle}>
+                      <Text style={styles.infoText}>Le Dictionnaire pratique</Text>
+                      <Text style={styles.infoText}>Français - Lingala - Sango</Text>
+                  </View>
 
-                <View style={styles.containerSearch}>
+                  <View style={styles.containerSearch}>
 
-                    <View style={{ flex:3 }} >
-                        <TextInput style={styles.textinput} placeholder='Barre de recherche'/>
-                        <View style={styles.searchSelect}>
-                            <View style={styles.searchItem}>
-                                <Picker
-                                    selectedValue="Français"
-                                    style={{  height: 50, width: 130 }}>
-                                    <Picker.Item label="Français" value="java" />
-                                    <Picker.Item label="JavaScript" value="js" />
-                                </Picker>
-                            </View>
-                            <View style={styles.searchArrow}>
-                                <View >{this._displayImageArrow()}</View>
-                            </View>
-                            <View style={styles.searchItem}>
-                                <Picker
-                                    selectedValue="Lingala"
-                                    style={{ height: 50, width: 130 }}>
-                                    <Picker.Item label="Lingala" value="java" />
-                                    <Picker.Item label="JavaScript" value="js" />
-                                </Picker>
-                            </View>
-                        </View>
-                    </View>
+                      <View style={{ flex:3 }} >
+                          <TextInput style={styles.textinput} placeholder='Barre de recherche'/>
+                          <View style={styles.searchSelect}>
+                              <View style={styles.searchItem}>
+                                  <Picker
+                                      selectedValue="Français"
+                                      style={{  height: 50, width: 130 }}>
+                                      <Picker.Item label="Français" value="java" />
+                                      <Picker.Item label="JavaScript" value="js" />
+                                  </Picker>
+                              </View>
+                              <View style={styles.searchArrow}>
+                                  <View >{this._displayImageArrow()}</View>
+                              </View>
+                              <View style={styles.searchItem}>
+                                  <Picker
+                                      selectedValue="Lingala"
+                                      style={{ height: 50, width: 130 }}>
+                                      <Picker.Item label="Lingala" value="java" />
+                                      <Picker.Item label="JavaScript" value="js" />
+                                  </Picker>
+                              </View>
+                          </View>
+                      </View>
+                      <SearchButton/>
+                  </View>
+              </View>
 
-                    <SearchButton/>
-
-                </View>
+              <View style={styles.resultsModuleContainer}>
+                <Text style={styles.infoTextResult}>
+                  Cette definition comporte plusieurs traductions en Lingala
+                </Text>
                 <FlatList
-                    data={[{key: 'a'}, {key: 'baby kemi'}]}
-                    renderItem={({item}) => <Text>{item.key}</Text>}/>
-            </View>
+                    data={results}
+                    keyExtractor={(item) => item.id.toString()}
+                    renderItem={({item}) => <SearchItem definition={item}/>}
+                />
+              </View>
+          </View>
+
         )
     }
     _displayImageArrow(){
@@ -57,11 +80,23 @@ class Search extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    wrapperContainer: {
-        flex: 3,
-        backgroundColor: '#eee',
-
+    container: {
+      flex: 9,
+      backgroundColor: '#eee',
     },
+    searchModuleContainer: {
+        flex: 1,
+    },
+    resultsModuleContainer: {
+        flex: 2,
+        backgroundColor: '#eee',
+    },
+    containerSearch: {
+        flex: 2,
+        flexDirection: 'row',
+        marginRight: 5,
+    },
+
     containerTitle: {
         marginTop:10,
         height: 85,
@@ -69,11 +104,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    containerSearch: {
-        flex: 2,
-        flexDirection: 'row',
-        marginRight: 5,
-    },
+
     infoText: {
         marginTop: 1,
         justifyContent: "center",
@@ -83,7 +114,16 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
     },
-
+    infoTextResult:{
+      marginTop: 5,
+      marginBottom: 5,
+      justifyContent: "center",
+      alignItems: "center",
+      fontSize: 17,
+      color: '#061646',
+      textAlign: 'center',
+      fontWeight: 'bold',
+    },
     searchSelect:{
         backgroundColor: '#eee',
         flexDirection: 'row',
