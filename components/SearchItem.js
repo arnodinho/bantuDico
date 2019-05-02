@@ -5,6 +5,9 @@ import { StyleSheet, View, Text,TouchableOpacity } from 'react-native'
 import { LinearGradient } from 'expo';
 
 class SearchItem extends React.Component {
+  //Les props sont fixées par le component parent (definition)
+  //et ne peuvent pas être modifiées par le component qui les reçoit.
+  // Les props sont accessibles en lecture uniquement dans la classe fille.
   render() {
     const definition = this.props.definition
     console.log("Affichage de la liste des definitions")
@@ -16,10 +19,10 @@ class SearchItem extends React.Component {
                 style={styles.button}>
 
                   <Text style={styles.definitionTitle} numberOfLines={1}>
-                      {definition.target.word}
+                      {definition.french.word}
                   </Text>
                   <Text  style={styles.definitionType}>
-                    - {definition.target.type} -
+                    - Adjectifs -
                   </Text>
 
             </LinearGradient>
@@ -31,7 +34,7 @@ class SearchItem extends React.Component {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    height: 150,
+    height: 135,
     flexDirection: 'row'
   },
   button: {

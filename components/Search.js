@@ -11,14 +11,35 @@ import {
   Text,
   FlatList  } from 'react-native'
 
-import SearchButton from '../components/SearchButton'
-import results from '../Helpers/SearchData'
 import SearchItem from './SearchItem'
-
+import {searchTraduction} from '../API/bantuDico'
+import { LinearGradient } from 'expo';
 class Search extends React.Component {
     // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
     // et retourner (return) les éléments graphiques
+    constructor(props) {
+      super(props)
+         this.searchedText = "" // Initialisation de notre donnée searchedText en dehors du state
+      // On va donc initialiser notre state avec un tableau de definitions vide
+      //pour modifier une donnée du state, on passe toujours par  setState
+         this.state = { definitions: [] }
+         this._handleSearch = this._handleSearch.bind(this)
+    }
+    _handleSearch(){
+       if (this.searchedText.length > 0) { // Seulement si le texte recherché n'est pas vide
+          //setState  récupère les modifications de vos données et indique
+          // à React que le component a besoin d'être re-rendu avec ces  nouvelles données.
+          searchTraduction(this.searchedText).then(data =>{
+            //on ne gère dans le state que des données qui, une fois modifiées, peuvent affecter le rendu de notre component.
+            this.setState({definitions: data})
+          });
+      }
 
+    }
+    _searchTextInputChanged(text) {
+      console.log(text)
+      this.searchedText = text // Modification du texte recherché à chaque saisie de texte, sans passer par le setState comme avant
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -26,13 +47,16 @@ class Search extends React.Component {
 
                   <View style={styles.containerTitle}>
                       <Text style={styles.infoText}>Le Dictionnaire pratique</Text>
-                      <Text style={styles.infoText}>Français - Lingala - Sango</Text>
+                      <Text style={styles.infoTitle}>Français - Lingala - Sango</Text>
                   </View>
 
                   <View style={styles.containerSearch}>
 
                       <View style={{ flex:3 }} >
-                          <TextInput style={styles.textinput} placeholder='Barre de recherche'/>
+                          <TextInput style={styles.textinput}
+                             placeholder='Barre de recherche'
+                             onChangeText = {(text)=>this._searchTextInputChanged(text)}
+                             />
                           <View style={styles.searchSelect}>
                               <View style={styles.searchItem}>
                                   <Picker
@@ -55,7 +79,29 @@ class Search extends React.Component {
                               </View>
                           </View>
                       </View>
-                      <SearchButton/>
+
+                      <TouchableOpacity
+                        style={{  alignItems: 'center'}} onPress={this._handleSearch}>
+                         <LinearGradient
+                             colors={['#4c669f', '#3b5998', '#192f6a']}
+                             style={{
+                                 paddingTop: 35,
+                                 paddingBottom: 35,
+                                 paddingLeft: 15,
+                                 paddingRight: 15,
+                                 alignItems: 'center',
+                                 borderRadius: 5 }}>
+                             <Text
+                                 style={{
+                                     backgroundColor: 'transparent',
+                                     fontSize: 15,
+                                     color: '#fff',
+                                 }}>
+                                 Chercher
+                             </Text>
+                         </LinearGradient>
+                     </TouchableOpacity >
+
                   </View>
               </View>
 
@@ -64,15 +110,16 @@ class Search extends React.Component {
                   Cette definition comporte plusieurs traductions en Lingala
                 </Text>
                 <FlatList
-                    data={results}
+                    data={this.state.definitions}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({item}) => <SearchItem definition={item}/>}
                 />
               </View>
           </View>
-
         )
     }
+    //une fois dans le component FilmItem, on peut récupérer
+    //  definition  via  this.props.definition, mais on ne peut pas le modifier
     _displayImageArrow(){
         sourceImage = require('../assets/images/double-24.png')
         return ( <Image   source={sourceImage}/>)
@@ -86,6 +133,7 @@ const styles = StyleSheet.create({
     },
     searchModuleContainer: {
         flex: 1,
+          marginTop:15,
     },
     resultsModuleContainer: {
         flex: 2,
@@ -105,6 +153,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
 
+    infoTitle: {
+        marginTop: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: 22,
+        color: '#061646',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        marginBottom: 5
+    },
     infoText: {
         marginTop: 1,
         justifyContent: "center",
@@ -154,7 +212,8 @@ const styles = StyleSheet.create({
         paddingLeft: 5,
         color:'white',
         backgroundColor: 'white',
-        borderRadius:5
+        borderRadius:5,
+        color:'black'
     },
 
     buttonInput: {
