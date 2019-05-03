@@ -9,7 +9,8 @@ import {
   Image,
   TouchableOpacity,
   Text,
-  FlatList  } from 'react-native'
+  FlatList,
+  ActivityIndicator  } from 'react-native'
 
 import SearchItem from './SearchItem'
 import {searchTraduction} from '../API/bantuDico'
@@ -22,19 +23,41 @@ class Search extends React.Component {
          this.searchedText = "" // Initialisation de notre donnée searchedText en dehors du state
       // On va donc initialiser notre state avec un tableau de definitions vide
       //pour modifier une donnée du state, on passe toujours par  setState
-         this.state = { definitions: [], source:"french",target:"lingala" }
+         this.state = {
+            definitions: [],
+            source:"french",
+            target:"lingala" ,
+            isLoading: false // Par défaut à false car il n'y a pas de chargement tant qu'on ne lance pas de recherche
+          }
+
          this._handleSearch = this._handleSearch.bind(this)
     }
     _handleSearch(){
        if (this.searchedText.length > 0) { // Seulement si le texte recherché n'est pas vide
           //setState  récupère les modifications de vos données et indique
           // à React que le component a besoin d'être re-rendu avec ces  nouvelles données.
+          this.setState({ isLoading: true }) // Lancement du chargement
+
           searchTraduction(this.searchedText,this.state.source,this.state.target).then(data =>{
             //on ne gère dans le state que des données qui, une fois modifiées, peuvent affecter le rendu de notre component.
-            this.setState({definitions: data})
+            this.setState({
+              definitions: data,
+               isLoading: false // Arrêt du chargement
+             })
           });
       }
 
+    }
+
+    _displayLoading() {
+      if (this.state.isLoading) {
+        return (
+          <View style={styles.loading_container}>
+            <ActivityIndicator size='large' />
+            {/* Le component ActivityIndicator possède une propriété size pour définir la taille du visuel de chargement : small ou large. Par défaut size vaut small, on met donc large pour que le chargement soit bien visible */}
+          </View>
+        )
+      }
     }
     _searchTextInputChanged(text) {
       console.log(text)
@@ -124,6 +147,7 @@ class Search extends React.Component {
                     renderItem={({item}) => <SearchItem definition={item} source={this.state.source}/>}
                 />
               </View>
+              {this._displayLoading()}
           </View>
         )
     }
@@ -236,6 +260,15 @@ const styles = StyleSheet.create({
     item_text:{
         textAlign: 'center',
         justifyContent: 'center',
+    },
+    loading_container: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      top: 100,
+      bottom: 0,
+      alignItems: 'center',
+      justifyContent: 'center'
     }
 
 })
