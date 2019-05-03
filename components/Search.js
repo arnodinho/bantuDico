@@ -22,14 +22,14 @@ class Search extends React.Component {
          this.searchedText = "" // Initialisation de notre donnée searchedText en dehors du state
       // On va donc initialiser notre state avec un tableau de definitions vide
       //pour modifier une donnée du state, on passe toujours par  setState
-         this.state = { definitions: [] }
+         this.state = { definitions: [], source:"french",target:"lingala" }
          this._handleSearch = this._handleSearch.bind(this)
     }
     _handleSearch(){
        if (this.searchedText.length > 0) { // Seulement si le texte recherché n'est pas vide
           //setState  récupère les modifications de vos données et indique
           // à React que le component a besoin d'être re-rendu avec ces  nouvelles données.
-          searchTraduction(this.searchedText).then(data =>{
+          searchTraduction(this.searchedText,this.state.source,this.state.target).then(data =>{
             //on ne gère dans le state que des données qui, une fois modifiées, peuvent affecter le rendu de notre component.
             this.setState({definitions: data})
           });
@@ -41,6 +41,8 @@ class Search extends React.Component {
       this.searchedText = text // Modification du texte recherché à chaque saisie de texte, sans passer par le setState comme avant
     }
     render() {
+      console.log(this.state.source)
+      console.log(this.state.target)
         return (
             <View style={styles.container}>
               <View style={styles.searchModuleContainer}>
@@ -56,14 +58,18 @@ class Search extends React.Component {
                           <TextInput style={styles.textinput}
                              placeholder='Barre de recherche'
                              onChangeText = {(text)=>this._searchTextInputChanged(text)}
+                               onSubmitEditing={() => this._handleSearch()}
                              />
                           <View style={styles.searchSelect}>
                               <View style={styles.searchItem}>
                                   <Picker
-                                      selectedValue="Français"
-                                      style={{  height: 50, width: 130 }}>
-                                      <Picker.Item label="Français" value="java" />
-                                      <Picker.Item label="JavaScript" value="js" />
+                                      selectedValue={this.state.source}
+                                      style={{  height: 50, width: 130 }}
+                                      onValueChange={(itemValue, itemIndex) => this.setState({source: itemValue})}
+                                      >
+                                      <Picker.Item label="Français" value="french" />
+                                      <Picker.Item label="Sango" value="sango" />
+                                      <Picker.Item label="Lingala" value="lingala" />
                                   </Picker>
                               </View>
                               <View style={styles.searchArrow}>
@@ -71,10 +77,13 @@ class Search extends React.Component {
                               </View>
                               <View style={styles.searchItem}>
                                   <Picker
-                                      selectedValue="Lingala"
-                                      style={{ height: 50, width: 130 }}>
-                                      <Picker.Item label="Lingala" value="java" />
-                                      <Picker.Item label="JavaScript" value="js" />
+                                      selectedValue={this.state.target}
+                                      style={{ height: 50, width: 130 }}
+                                      onValueChange={(itemTarget, itemIndex) => this.setState({target: itemTarget})}
+                                      >
+                                      <Picker.Item label="Français" value="french" />
+                                      <Picker.Item label="Sango" value="sango" />
+                                      <Picker.Item label="Lingala" value="lingala" />
                                   </Picker>
                               </View>
                           </View>
@@ -112,7 +121,7 @@ class Search extends React.Component {
                 <FlatList
                     data={this.state.definitions}
                     keyExtractor={(item) => item.id.toString()}
-                    renderItem={({item}) => <SearchItem definition={item}/>}
+                    renderItem={({item}) => <SearchItem definition={item} source={this.state.source}/>}
                 />
               </View>
           </View>

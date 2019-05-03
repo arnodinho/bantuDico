@@ -8,9 +8,22 @@ class SearchItem extends React.Component {
   //Les props sont fixées par le component parent (definition)
   //et ne peuvent pas être modifiées par le component qui les reçoit.
   // Les props sont accessibles en lecture uniquement dans la classe fille.
+  constructor(props) {
+    super(props)
+         this.source = this.props.source
+         this.definition = this.props.definition
+  }
+
+
+
+  _handleTranslationWord() {
+      return 'french' === this.source ? this.definition.target.word : this.definition.source.word
+  }
+
+  _handleTranslationType() {
+      return 'french' === this.source ? this.definition.target.type : this.definition.source.type
+  }
   render() {
-    const definition = this.props.definition
-    console.log("Affichage de la liste des definitions")
     return (
       <View style={styles.mainContainer}>
         <TouchableOpacity  style={{ flex:1, alignItems: 'center'}}>
@@ -19,10 +32,10 @@ class SearchItem extends React.Component {
                 style={styles.button}>
 
                   <Text style={styles.definitionTitle} numberOfLines={1}>
-                      {definition.french.word}
+                      {this._handleTranslationWord()}
                   </Text>
                   <Text  style={styles.definitionType}>
-                    - Adjectifs -
+                    -   {this._handleTranslationType()} -
                   </Text>
 
             </LinearGradient>
