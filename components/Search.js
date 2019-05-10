@@ -1,53 +1,173 @@
 // Components/Search.js
 import React from 'react'
-import { View, TextInput, Button,StyleSheet,Picker,Image,TouchableOpacity,Text } from 'react-native'
-import SearchButton from '../components/SearchButton'
+import {
+  View,
+  TextInput,
+  Button,
+  StyleSheet,
+  Picker,
+  Image,
+  TouchableOpacity,
+  Text,
+  FlatList,
+  ActivityIndicator  } from 'react-native'
+
+import SearchItem from './SearchItem'
+import {searchTraduction} from '../API/bantuDico'
+import { LinearGradient } from 'expo';
+import { createStackNavigator } from 'react-navigation'
+
 class Search extends React.Component {
     // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
     // et retourner (return) les éléments graphiques
-    render() {
+    constructor(props) {
+      super(props)
+         this.searchedText = "" // Initialisation de notre donnée searchedText en dehors du state
+      // On va donc initialiser notre state avec un tableau de definitions vide
+      //pour modifier une donnée du state, on passe toujours par  setState
+         this.state = {
+            definitions: [],
+            source:"french",
+            target:"lingala" ,
+            isLoading: false // Par défaut à false car il n'y a pas de chargement tant qu'on ne lance pas de recherche
+          }
+
+         this._handleSearch = this._handleSearch.bind(this)
+    }
+    _handleSearch(){
+       if (this.searchedText.length > 0) { // Seulement si le texte recherché n'est pas vide
+          //setState  récupère les modifications de vos données et indique
+          // à React que le component a besoin d'être re-rendu avec ces  nouvelles données.
+          this.setState({ isLoading: true }) // Lancement du chargement
+
+          searchTraduction(this.searchedText,this.state.source,this.state.target).then(data =>{
+            //on ne gère dans le state que des données qui, une fois modifiées, peuvent affecter le rendu de notre component.
+            this.setState({
+              definitions: data,
+               isLoading: false // Arrêt du chargement
+             })
+          });
+      }
+
+    }
+
+    _displayLoading() {
+      if (this.state.isLoading) {
         return (
-            <View style={styles.wrapperContainer}>
+          <View style={styles.loading_container}>
+            <ActivityIndicator size='large' />
+            {/* Le component ActivityIndicator possède une propriété size pour définir la taille du visuel de chargement : small ou large. Par défaut size vaut small, on met donc large pour que le chargement soit bien visible */}
+          </View>
+        )
+      }
+    }
+    _searchTextInputChanged(text) {
+      console.log(text)
+      this.searchedText = text // Modification du texte recherché à chaque saisie de texte, sans passer par le setState comme avant
+    }
 
-                <View style={styles.containerTitle}>
-                    <Text style={styles.infoText}>Le Dictionnaire pratique</Text>
-                    <Text style={styles.infoText}>Français - Lingala - Sango</Text>
-                </View>
+    _displayTranslation(status) {
+      console.log(status)
+        this.props.nav.navigate('LinksStack')
 
-                <View style={styles.containerSearch}>
+    }
+    render() {
+      console.log(this.state.source)
+      console.log(this.state.target)
+      console.log(this.props.nav.navigate)
+        return (
+            <View style={styles.container}>
+              <View style={styles.searchModuleContainer}>
 
-                    <View style={{ flex:3 }} >
-                        <TextInput style={styles.textinput} placeholder='Barre de recherche'/>
-                        <View style={styles.searchSelect}>
-                            <View style={styles.searchItem}>
-                                <Picker
-                                    selectedValue="Français"
-                                    style={{  height: 50, width: 130 }}>
-                                    <Picker.Item label="Français" value="java" />
-                                    <Picker.Item label="JavaScript" value="js" />
-                                </Picker>
-                            </View>
-                            <View style={styles.searchArrow}>
-                                <View >{this._displayImageArrow()}</View>
-                            </View>
-                            <View style={styles.searchItem}>
-                                <Picker
-                                    selectedValue="Lingala"
-                                    style={{ height: 50, width: 130 }}>
-                                    <Picker.Item label="Lingala" value="java" />
-                                    <Picker.Item label="JavaScript" value="js" />
-                                </Picker>
-                            </View>
-                        </View>
-                    </View>
+                  <View style={styles.containerTitle}>
+                      <Text style={styles.infoText}>Le Dictionnaire pratique</Text>
+                      <Text style={styles.infoTitle}>Français - Lingala - Sango</Text>
+                  </View>
 
-                    <SearchButton/>
+                  <View style={styles.containerSearch}>
 
-                </View>
+                      <View style={{ flex:3 }} >
+                          <TextInput style={styles.textinput}
+                             placeholder='Barre de recherche'
+                             onChangeText = {(text)=>this._searchTextInputChanged(text)}
+                               onSubmitEditing={() => this._handleSearch()}
+                             />
+                          <View style={styles.searchSelect}>
+                              <View style={styles.searchItem}>
+                                  <Picker
+                                      selectedValue={this.state.source}
+                                      style={{  height: 50, width: 130 }}
+                                      onValueChange={(itemValue, itemIndex) => this.setState({source: itemValue})}
+                                      >
+                                      <Picker.Item label="Français" value="french" />
+                                      <Picker.Item label="Sango" value="sango" />
+                                      <Picker.Item label="Lingala" value="lingala" />
+                                  </Picker>
+                              </View>
+                              <View style={styles.searchArrow}>
+                                  <View >{this._displayImageArrow()}</View>
+                              </View>
+                              <View style={styles.searchItem}>
+                                  <Picker
+                                      selectedValue={this.state.target}
+                                      style={{ height: 50, width: 130 }}
+                                      onValueChange={(itemTarget, itemIndex) => this.setState({target: itemTarget})}
+                                      >
+                                      <Picker.Item label="Français" value="french" />
+                                      <Picker.Item label="Sango" value="sango" />
+                                      <Picker.Item label="Lingala" value="lingala" />
+                                  </Picker>
+                              </View>
+                          </View>
+                      </View>
 
-            </View>
+                      <TouchableOpacity
+                        style={{  alignItems: 'center'}} onPress={this._handleSearch}>
+                         <LinearGradient
+                             colors={['#4c669f', '#3b5998', '#192f6a']}
+                             style={{
+                                 paddingTop: 35,
+                                 paddingBottom: 35,
+                                 paddingLeft: 15,
+                                 paddingRight: 15,
+                                 alignItems: 'center',
+                                 borderRadius: 5 }}>
+                             <Text
+                                 style={{
+                                     backgroundColor: 'transparent',
+                                     fontSize: 15,
+                                     color: '#fff',
+                                 }}>
+                                 Chercher
+                             </Text>
+                         </LinearGradient>
+                     </TouchableOpacity >
+
+                  </View>
+              </View>
+
+              <View style={styles.resultsModuleContainer}>
+                <Text style={styles.infoTextResult}>
+                  Cette definition comporte plusieurs traductions en Lingala
+                </Text>
+                <FlatList
+                    data={this.state.definitions}
+                    keyExtractor={(item) => item.id.toString()}
+                    renderItem={({item}) => <SearchItem
+                                              definition={item}
+                                              source={this.state.source}
+                                              target={this.state.target}
+                                              displayTranslation = {this._displayTranslation}
+                                              />
+                    }
+                />
+              </View>
+              {this._displayLoading()}
+          </View>
         )
     }
+    //une fois dans le component FilmItem, on peut récupérer
+    //  definition  via  this.props.definition, mais on ne peut pas le modifier
     _displayImageArrow(){
         sourceImage = require('../assets/images/double-24.png')
         return ( <Image   source={sourceImage}/>)
@@ -55,11 +175,24 @@ class Search extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    wrapperContainer: {
-        flex: 3,
-        backgroundColor: '#eee',
-
+    container: {
+      flex: 9,
+      backgroundColor: '#eee',
     },
+    searchModuleContainer: {
+        flex: 1,
+          marginTop:15,
+    },
+    resultsModuleContainer: {
+        flex: 2,
+        backgroundColor: '#eee',
+    },
+    containerSearch: {
+        flex: 2,
+        flexDirection: 'row',
+        marginRight: 5,
+    },
+
     containerTitle: {
         marginTop:10,
         height: 85,
@@ -67,10 +200,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    containerSearch: {
-        flex: 2,
-        flexDirection: 'row',
-        marginRight: 5,
+
+    infoTitle: {
+        marginTop: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: 22,
+        color: '#061646',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        marginBottom: 5
     },
     infoText: {
         marginTop: 1,
@@ -81,7 +220,16 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
     },
-
+    infoTextResult:{
+      marginTop: 5,
+      marginBottom: 5,
+      justifyContent: "center",
+      alignItems: "center",
+      fontSize: 17,
+      color: '#061646',
+      textAlign: 'center',
+      fontWeight: 'bold',
+    },
     searchSelect:{
         backgroundColor: '#eee',
         flexDirection: 'row',
@@ -112,7 +260,8 @@ const styles = StyleSheet.create({
         paddingLeft: 5,
         color:'white',
         backgroundColor: 'white',
-        borderRadius:5
+        borderRadius:5,
+        color:'black'
     },
 
     buttonInput: {
@@ -126,6 +275,15 @@ const styles = StyleSheet.create({
     item_text:{
         textAlign: 'center',
         justifyContent: 'center',
+    },
+    loading_container: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      top: 100,
+      bottom: 0,
+      alignItems: 'center',
+      justifyContent: 'center'
     }
 
 })

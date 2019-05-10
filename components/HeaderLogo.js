@@ -20,7 +20,7 @@ class HeaderLogo extends React.Component {
 const styles = StyleSheet.create({
 
     containerHeaderLogo: {
-        backgroundColor: '#75eea4',
+        backgroundColor: '#eee',
         alignItems: 'center',
         flex: 1,
         borderWidth: 1,
