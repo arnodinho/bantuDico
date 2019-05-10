@@ -68,13 +68,10 @@ class Search extends React.Component {
 
     _displayTranslation(status) {
       console.log(status)
-        this.props.nav.navigate('LinksStack')
-
     }
     render() {
       console.log(this.state.source)
       console.log(this.state.target)
-      console.log(this.props.nav.navigate)
         return (
             <View style={styles.container}>
               <View style={styles.searchModuleContainer}>
