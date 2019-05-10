@@ -8,7 +8,6 @@ import {
 import { WebBrowser } from 'expo';
 import Search from '../components/Search'
 import HeaderLogo from '../components/HeaderLogo'
-import Footer from '../components/Footer'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -16,14 +15,11 @@ export default class HomeScreen extends React.Component {
   };
 
   render() {
+          console.log("home")
     return (
       <View style={styles.container}>
-
         <HeaderLogo/>
-        <Search/>
-
-  
-
+        <Search nav = {this.props.navigation}/>
       </View>
     );
   }

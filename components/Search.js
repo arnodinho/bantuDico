@@ -15,6 +15,8 @@ import {
 import SearchItem from './SearchItem'
 import {searchTraduction} from '../API/bantuDico'
 import { LinearGradient } from 'expo';
+import { createStackNavigator } from 'react-navigation'
+
 class Search extends React.Component {
     // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
     // et retourner (return) les éléments graphiques
@@ -63,9 +65,16 @@ class Search extends React.Component {
       console.log(text)
       this.searchedText = text // Modification du texte recherché à chaque saisie de texte, sans passer par le setState comme avant
     }
+
+    _displayTranslation(status) {
+      console.log(status)
+        this.props.nav.navigate('LinksStack')
+
+    }
     render() {
       console.log(this.state.source)
       console.log(this.state.target)
+      console.log(this.props.nav.navigate)
         return (
             <View style={styles.container}>
               <View style={styles.searchModuleContainer}>
@@ -144,7 +153,13 @@ class Search extends React.Component {
                 <FlatList
                     data={this.state.definitions}
                     keyExtractor={(item) => item.id.toString()}
-                    renderItem={({item}) => <SearchItem definition={item} source={this.state.source}/>}
+                    renderItem={({item}) => <SearchItem
+                                              definition={item}
+                                              source={this.state.source}
+                                              target={this.state.target}
+                                              displayTranslation = {this._displayTranslation}
+                                              />
+                    }
                 />
               </View>
               {this._displayLoading()}

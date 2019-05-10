@@ -35,3 +35,16 @@ console.log(text)
             }).then((response) => response.json())
               .catch((error) => console.error(error));
 }
+
+// Récupération du détail d'un film
+export function getTranslationById (id, target) {
+  translate = target === 'sango' ? 'frenchsango' : 'frenchlingala';
+  return fetch('https://bantu-dico.com/api/', {
+              method: 'GET',
+              headers: {
+                Accept: 'application/json',
+                'X-Auth-Token': API_TOKEN,
+              },
+  }).then((response) => response.json())
+    .catch((error) => console.error(error));
+}
