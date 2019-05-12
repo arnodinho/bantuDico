@@ -29,16 +29,18 @@ class Search extends React.Component {
             definitions: [],
             source:"french",
             target:"lingala" ,
-            isLoading: false // Par défaut à false car il n'y a pas de chargement tant qu'on ne lance pas de recherche
+            isLoading: false, // Par défaut à false car il n'y a pas de chargement tant qu'on ne lance pas de recherche
+            detail: false
           }
-
          this._handleSearch = this._handleSearch.bind(this)
+         this._displayTranslation =  this._displayTranslation.bind(this)
+
     }
     _handleSearch(){
        if (this.searchedText.length > 0) { // Seulement si le texte recherché n'est pas vide
           //setState  récupère les modifications de vos données et indique
           // à React que le component a besoin d'être re-rendu avec ces  nouvelles données.
-          this.setState({ isLoading: true }) // Lancement du chargement
+          this.setState({ isLoading: true,  detail: false }) // Lancement du chargement
 
           searchTraduction(this.searchedText,this.state.source,this.state.target).then(data =>{
             //on ne gère dans le state que des données qui, une fois modifiées, peuvent affecter le rendu de notre component.
@@ -66,12 +68,46 @@ class Search extends React.Component {
       this.searchedText = text // Modification du texte recherché à chaque saisie de texte, sans passer par le setState comme avant
     }
 
-    _displayTranslation(status) {
-      console.log(status)
+    _displayTranslation(id) {
+      console.log("id de la transslation -- "+id)
+      console.log("on est dans _displayTranslation")
+      this.setState({
+        detail: true
+       })
     }
+    _manageDisplay()
+    {
+      if (this.state.detail) {
+        return (
+          <Text>Detail de la translation</Text>
+        )
+      } else if(this.state.definitions.length > 0) {
+        return (
+          <View style={styles.resultsModuleContainer}>
+            <Text style={styles.infoTextResult}>
+              Cette definition comporte plusieurs traductions en Lingala
+            </Text>
+            <FlatList
+                data={this.state.definitions}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({item}) => <SearchItem
+                                          definition={item}
+                                          source={this.state.source}
+                                          target={this.state.target}
+                                          displayTranslation = {this._displayTranslation}
+                                          />
+                }
+            />
+          </View>
+        )
+      }else{
+        return (
+      <Text>Texte aleatoire</Text>
+        )
+      }
+    }
+
     render() {
-      console.log(this.state.source)
-      console.log(this.state.target)
         return (
             <View style={styles.container}>
               <View style={styles.searchModuleContainer}>
@@ -143,22 +179,7 @@ class Search extends React.Component {
                   </View>
               </View>
 
-              <View style={styles.resultsModuleContainer}>
-                <Text style={styles.infoTextResult}>
-                  Cette definition comporte plusieurs traductions en Lingala
-                </Text>
-                <FlatList
-                    data={this.state.definitions}
-                    keyExtractor={(item) => item.id.toString()}
-                    renderItem={({item}) => <SearchItem
-                                              definition={item}
-                                              source={this.state.source}
-                                              target={this.state.target}
-                                              displayTranslation = {this._displayTranslation}
-                                              />
-                    }
-                />
-              </View>
+              {this._manageDisplay()}
               {this._displayLoading()}
           </View>
         )
