@@ -72,7 +72,8 @@ class Search extends React.Component {
       console.log("id de la transslation -- "+id)
       console.log("on est dans _displayTranslation")
       this.setState({
-        detail: true
+        detail: true,
+        definitions:[]
        })
     }
     _manageDisplay()
