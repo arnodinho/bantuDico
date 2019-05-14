@@ -15,7 +15,7 @@ import {
 
 import SearchItem from './SearchItem'
 import Result from './Result'
-import {searchTraduction} from '../API/bantuDico'
+import {searchTraduction,randomId} from '../API/bantuDico'
 import { LinearGradient } from 'expo';
 import { createStackNavigator } from 'react-navigation'
 
@@ -106,9 +106,9 @@ class Search extends React.Component {
           </View>
         )
       }else{
-
+        //gestion de l'affichage random
         return (
-          <Result id ={this.state.id} target ={this.state.target}/>
+          <Result id ={randomId()} target ={this.state.target}/>
         )
       }
     }

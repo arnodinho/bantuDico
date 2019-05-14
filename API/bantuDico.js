@@ -47,3 +47,8 @@ export function getTranslationById (id, target) {
   }).then((response) => response.json())
     .catch((error) => console.error(error));
 }
+
+//on genere un randi=om id pour les translations random 
+export function randomId(){
+return Math.floor(Math.random() * 100) + 1;
+}
