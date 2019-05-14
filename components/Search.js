@@ -10,9 +10,11 @@ import {
   TouchableOpacity,
   Text,
   FlatList,
+  Keyboard,
   ActivityIndicator  } from 'react-native'
 
 import SearchItem from './SearchItem'
+import Result from './Result'
 import {searchTraduction} from '../API/bantuDico'
 import { LinearGradient } from 'expo';
 import { createStackNavigator } from 'react-navigation'
@@ -28,9 +30,10 @@ class Search extends React.Component {
          this.state = {
             definitions: [],
             source:"french",
-            target:"lingala" ,
+            target:"sango" ,
             isLoading: false, // Par défaut à false car il n'y a pas de chargement tant qu'on ne lance pas de recherche
-            detail: false
+            detail: false,
+            id: 2
           }
          this._handleSearch = this._handleSearch.bind(this)
          this._displayTranslation =  this._displayTranslation.bind(this)
@@ -68,19 +71,20 @@ class Search extends React.Component {
       this.searchedText = text // Modification du texte recherché à chaque saisie de texte, sans passer par le setState comme avant
     }
 
-    _displayTranslation(id) {
-      console.log("id de la transslation -- "+id)
+    _displayTranslation(idTranslation) {
+      console.log("id de la transslation -- "+idTranslation)
       console.log("on est dans _displayTranslation")
       this.setState({
         detail: true,
-        definitions:[]
+        definitions: [],
+        id: idTranslation
        })
     }
     _manageDisplay()
     {
       if (this.state.detail) {
         return (
-          <Text>Detail de la translation</Text>
+          <Result id ={this.state.id} target ={this.state.target}/>
         )
       } else if(this.state.definitions.length > 0) {
         return (
@@ -102,8 +106,9 @@ class Search extends React.Component {
           </View>
         )
       }else{
+
         return (
-      <Text>Texte aleatoire</Text>
+          <Result id ={this.state.id} target ={this.state.target}/>
         )
       }
     }

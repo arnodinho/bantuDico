@@ -15,8 +15,6 @@ export default class HomeScreen extends React.Component {
   };
 
   render() {
-          console.log("home")
-          console.log(this.props)
     return (
       <View style={styles.container}>
         <HeaderLogo/>

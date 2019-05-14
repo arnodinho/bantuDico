@@ -3,14 +3,14 @@ import React from 'react'
 import { View, StyleSheet,Text, Platform, Image, ActivityIndicator} from 'react-native'
 import { MonoText } from '../components/StyledText';
 import RandomButton from '../components/RandomButton'
-
+import {getTranslationById} from '../API/bantuDico'
 class Result extends React.Component {
 
       constructor(props) {
         super(props)
         this.state = {
           translation: undefined,
-          isLoading: true
+          isLoading: true // A l'ouverture de la vue, on affiche le chargement, le temps de récupérer le détail de la translation
         }
       }
 
@@ -24,6 +24,7 @@ class Result extends React.Component {
     }
 
     _displayLoading() {
+       // Si isLoading vaut true, on affiche le chargement à l'écran
       if (this.state.isLoading) {
         return (
           <View style={styles.loading_container}>
@@ -33,7 +34,9 @@ class Result extends React.Component {
       }
     }
     _displayTranslation() {
+      console.log(this.state.translation)
       if (this.state.translation != undefined) {
+
         return (
           <View style={styles.wrapperContainer}>
               <View style={styles.resultContainer}>
@@ -43,7 +46,7 @@ class Result extends React.Component {
                           {this._displayImageShare()}
                       </View>
                       <View style={{ flex:1, alignItems:'flex-start' }}>
-                          <Text  style={{ fontSize: 15, color: '#061646',}}>10</Text>
+                          <Text  style={{ fontSize: 15, color: '#061646'}}>{this.state.translation.likes}</Text>
                       </View>
                   </View>
 
@@ -52,13 +55,13 @@ class Result extends React.Component {
                           <Text style={styles.tabBarInfoText}>Français</Text>
                       </View>
                       <View style={{ flex:1, alignItems:'center' }} >
-                          <Text style={styles.tabBarInfoText}>Lingala</Text>
+                          <Text style={styles.tabBarInfoText}>{this.state.translation.target.name}</Text>
                       </View>
                   </View>
 
                   <View style={styles.resultDefinition}>
                       <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
-                          <Text style={styles.textDefinition}>lonkasa ya maanda</Text>
+                          <Text style={styles.textDefinition}>{this.state.translation.source.word}</Text>
 
 
                       </View>
@@ -66,14 +69,14 @@ class Result extends React.Component {
                           <Text style={styles.textDefinition}>{this._displayImageTraduction()}</Text>
                       </View>
                       <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
-                          <Text style={styles.textDefinition}>mbote na nyama</Text>
+                          <Text style={styles.textDefinition}>{this.state.translation.target.word}</Text>
 
                       </View>
                   </View>
 
                   <View style={styles.resultExample}>
-                      <Text style={styles.textExemple}>il etait une fois l''ouest</Text>
-                      <Text style={styles.textExemple}>il etait une fois le sud et je repars a la ligne</Text>
+                      <Text style={styles.textExemple}>{this.state.translation.description_source}</Text>
+                      <Text style={styles.textExemple}>{this.state.translation.description_target}</Text>
                   </View>
 
               </View>
@@ -108,7 +111,8 @@ class Result extends React.Component {
 
 const styles = StyleSheet.create({
     wrapperContainer: {
-        flex:6,
+        flex:2,
+        marginTop:10
     },
     resultContainer:{
         flex:4,
