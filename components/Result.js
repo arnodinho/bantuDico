@@ -9,6 +9,7 @@ class Result extends React.Component {
 
       constructor(props) {
         super(props)
+        //vous ne devez jamais modifier directement le state de votre application.
         this.state = {
           translation: undefined,
           isLoading: true, // A l'ouverture de la vue, on affiche le chargement, le temps de récupérer le détail de la translation
