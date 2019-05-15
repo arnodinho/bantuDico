@@ -14,8 +14,6 @@ class SearchItem extends React.Component {
          this.target = this.props.target
          this.definition = this.props.definition
          this.displayTranslation = this.props.displayTranslation
-
-         this.state = {detail:undefined}
   }
 
   _handleTranslationWord() {
@@ -25,19 +23,16 @@ class SearchItem extends React.Component {
   _handleTranslationType() {
       return 'french' === this.source ? this.definition.target.type : this.definition.source.type
   }
-  _displayDetail(){
-       this.setState({ detail: true })
-        console.log(this.state.detail)
-        if (this.state.detail) {
-          this.displayTranslation()
-        }
-    }
+  _displayDetail(id){
+      this.displayTranslation(id)
+  }
+
   render() {
     return (
       <View style={styles.mainContainer}>
         <TouchableOpacity
           style={{ flex:1, alignItems: 'center'}}
-           onPress={() => this._displayDetail() }
+           onPress={() => this._displayDetail(this.definition.id) }
           >
             <LinearGradient
                 colors={['#4c669f', '#3b5998', '#192f6a']}

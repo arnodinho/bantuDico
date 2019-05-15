@@ -1,29 +1,39 @@
 // Components/Result.js
 import React from 'react'
-import { View, StyleSheet,Text, Platform, Image, ActivityIndicator} from 'react-native'
+import { View, StyleSheet,Text, Platform, Image, ActivityIndicator,TouchableOpacity} from 'react-native'
 import { MonoText } from '../components/StyledText';
 import RandomButton from '../components/RandomButton'
-
+import {getTranslationById,randomId} from '../API/bantuDico'
+import { LinearGradient } from 'expo';
 class Result extends React.Component {
 
       constructor(props) {
         super(props)
         this.state = {
           translation: undefined,
-          isLoading: true
+          isLoading: true, // A l'ouverture de la vue, on affiche le chargement, le temps de récupérer le détail de la translation
+          id : this.props.id,
+          random: 0
         }
+        this._getTranslation = this._getTranslation.bind(this)
       }
 
       componentDidMount() {
-        getTranslationById(this.props.id, this.props.target).then(data => {
-          this.setState({
-            translation: data,
-            isLoading: false
-          })
-        })
-    }
+        console.log("component result monté")
+        this._getTranslation(this.state.id, this.props.target)
+      }
 
+
+    _getTranslation(id, target){
+      getTranslationById(id, target).then(data => {
+        this.setState({
+          translation: data,
+          isLoading: false
+        })
+      })
+    }
     _displayLoading() {
+       // Si isLoading vaut true, on affiche le chargement à l'écran
       if (this.state.isLoading) {
         return (
           <View style={styles.loading_container}>
@@ -43,7 +53,7 @@ class Result extends React.Component {
                           {this._displayImageShare()}
                       </View>
                       <View style={{ flex:1, alignItems:'flex-start' }}>
-                          <Text  style={{ fontSize: 15, color: '#061646',}}>10</Text>
+                          <Text  style={{ fontSize: 15, color: '#061646'}}>{this.state.translation.likes}</Text>
                       </View>
                   </View>
 
@@ -52,13 +62,13 @@ class Result extends React.Component {
                           <Text style={styles.tabBarInfoText}>Français</Text>
                       </View>
                       <View style={{ flex:1, alignItems:'center' }} >
-                          <Text style={styles.tabBarInfoText}>Lingala</Text>
+                          <Text style={styles.tabBarInfoText}>{this.state.translation.target.name}</Text>
                       </View>
                   </View>
 
                   <View style={styles.resultDefinition}>
                       <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
-                          <Text style={styles.textDefinition}>lonkasa ya maanda</Text>
+                          <Text style={styles.textDefinition}>{this.state.translation.source.word}</Text>
 
 
                       </View>
@@ -66,24 +76,44 @@ class Result extends React.Component {
                           <Text style={styles.textDefinition}>{this._displayImageTraduction()}</Text>
                       </View>
                       <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
-                          <Text style={styles.textDefinition}>mbote na nyama</Text>
+                          <Text style={styles.textDefinition}>{this.state.translation.target.word}</Text>
 
                       </View>
                   </View>
 
                   <View style={styles.resultExample}>
-                      <Text style={styles.textExemple}>il etait une fois l''ouest</Text>
-                      <Text style={styles.textExemple}>il etait une fois le sud et je repars a la ligne</Text>
+                      <Text style={styles.textExemple}>{this.state.translation.description_source}</Text>
+                      <Text style={styles.textExemple}>{this.state.translation.description_target}</Text>
                   </View>
 
               </View>
-              <RandomButton/>
+              {/*onPress={() => this.handleRoute.bind('x')} in this case handleRoute doesn't called as soon as render happen*/}
+              <TouchableOpacity  style={{ flex:1, alignItems: 'center'}} >
+                  <LinearGradient
+                      colors={['#4c669f', '#3b5998', '#192f6a']}
+                      style={{
+                          marginTop:5,
+                          paddingTop: 15,
+                          paddingBottom: 15,
+                          paddingLeft: 55,
+                          paddingRight: 55,
+                          alignItems: 'center',
+                          borderRadius: 5 }}>
+                      <Text
+                          style={{
+                              backgroundColor: 'transparent',
+                              fontSize: 15,
+                              color: '#fff',
+                          }}>
+                          Aléatoire
+                      </Text>
+                  </LinearGradient>
+              </TouchableOpacity >
           </View>
 
         )
       }
     }
-
 
     // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
     // et retourner (return) les éléments graphiques
@@ -108,7 +138,8 @@ class Result extends React.Component {
 
 const styles = StyleSheet.create({
     wrapperContainer: {
-        flex:6,
+        flex:2,
+        marginTop:10
     },
     resultContainer:{
         flex:4,

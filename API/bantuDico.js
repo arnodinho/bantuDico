@@ -18,9 +18,6 @@ export function searchTraduction (text,source,target) {
           identifier = 'lingala_id';
   }
   url = 'https://bantu-dico.com/api/'+translate+'/search';
-console.log(url)
-console.log(identifier)
-console.log(text)
   return fetch(url, {
               method: 'POST',
               headers: {
@@ -39,7 +36,9 @@ console.log(text)
 // Récupération du détail d'un film
 export function getTranslationById (id, target) {
   translate = target === 'sango' ? 'frenchsango' : 'frenchlingala';
-  return fetch('https://bantu-dico.com/api/', {
+  url = 'https://bantu-dico.com/api/'+translate+'/'+id;
+
+  return fetch(url, {
               method: 'GET',
               headers: {
                 Accept: 'application/json',
@@ -47,4 +46,9 @@ export function getTranslationById (id, target) {
               },
   }).then((response) => response.json())
     .catch((error) => console.error(error));
+}
+
+//on genere un randi=om id pour les translations random
+export function randomId(){
+return Math.floor(Math.random() * 100) + 1;
 }

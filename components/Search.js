@@ -10,10 +10,12 @@ import {
   TouchableOpacity,
   Text,
   FlatList,
+  Keyboard,
   ActivityIndicator  } from 'react-native'
 
 import SearchItem from './SearchItem'
-import {searchTraduction} from '../API/bantuDico'
+import Result from './Result'
+import {searchTraduction,randomId} from '../API/bantuDico'
 import { LinearGradient } from 'expo';
 import { createStackNavigator } from 'react-navigation'
 
@@ -28,17 +30,21 @@ class Search extends React.Component {
          this.state = {
             definitions: [],
             source:"french",
-            target:"lingala" ,
-            isLoading: false // Par défaut à false car il n'y a pas de chargement tant qu'on ne lance pas de recherche
+            target:"sango" ,
+            isLoading: false, // Par défaut à false car il n'y a pas de chargement tant qu'on ne lance pas de recherche
+            detail: false,
+            id: 2
           }
-
          this._handleSearch = this._handleSearch.bind(this)
+         this._displayTranslation =  this._displayTranslation.bind(this)
+
     }
     _handleSearch(){
+      console.log("handle search")
        if (this.searchedText.length > 0) { // Seulement si le texte recherché n'est pas vide
           //setState  récupère les modifications de vos données et indique
           // à React que le component a besoin d'être re-rendu avec ces  nouvelles données.
-          this.setState({ isLoading: true }) // Lancement du chargement
+          this.setState({ isLoading: true,  detail: false }) // Lancement du chargement
 
           searchTraduction(this.searchedText,this.state.source,this.state.target).then(data =>{
             //on ne gère dans le state que des données qui, une fois modifiées, peuvent affecter le rendu de notre component.
@@ -66,15 +72,54 @@ class Search extends React.Component {
       this.searchedText = text // Modification du texte recherché à chaque saisie de texte, sans passer par le setState comme avant
     }
 
-    _displayTranslation(status) {
-      console.log(status)
-        this.props.nav.navigate('LinksStack')
-
+    _displayTranslation(idTranslation) {
+      console.log("id de la transslation -- "+idTranslation)
+      console.log("on est dans _displayTranslation")
+      this.setState({
+        detail: true,
+        definitions: [],
+        id: idTranslation
+       })
     }
+    _manageDisplay()
+    {
+      console.log('detail translation state '+this.state.detail)
+      console.log('definition length '+this.state.definitions.length)
+      if (this.state.detail) {
+            console.log("gestion de l'affichage result")
+        return (
+          <Result id ={this.state.id} target ={this.state.target}/>
+        )
+      } else if(this.state.definitions.length > 0) {
+        return (
+          <View style={styles.resultsModuleContainer}>
+            <Text style={styles.infoTextResult}>
+              Cette definition comporte plusieurs traductions en Lingala
+            </Text>
+            <FlatList
+                data={this.state.definitions}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({item}) => <SearchItem
+                                          definition={item}
+                                          source={this.state.source}
+                                          target={this.state.target}
+                                          displayTranslation = {this._displayTranslation}
+                                          />
+                }
+            />
+          </View>
+        )
+      }else{
+        //gestion de l'affichage random
+        console.log("gestion de l'affichage random")
+        return (
+          <Text>random</Text>
+           // <Result id ={randomId()} target ='sango'/>
+        )
+      }
+    }
+
     render() {
-      console.log(this.state.source)
-      console.log(this.state.target)
-      console.log(this.props.nav.navigate)
         return (
             <View style={styles.container}>
               <View style={styles.searchModuleContainer}>
@@ -146,22 +191,7 @@ class Search extends React.Component {
                   </View>
               </View>
 
-              <View style={styles.resultsModuleContainer}>
-                <Text style={styles.infoTextResult}>
-                  Cette definition comporte plusieurs traductions en Lingala
-                </Text>
-                <FlatList
-                    data={this.state.definitions}
-                    keyExtractor={(item) => item.id.toString()}
-                    renderItem={({item}) => <SearchItem
-                                              definition={item}
-                                              source={this.state.source}
-                                              target={this.state.target}
-                                              displayTranslation = {this._displayTranslation}
-                                              />
-                    }
-                />
-              </View>
+              {this._manageDisplay()}
               {this._displayLoading()}
           </View>
         )
