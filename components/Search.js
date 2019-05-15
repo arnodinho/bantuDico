@@ -83,6 +83,8 @@ class Search extends React.Component {
     }
     _manageDisplay()
     {
+      console.log('detail translation state '+this.state.detail)
+      console.log('definition length '+this.state.definitions.length)
       if (this.state.detail) {
             console.log("gestion de l'affichage result")
         return (
@@ -111,7 +113,8 @@ class Search extends React.Component {
         //gestion de l'affichage random
         console.log("gestion de l'affichage random")
         return (
-          <Result id ={randomId()} target ='sango'/>
+          <Text>random</Text>
+           // <Result id ={randomId()} target ='sango'/>
         )
       }
     }
