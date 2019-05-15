@@ -37,7 +37,7 @@ export function searchTraduction (text,source,target) {
 export function getTranslationById (id, target) {
   translate = target === 'sango' ? 'frenchsango' : 'frenchlingala';
   url = 'https://bantu-dico.com/api/'+translate+'/'+id;
-  console.log('function get translation '+ target);
+
   return fetch(url, {
               method: 'GET',
               headers: {
@@ -48,7 +48,7 @@ export function getTranslationById (id, target) {
     .catch((error) => console.error(error));
 }
 
-//on genere un randi=om id pour les translations random 
+//on genere un randi=om id pour les translations random
 export function randomId(){
 return Math.floor(Math.random() * 100) + 1;
 }

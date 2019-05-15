@@ -1,28 +1,37 @@
 // Components/Result.js
 import React from 'react'
-import { View, StyleSheet,Text, Platform, Image, ActivityIndicator} from 'react-native'
+import { View, StyleSheet,Text, Platform, Image, ActivityIndicator,TouchableOpacity} from 'react-native'
 import { MonoText } from '../components/StyledText';
 import RandomButton from '../components/RandomButton'
-import {getTranslationById} from '../API/bantuDico'
+import {getTranslationById,randomId} from '../API/bantuDico'
+import { LinearGradient } from 'expo';
 class Result extends React.Component {
 
       constructor(props) {
         super(props)
         this.state = {
           translation: undefined,
-          isLoading: true // A l'ouverture de la vue, on affiche le chargement, le temps de récupérer le détail de la translation
+          isLoading: true, // A l'ouverture de la vue, on affiche le chargement, le temps de récupérer le détail de la translation
+          id : this.props.id,
+          random: 0
         }
+        this._getTranslation = this._getTranslation.bind(this)
       }
 
       componentDidMount() {
-        getTranslationById(this.props.id, this.props.target).then(data => {
-          this.setState({
-            translation: data,
-            isLoading: false
-          })
-        })
-    }
+        console.log("component result monté")
+        this._getTranslation(this.state.id, this.props.target)
+      }
 
+
+    _getTranslation(id, target){
+      getTranslationById(id, target).then(data => {
+        this.setState({
+          translation: data,
+          isLoading: false
+        })
+      })
+    }
     _displayLoading() {
        // Si isLoading vaut true, on affiche le chargement à l'écran
       if (this.state.isLoading) {
@@ -34,9 +43,7 @@ class Result extends React.Component {
       }
     }
     _displayTranslation() {
-      console.log(this.state.translation)
       if (this.state.translation != undefined) {
-
         return (
           <View style={styles.wrapperContainer}>
               <View style={styles.resultContainer}>
@@ -80,13 +87,33 @@ class Result extends React.Component {
                   </View>
 
               </View>
-              <RandomButton/>
+              {/*onPress={() => this.handleRoute.bind('x')} in this case handleRoute doesn't called as soon as render happen*/}
+              <TouchableOpacity  style={{ flex:1, alignItems: 'center'}} >
+                  <LinearGradient
+                      colors={['#4c669f', '#3b5998', '#192f6a']}
+                      style={{
+                          marginTop:5,
+                          paddingTop: 15,
+                          paddingBottom: 15,
+                          paddingLeft: 55,
+                          paddingRight: 55,
+                          alignItems: 'center',
+                          borderRadius: 5 }}>
+                      <Text
+                          style={{
+                              backgroundColor: 'transparent',
+                              fontSize: 15,
+                              color: '#fff',
+                          }}>
+                          Aléatoire
+                      </Text>
+                  </LinearGradient>
+              </TouchableOpacity >
           </View>
 
         )
       }
     }
-
 
     // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
     // et retourner (return) les éléments graphiques

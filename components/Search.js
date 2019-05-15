@@ -40,6 +40,7 @@ class Search extends React.Component {
 
     }
     _handleSearch(){
+      console.log("handle search")
        if (this.searchedText.length > 0) { // Seulement si le texte recherché n'est pas vide
           //setState  récupère les modifications de vos données et indique
           // à React que le component a besoin d'être re-rendu avec ces  nouvelles données.
@@ -83,6 +84,7 @@ class Search extends React.Component {
     _manageDisplay()
     {
       if (this.state.detail) {
+            console.log("gestion de l'affichage result")
         return (
           <Result id ={this.state.id} target ={this.state.target}/>
         )
@@ -107,8 +109,9 @@ class Search extends React.Component {
         )
       }else{
         //gestion de l'affichage random
+        console.log("gestion de l'affichage random")
         return (
-          <Result id ={randomId()} target ={this.state.target}/>
+          <Result id ={randomId()} target ='sango'/>
         )
       }
     }
