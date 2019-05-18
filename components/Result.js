@@ -10,6 +10,9 @@ class Result extends React.Component {
       constructor(props) {
         super(props)
         //vous ne devez jamais modifier directement le state de votre application.
+        
+        //lorsque vous utilisez  setState(value: value) React va créer une copie
+        // de votre state, y appliquer vos changements ( value ) et retourner un nouvel objet state
         this.state = {
           translation: undefined,
           isLoading: true, // A l'ouverture de la vue, on affiche le chargement, le temps de récupérer le détail de la translation

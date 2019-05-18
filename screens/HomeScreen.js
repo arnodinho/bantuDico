@@ -9,7 +9,7 @@ import { WebBrowser } from 'expo';
 import Search from '../components/Search'
 import HeaderLogo from '../components/HeaderLogo'
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
@@ -18,7 +18,7 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <HeaderLogo/>
-        <Search nav={this.props.navigation}/>
+        <Search/>
       </View>
     );
   }
@@ -84,3 +84,7 @@ const styles = StyleSheet.create({
     color: '#2e78b7',
   },
 });
+ // export default HomeScreen
+// export default connect()(HomeScreen)
+
+export default HomeScreen
