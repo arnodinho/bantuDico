@@ -3,15 +3,23 @@ import { Platform, StatusBar, StyleSheet, View} from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
 import MainNavigator from './navigation/Navigation';
+
+import Store from './Store/configureStore'
+import { Provider } from 'react-redux'
+
+
 export default class App extends React.Component {
 
 
   render() {
 
       return (
-        <View style={styles.container}>
-          <MainNavigator />
-        </View>
+        <Provider store={Store}>
+          <View style={styles.container}>
+            <MainNavigator />
+          </View>
+       </Provider>
+
       );
     }
 

@@ -113,7 +113,7 @@ class Search extends React.Component {
         //gestion de l'affichage random
         console.log("gestion de l'affichage random")
         return (
-          <Text>random</Text>
+          <Text>random aleatoire</Text>
            // <Result id ={randomId()} target ='sango'/>
         )
       }
