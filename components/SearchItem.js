@@ -3,6 +3,7 @@
 import React from 'react'
 import { StyleSheet, View, Text,TouchableOpacity } from 'react-native'
 import { LinearGradient } from 'expo';
+import { connect } from 'react-redux'
 
 class SearchItem extends React.Component {
   //Les props sont fixées par le component parent (definition)
@@ -28,6 +29,8 @@ class SearchItem extends React.Component {
   }
 
   render() {
+    console.log(this.props)
+
     return (
       <View style={styles.mainContainer}>
         <TouchableOpacity
@@ -81,4 +84,9 @@ const styles = StyleSheet.create({
   }
 })
 
+// const mapStateToProps = (state) => {
+//   return state
+// }
+
 export default SearchItem
+// export default connect(mapStateToProps)(SearchItem)

@@ -18,6 +18,7 @@ import Result from './Result'
 import {searchTraduction,randomId} from '../API/bantuDico'
 import { LinearGradient } from 'expo';
 import { createStackNavigator } from 'react-navigation'
+import { connect } from 'react-redux'
 
 class Search extends React.Component {
     // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
@@ -113,7 +114,7 @@ class Search extends React.Component {
         //gestion de l'affichage random
         console.log("gestion de l'affichage random")
         return (
-          <Text>random aleatoire</Text>
+          <Text>random aleatoire connecte</Text>
            // <Result id ={randomId()} target ='sango'/>
         )
       }
@@ -318,4 +319,11 @@ const styles = StyleSheet.create({
 
 })
 //on exporte nos éléments pour pouvoir les utiliser ailleurs.
-export default Search
+// export default Search
+
+const mapStateToProps = (state) => {
+  return state
+}
+
+// export default SearchItem
+export default connect(mapStateToProps)(Search)
