@@ -9,10 +9,8 @@ import { Provider } from 'react-redux'
 
 
 export default class App extends React.Component {
-
-
+  //Provider. Ce component n'a qu'une seule et unique fonction, il distribue votre store à toute votre application
   render() {
-
       return (
         <Provider store={Store}>
             <MainNavigator />

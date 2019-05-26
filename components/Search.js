@@ -113,8 +113,9 @@ class Search extends React.Component {
       }else{
         //gestion de l'affichage random
         console.log("gestion de l'affichage random")
+        console.log(this.props)
         return (
-          <Text>random aleatoire connecte</Text>
+          <Text>random aleatoire connected</Text>
            // <Result id ={randomId()} target ='sango'/>
         )
       }
@@ -321,9 +322,15 @@ const styles = StyleSheet.create({
 //on exporte nos éléments pour pouvoir les utiliser ailleurs.
 // export default Search
 
+// si on spécifie  mapStateToProps  dans la fonction  connect  , automatiquement, le component est abonné aux changements du store Redux.
 const mapStateToProps = (state) => {
-  return state
+  // on vient, à l'instant, de mapper le state de notre application dans les props du component Search.
+   //À présent, dans les props du component Search, vous avez accès au state de l'application et donc au language.
+
+// Quand vous mappez le state de l'application à un component, vous devez spécifier les informations qui vous intéressent et ne pas retourner tout le state
+
+  return {target: state.target}
 }
 
-// export default SearchItem
+// Le store Redux est connecté à notre component Search.
 export default connect(mapStateToProps)(Search)

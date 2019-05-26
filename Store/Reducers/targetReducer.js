@@ -1,14 +1,18 @@
 // la partie visuelle, avec vos components dont les fichiers
 // commencent par une majuscule, de la partie fonctionnelle, avec vos fonctions, vos reducers, vos datas, etc.
-import { combineReducers } from 'redux';
-
 const initialState = {target:"sango"}
 
 toggleLanguage = (state = initialState, action) =>{
+  let nextState
+  switch (action.type) {
 
-      return state
+        case 'TOGGLE_LANGUAGE':
+          nextState = action.value
+            return nextState || state
+
+        default:
+            return state
+    }
 };
 
-export default combineReducers({
-  target: toggleLanguage,
-});
+export default toggleLanguage

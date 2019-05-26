@@ -6,7 +6,8 @@ import RandomButton from '../components/RandomButton'
 import {getTranslationById,randomId} from '../API/bantuDico'
 import { LinearGradient } from 'expo';
 class Result extends React.Component {
-
+ // Si, dans votre application, les props d'un component change, celui-ci passe
+ // automatiquement dans le cycle de vie updating et se re-rend.
       constructor(props) {
         super(props)
         this.state = {

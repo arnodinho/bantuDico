@@ -10,6 +10,9 @@ class SearchItem extends React.Component {
   //et ne peuvent pas être modifiées par le component qui les reçoit.
   // Les props sont accessibles en lecture uniquement dans la classe fille.
   constructor(props) {
+    // Il y a deux actions qui peuvent pousser un component à se re-rendre :
+    // - Un changement dans son state (avec  setState()  )
+    // - Un changement dans ses props
     super(props)
          this.source = this.props.source
          this.target = this.props.target
