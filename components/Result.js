@@ -26,7 +26,12 @@ class Result extends React.Component {
       }
 
       _handleRandom(){
-
+          trad = randomTranslation(this.props.target)
+          console.log(trad)
+          this.setState({
+            translation: trad,
+            isLoading: false
+          })
       }
     _getTranslation(id, target){
       getTranslationById(id, target).then(data => {
