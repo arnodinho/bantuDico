@@ -32,8 +32,6 @@ class SearchItem extends React.Component {
   }
 
   render() {
-    console.log(this.props)
-
     return (
       <View style={styles.mainContainer}>
         <TouchableOpacity

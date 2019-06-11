@@ -1,18 +1,30 @@
 // la partie visuelle, avec vos components dont les fichiers
 // commencent par une majuscule, de la partie fonctionnelle, avec vos fonctions, vos reducers, vos datas, etc.
-const initialState = {target:"sango"}
+import { createStore } from 'redux';
 
-toggleLanguage = (state = initialState, action) =>{
-  let nextState
+ toggleLanguage = (state = {target:[]}, action) => {
+
   switch (action.type) {
-
         case 'TOGGLE_LANGUAGE':
-          nextState = action.value
-            return nextState || state
+            state = {...state, target: action.value }
 
+            console.log("on est dans le switch")
+            console.log(state)
+            return Object.assign({}, state, {
+  visibilityFilter: action.value
+})
+
+
+            break;
         default:
-            return state
+        console.log("on est dans le default")
+            break;
     }
+    console.log("on est apres le switch")
+    console.log("aa "+action.type)
+
+    return state
 };
 
-export default toggleLanguage
+store = createStore(toggleLanguage)
+export default store
