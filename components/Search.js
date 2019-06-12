@@ -40,6 +40,7 @@ class Search extends React.Component {
          this._displayTranslation =  this._displayTranslation.bind(this)
          this._handleSearch = this._handleSearch.bind(this)
          this._toggleLanguage = this._toggleLanguage.bind(this)
+         this.resultElement = React.createRef()
     }
     _toggleLanguage() {
         const action = { type: "TOGGLE_LANGUAGE", value: this.state.target }
@@ -61,6 +62,11 @@ class Search extends React.Component {
               definitions: data,
                isLoading: false // Arrêt du chargement
              })
+             if(this.state.definitions.length == 1) {
+               var def = this.state.definitions.pop()
+              this.resultElement.current.changeId(def.id)
+             }
+
           });
       }
 
@@ -89,10 +95,7 @@ class Search extends React.Component {
        })
     }
 
-    _displayRandomTranslation()
-    {
-
-    }
+    _displayRandomTranslation(){}
 
     _manageDisplay()
     {
@@ -102,11 +105,10 @@ class Search extends React.Component {
           <Result id ={this.state.id} target ={this.state.target}/>
         )
       } else if (this.state.definitions.length == 1) {
-        var translate = this.state.definitions.pop()
-        console.log("aaa")
-        console.log(translate.id)
+        // var translate = this.state.definitions.pop()
+        console.log("un resultat")
         return (
-          <Result id ={translate.id} target ={this.state.target}/>
+          <Result id ={translate.id} target ={this.state.target} ref={this.resultElement}/>
         )
       } else if(this.state.definitions.length > 1) {
         console.log(this.state.definitions.pop())

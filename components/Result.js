@@ -25,6 +25,13 @@ class Result extends React.Component {
         this._getTranslation(this.state.id, this.props.target)
       }
 
+    componentDidUpdate() {
+        console.log("component result mis a jour")
+    }
+
+    changeId = (id) => {
+      this._getTranslation(id, this.props.target)
+    }
       _handleRandom(){
           trad = randomTranslation(this.props.target)
           console.log(trad)
