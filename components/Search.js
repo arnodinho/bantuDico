@@ -38,7 +38,6 @@ class Search extends React.Component {
           }
          this._handleSearch = this._handleSearch.bind(this)
          this._displayTranslation =  this._displayTranslation.bind(this)
-         this._handleSearch = this._handleSearch.bind(this)
          this._toggleLanguage = this._toggleLanguage.bind(this)
          this.resultElement = React.createRef()
     }
@@ -62,8 +61,9 @@ class Search extends React.Component {
               definitions: data,
                isLoading: false // Arrêt du chargement
              })
-             if(this.state.definitions.length == 1) {
-               var def = this.state.definitions.pop()
+             console.log(data.length)
+             if(data.length == 1) {
+               var def = data.pop()
               this.resultElement.current.changeId(def.id)
              }
 
@@ -111,7 +111,7 @@ class Search extends React.Component {
           <Result id ={translate.id} target ={this.state.target} ref={this.resultElement}/>
         )
       } else if(this.state.definitions.length > 1) {
-        console.log(this.state.definitions.pop())
+console.log("plusieurs resultats")
         return (
           <View style={styles.resultsModuleContainer}>
             <Text style={styles.infoTextResult}>
