@@ -3,15 +3,17 @@ import { Platform, StatusBar, StyleSheet, View} from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
 import MainNavigator from './navigation/Navigation';
-export default class App extends React.Component {
 
+import Store from './Store/Reducers/targetReducer'
+import { Provider } from 'react-redux'
+
+
+export default class App extends React.Component {
+  //Provider. Ce component n'a qu'une seule et unique fonction, il distribue votre store à toute votre application
 
   render() {
-
       return (
-        <View style={styles.container}>
-          <MainNavigator />
-        </View>
+        <MainNavigator />
       );
     }
 

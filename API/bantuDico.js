@@ -1,6 +1,6 @@
 //C'est une très bonne pratique de séparer la logique API du reste de l'application.
-
-const API_TOKEN = "UyRhhSnqhBxHOhcAZ4yT5Ts+SpM4WR9zNV2m5enp2e0rMwioCW3+rU0wVvYD+aDiPBg=";
+import dataLingala from '../Helpers/FrenchLingala'
+const API_TOKEN = "zCTYG3hLsggB0lx4nCRjR6wZ3NUTu1IGzlHk45AngszGGKblTh1cJ6ZqooefftXqPZs=";
 
 export function searchTraduction (text,source,target) {
 
@@ -33,7 +33,7 @@ export function searchTraduction (text,source,target) {
               .catch((error) => console.error(error));
 }
 
-// Récupération du détail d'un film
+// Récupération du détail
 export function getTranslationById (id, target) {
   translate = target === 'sango' ? 'frenchsango' : 'frenchlingala';
   url = 'https://bantu-dico.com/api/'+translate+'/'+id;
@@ -50,5 +50,18 @@ export function getTranslationById (id, target) {
 
 //on genere un randi=om id pour les translations random
 export function randomId(){
-return Math.floor(Math.random() * 100) + 1;
+// return Math.floor(Math.random() * 100) + 1;
+var min=1;
+var max=6;
+return Math.floor(Math.random() * (+max - +min)) + +min;
+}
+
+export function randomTranslation(language){
+  var min=1;
+  var max=5;
+  var id = Math.floor(Math.random() * (+max - +min)) + +min;
+  console.log(language)
+  var trad = dataLingala[id]
+
+  return trad
 }

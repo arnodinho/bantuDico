@@ -3,10 +3,11 @@ import React from 'react'
 import { View, StyleSheet,Text, Platform, Image, ActivityIndicator,TouchableOpacity} from 'react-native'
 import { MonoText } from '../components/StyledText';
 import RandomButton from '../components/RandomButton'
-import {getTranslationById,randomId} from '../API/bantuDico'
+import {getTranslationById,randomId,randomTranslation} from '../API/bantuDico'
 import { LinearGradient } from 'expo';
 class Result extends React.Component {
-
+ // Si, dans votre application, les props d'un component change, celui-ci passe
+ // automatiquement dans le cycle de vie updating et se re-rend.
       constructor(props) {
         super(props)
         this.state = {
@@ -16,6 +17,7 @@ class Result extends React.Component {
           random: 0
         }
         this._getTranslation = this._getTranslation.bind(this)
+        this._handleRandom = this._handleRandom .bind(this)
       }
 
       componentDidMount() {
@@ -23,7 +25,21 @@ class Result extends React.Component {
         this._getTranslation(this.state.id, this.props.target)
       }
 
+    componentDidUpdate() {
+        console.log("component result mis a jour")
+    }
 
+    changeId = (id) => {
+      this._getTranslation(id, this.props.target)
+    }
+      _handleRandom(){
+          trad = randomTranslation(this.props.target)
+
+          this.setState({
+            translation: trad,
+            isLoading: false
+          })
+      }
     _getTranslation(id, target){
       getTranslationById(id, target).then(data => {
         this.setState({
@@ -88,7 +104,7 @@ class Result extends React.Component {
 
               </View>
               {/*onPress={() => this.handleRoute.bind('x')} in this case handleRoute doesn't called as soon as render happen*/}
-              <TouchableOpacity  style={{ flex:1, alignItems: 'center'}} >
+              <TouchableOpacity  style={{ flex:1, alignItems: 'center'}}  onPress={this._handleRandom}>
                   <LinearGradient
                       colors={['#4c669f', '#3b5998', '#192f6a']}
                       style={{

@@ -18,7 +18,7 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <HeaderLogo/>
-        <Search nav={this.props.navigation}/>
+        <Search/>
       </View>
     );
   }

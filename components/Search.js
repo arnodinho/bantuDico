@@ -15,9 +15,10 @@ import {
 
 import SearchItem from './SearchItem'
 import Result from './Result'
-import {searchTraduction,randomId} from '../API/bantuDico'
+import {searchTraduction,randomId,randomTranslation} from '../API/bantuDico'
 import { LinearGradient } from 'expo';
 import { createStackNavigator } from 'react-navigation'
+import { connect } from 'react-redux'
 
 class Search extends React.Component {
     // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
@@ -37,7 +38,12 @@ class Search extends React.Component {
           }
          this._handleSearch = this._handleSearch.bind(this)
          this._displayTranslation =  this._displayTranslation.bind(this)
-
+         this._toggleLanguage = this._toggleLanguage.bind(this)
+         this.resultElement = React.createRef()
+    }
+    _toggleLanguage() {
+        const action = { type: "TOGGLE_LANGUAGE", value: this.state.target }
+        this.props.dispatch(action)
     }
     _handleSearch(){
       console.log("handle search")
@@ -47,16 +53,25 @@ class Search extends React.Component {
           this.setState({ isLoading: true,  detail: false }) // Lancement du chargement
 
           searchTraduction(this.searchedText,this.state.source,this.state.target).then(data =>{
+            // Dès lors que vous utilisez la fonction connect
+            // sur un component, Redux va mapper la fonction  dispatch  à votre component.
+
             //on ne gère dans le state que des données qui, une fois modifiées, peuvent affecter le rendu de notre component.
             this.setState({
               definitions: data,
                isLoading: false // Arrêt du chargement
              })
+             console.log(data.length)
+             if(data.length == 1) {
+               var def = data.pop()
+              this.resultElement.current.changeId(def.id)
+             }
+
           });
       }
 
     }
-
+    componentDidUpdate() {}
     _displayLoading() {
       if (this.state.isLoading) {
         return (
@@ -68,29 +83,35 @@ class Search extends React.Component {
       }
     }
     _searchTextInputChanged(text) {
-      console.log(text)
       this.searchedText = text // Modification du texte recherché à chaque saisie de texte, sans passer par le setState comme avant
     }
 
     _displayTranslation(idTranslation) {
-      console.log("id de la transslation -- "+idTranslation)
-      console.log("on est dans _displayTranslation")
+
       this.setState({
         detail: true,
         definitions: [],
         id: idTranslation
        })
     }
+
+    _displayRandomTranslation(){}
+
     _manageDisplay()
     {
-      console.log('detail translation state '+this.state.detail)
-      console.log('definition length '+this.state.definitions.length)
       if (this.state.detail) {
             console.log("gestion de l'affichage result")
         return (
           <Result id ={this.state.id} target ={this.state.target}/>
         )
-      } else if(this.state.definitions.length > 0) {
+      } else if (this.state.definitions.length == 1) {
+        // var translate = this.state.definitions.pop()
+        console.log("un resultat")
+        return (
+          <Result id ={translate.id} target ={this.state.target} ref={this.resultElement}/>
+        )
+      } else if(this.state.definitions.length > 1) {
+console.log("plusieurs resultats")
         return (
           <View style={styles.resultsModuleContainer}>
             <Text style={styles.infoTextResult}>
@@ -113,8 +134,7 @@ class Search extends React.Component {
         //gestion de l'affichage random
         console.log("gestion de l'affichage random")
         return (
-          <Text>random</Text>
-           // <Result id ={randomId()} target ='sango'/>
+           <Result id ={randomId()} target ={this.state.target} />
         )
       }
     }
@@ -318,4 +338,17 @@ const styles = StyleSheet.create({
 
 })
 //on exporte nos éléments pour pouvoir les utiliser ailleurs.
-export default Search
+ export default Search
+
+// si on spécifie  mapStateToProps  dans la fonction  connect  , automatiquement, le component est abonné aux changements du store Redux.
+// const mapStateToProps = (state) => {
+  // on vient, à l'instant, de mapper le state de notre application dans les props du component Search.
+   //À présent, dans les props du component Search, vous avez accès au state de l'application et donc au language.
+
+// Quand vous mappez le state de l'application à un component, vous devez spécifier les informations qui vous intéressent et ne pas retourner tout le state
+
+//   return {target: state.target}
+// }
+
+// Le store Redux est connecté à notre component Search.
+// export default connect(mapStateToProps)(Search)

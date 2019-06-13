@@ -13,16 +13,6 @@ const HomeStack = createStackNavigator({
 
 HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-        ? 'ios-home'
-        : 'md-home'
-      }
-    />
-  ),
 };
 
 const LinksStack = createStackNavigator({
@@ -31,12 +21,6 @@ const LinksStack = createStackNavigator({
 
 LinksStack.navigationOptions = {
   tabBarLabel: 'Expressions',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-book' : 'md-book'}
-    />
-  ),
 };
 
 const SettingsStack = createStackNavigator({
@@ -45,16 +29,6 @@ const SettingsStack = createStackNavigator({
 
 SettingsStack.navigationOptions = {
   tabBarLabel: 'A propos',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ?  `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-        }
-    />
-  ),
 };
 
 export default createAppContainer (createBottomTabNavigator({
