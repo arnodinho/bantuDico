@@ -115,7 +115,7 @@ class Search extends React.Component {
           <Result id ={translate.id} target ={this.state.target} ref={this.resultElement}/>
         )
       } else if(this.state.definitions.length > 1) {
-console.log("plusieurs resultats")
+        console.log("plusieurs resultats")
         return (
           <View style={styles.resultsModuleContainer}>
             <Text style={styles.infoTextResult}>
@@ -315,7 +315,8 @@ const styles = StyleSheet.create({
         color:'white',
         backgroundColor: 'white',
         borderRadius:5,
-        color:'black'
+        color: '#061646',
+        fontSize: 20,
     },
 
     buttonInput: {
