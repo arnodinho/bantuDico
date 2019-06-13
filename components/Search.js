@@ -11,7 +11,7 @@ import {
   Text,
   FlatList,
   Keyboard,
-  ActivityIndicator  } from 'react-native'
+  ActivityIndicator } from 'react-native'
 
 import SearchItem from './SearchItem'
 import Result from './Result'
@@ -48,6 +48,10 @@ class Search extends React.Component {
     _handleSearch(){
       console.log("handle search")
        if (this.searchedText.length > 0) { // Seulement si le texte recherché n'est pas vide
+
+         // Hide that keyboard!
+         Keyboard.dismiss()
+
           //setState  récupère les modifications de vos données et indique
           // à React que le component a besoin d'être re-rendu avec ces  nouvelles données.
           this.setState({ isLoading: true,  detail: false }) // Lancement du chargement
