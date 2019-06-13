@@ -13,20 +13,25 @@ class Result extends React.Component {
         this.state = {
           translation: undefined,
           isLoading: true, // A l'ouverture de la vue, on affiche le chargement, le temps de récupérer le détail de la translation
-          id : this.props.id,
-          random: 0
+          id : this.props.id
         }
         this._getTranslation = this._getTranslation.bind(this)
         this._handleRandom = this._handleRandom .bind(this)
       }
 
       componentDidMount() {
-        console.log("component result monté")
-        this._getTranslation(this.state.id, this.props.target)
+        console.log("component result monté avec tearget "+this.props.target)
+        if (true == this.props.random) {
+          this._handleRandom()
+        }else{
+            this._getTranslation(this.state.id, this.props.target)
+        }
+
       }
 
     componentDidUpdate() {
         console.log("component result mis a jour")
+
     }
 
     changeId = (id) => {

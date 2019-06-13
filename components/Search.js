@@ -65,7 +65,7 @@ class Search extends React.Component {
               definitions: data,
                isLoading: false // Arrêt du chargement
              })
-             console.log(data.length)
+             
              if(data.length == 1) {
                var def = data.pop()
               this.resultElement.current.changeId(def.id)
@@ -138,7 +138,7 @@ class Search extends React.Component {
         //gestion de l'affichage random
         console.log("gestion de l'affichage random")
         return (
-           <Result id ={randomId()} target ={this.state.target} />
+           <Result id ={randomId()} target ={this.state.target} random = {true} />
         )
       }
     }
