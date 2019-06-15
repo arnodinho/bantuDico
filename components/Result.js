@@ -41,7 +41,7 @@ class Result extends React.Component {
     _setErrorMesg() {
         this.setState({
           translation: 'error',
-          isLoading: false
+          isLoading:true
         })
     }
 
