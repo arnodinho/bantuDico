@@ -65,10 +65,15 @@ class Search extends React.Component {
               definitions: data,
                isLoading: false // Arrêt du chargement
              })
-             
+
              if(data.length == 1) {
                var def = data.pop()
-              this.resultElement.current.changeId(def.id)
+               var dataId = def.id
+               //dans le cas d'une errur on renvoi l'id 0
+               if (def.id == 'undefined') {
+                 dataId = 0
+               }
+              this.resultElement.current.changeId(dataId)
              }
 
           });
