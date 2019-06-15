@@ -31,9 +31,10 @@ class Search extends React.Component {
          this.state = {
             definitions: [],
             source:"french",
-            target:"sango" ,
+            target:"lingala" ,
             isLoading: false, // Par défaut à false car il n'y a pas de chargement tant qu'on ne lance pas de recherche
             detail: false,
+            multipleResults: false,
             id: 2
           }
          this._handleSearch = this._handleSearch.bind(this)
@@ -59,23 +60,45 @@ class Search extends React.Component {
           searchTraduction(this.searchedText,this.state.source,this.state.target).then(data =>{
             // Dès lors que vous utilisez la fonction connect
             // sur un component, Redux va mapper la fonction  dispatch  à votre component.
+            if (this.state.multipleResults == true && data.length == 1) {
+                console.log("yessssss")
+                console.log(this.state.multipleResults)
+                var def = data.pop()
+                var dataId = def.id
 
+                if (def.id === undefined) {
+                  console.log('on est dans le cas inconnu')
+                  dataId = 0
+                }
+                this.setState({
+                   detail: true,
+                   id: dataId,
+                   isLoading: false,
+                 })
+            }else
+            if(data.length > 1) {
             //on ne gère dans le state que des données qui, une fois modifiées, peuvent affecter le rendu de notre component.
             this.setState({
               definitions: data,
-               isLoading: false // Arrêt du chargement
+               isLoading: false, // Arrêt du chargement
+               multipleResults:true
              })
-
-             if(data.length == 1) {
-               var def = data.pop()
-               var dataId = def.id
-               //dans le cas d'une errur on renvoi l'id 0
-               if (def.id == 'undefined') {
-                 dataId = 0
-               }
-              this.resultElement.current.changeId(dataId)
-             }
-
+           }else {
+             this.setState({
+               definitions: data,
+                isLoading: false, // Arrêt du chargement
+                multipleResults:false
+              })
+              if(data.length == 1) {
+                var def = data.pop()
+                var dataId = def.id
+                //dans le cas d'une errur on renvoi l'id 0
+                if (def.id == 'undefined') {
+                  dataId = 0
+                }
+               this.resultElement.current.changeId(dataId)
+              }
+           }
           });
       }
 
@@ -96,11 +119,11 @@ class Search extends React.Component {
     }
 
     _displayTranslation(idTranslation) {
-
       this.setState({
         detail: true,
         definitions: [],
-        id: idTranslation
+        id: idTranslation,
+        multipleResults:false
        })
     }
 
@@ -113,14 +136,15 @@ class Search extends React.Component {
         return (
           <Result id ={this.state.id} target ={this.state.target}/>
         )
-      } else if (this.state.definitions.length == 1) {
+      } else if (this.state.definitions.length == 1 && this.state.multipleResults == false ) {
         // var translate = this.state.definitions.pop()
         console.log("un resultat")
+        console.log("multiple "+this.state.multipleResults)
         return (
           <Result id ={translate.id} target ={this.state.target} ref={this.resultElement}/>
         )
       } else if(this.state.definitions.length > 1) {
-        console.log("plusieurs resultats")
+        console.log("plusieurs resultats "+this.state.multipleResults)
         return (
           <View style={styles.resultsModuleContainer}>
             <Text style={styles.infoTextResult}>

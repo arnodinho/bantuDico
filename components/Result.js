@@ -21,10 +21,14 @@ class Result extends React.Component {
       }
 
       componentDidMount() {
-        console.log("component result monté avec tearget "+this.props.target)
-        if (true == this.props.random) {
+        console.log("component result monté avec target "+this.props.target)
+        console.log(this.state.id)
+        if (this.state.id == 0) {
+          console.log("on affiche error message")
+          this._setErrorMesg()
+        }else if (true == this.props.random) {
           this._handleRandom()
-        }else{
+        }else {
             this._getTranslation(this.state.id, this.props.target)
         }
 
