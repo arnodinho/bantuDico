@@ -87,6 +87,7 @@ class Result extends React.Component {
                   <View style={styles.resultDefinition}>
                       <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
                           <Text style={styles.textDefinition}>Mot non trouvé</Text>
+                            {this._displayImageTranslationNotFound()}
                       </View>
                   </View>
               </View>
@@ -205,6 +206,11 @@ class Result extends React.Component {
     }
     _displayImageTraduction(){
         sourceImage = require('../assets/images/transfer.png')
+        return ( <Image  source={sourceImage}/>)
+    }
+
+    _displayImageTranslationNotFound(){
+        sourceImage = require('../assets/images/frown.png')
         return ( <Image  source={sourceImage}/>)
     }
 }
