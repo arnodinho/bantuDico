@@ -22,7 +22,7 @@ class StandardButton extends React.Component {
                             fontSize: 15,
                             color: '#fff',
                         }}>
-                        Sango
+                        {this.props.title}
                     </Text>
                 </LinearGradient>
             </TouchableOpacity >
