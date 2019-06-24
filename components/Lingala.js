@@ -6,7 +6,14 @@ class Lingala extends React.Component {
   render() {
     return (
         <View>
-
+          <View style={styles.resulLangage}>
+              <View style={{ flex:1, alignItems:'center' }} >
+                  <Text style={styles.tabBarInfoText}>Français</Text>
+              </View>
+              <View style={{ flex:1, alignItems:'center' }} >
+                  <Text style={styles.tabBarInfoText}>Lingala</Text>
+              </View>
+          </View>
                 {/* Go ahead and delete ExpoLinksView and replace it with your
                    * content, we just wanted to provide you with some helpful links */}
                    <Touchable style={styles.optionSection}>
@@ -620,7 +627,12 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       fontSize: 20,
       fontWeight: 'bold',
-    }
+    },
+    resulLangage:{
+        flex:1,
+        flexDirection: 'row',
+        marginBottom: 10,
+    },
 })
 
 //on exporte nos éléments pour pouvoir les utiliser ailleurs.

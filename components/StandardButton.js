@@ -3,9 +3,19 @@ import { Text, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo';
 
 class StandardButton extends React.Component {
+  super(props) {
+  this.handleClick = this.props.handleClick
+}
+_handleChoice(choice) {
+
+    this.props.handleClick(choice)
+}
     render() {
         return (
-            <TouchableOpacity  style={{ flex:1, alignItems: 'center'}}>
+            <TouchableOpacity
+              style={{ flex:1, alignItems: 'center'}}
+               onPress={() => this._handleChoice(this.props.title) }
+              >
                 <LinearGradient
                     colors={['#4c669f', '#3b5998', '#192f6a']}
                     style={{

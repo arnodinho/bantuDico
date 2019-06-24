@@ -12,37 +12,51 @@ export default class LinksScreen extends React.Component {
         super(props)
         this.state = {
            lingala:true,
-           sango:false
+           sango:false,
          }
+         this._handleClick = this._handleClick.bind(this)
+        this._manageDisplay =   this._manageDisplay.bind(this)
   }
 
   static navigationOptions = {
     title: 'Expressions courantes',
   };
 
+  _handleClick(choice) {
+    console.log(choice)
+    if (choice == 'Sango'){
+      this.setState({
+         lingala: false,
+         sango: true,
+       })
+    }else {
+      this.setState({
+         lingala: true,
+         sango: false,
+       })
+    }
+  }
+  _manageDisplay(){
+    if (this.state.lingala) {
+      return( <Lingala/> )
+    } else {
+      return( <Sango/> )
+    }
+
+  }
   render() {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.expressionsContainer}>
           <View style={styles.resulButtons}>
               <View style={{ flex:1, alignItems:'flex-end',marginRight:5 }} >
-                  <StandardButton title="Sango"/>
+                  <StandardButton title="Sango"  handleClick = {this._handleClick}/>
               </View>
               <View style={{ flex:1, alignItems:'flex-start',marginLeft:5 }} >
-                  <StandardButton title="Lingala"/>
+                  <StandardButton title="Lingala" handleClick = {this._handleClick}/>
               </View>
           </View>
-          <View style={styles.resulLangage}>
-              <View style={{ flex:1, alignItems:'center' }} >
-                  <Text style={styles.tabBarInfoText}>Français</Text>
-              </View>
-              <View style={{ flex:1, alignItems:'center' }} >
-                  <Text style={styles.tabBarInfoText}>Lingala</Text>
-              </View>
-          </View>
-
-          <Sango/>
-
+          {this._manageDisplay()}
           </View>
 
       </ScrollView>
@@ -91,16 +105,7 @@ const styles = StyleSheet.create({
     flex:1,
     marginBottom: 15,
   },
-    resulLangage:{
-        flex:1,
-        flexDirection: 'row',
-        marginBottom: 10,
-    },
-    resulButtons:{
-        flex:1,
-        flexDirection: 'row',
-        marginBottom:10,
-    },
+
     tabBarInfoText: {
         marginTop: 1,
         justifyContent: "center",
@@ -109,5 +114,10 @@ const styles = StyleSheet.create({
         color: '#061646',
         textAlign: 'center',
         fontWeight: 'bold',
+    },
+    resulButtons:{
+        flex:1,
+        flexDirection: 'row',
+        marginBottom:10,
     },
 });
