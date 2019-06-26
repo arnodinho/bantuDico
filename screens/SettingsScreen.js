@@ -32,6 +32,10 @@ export default class SettingsScreen extends React.Component {
                   Arnaud YANGA ESSO
                   </Text>
 
+                  <Text style={styles.tabBarInfo}>
+                  Audrey DOMO
+                  </Text>
+
                   <Text style={styles.tabBarInfoTitle}>
                   Contact
                   </Text>
@@ -82,7 +86,7 @@ const styles = StyleSheet.create({
         marginTop: 1,
         fontSize: 20,
         color: '#061646',
-        marginBottom: 9,
+
     },
     tabBarInfoTitle: {
         marginTop: 5,
@@ -94,8 +98,7 @@ const styles = StyleSheet.create({
     main: {
         marginRight: 2,
         marginLeft:2,
-        marginTop:20,
-        marginBottom: 30,
+        marginTop:10,
     },
     credits: {
         marginLeft:2,

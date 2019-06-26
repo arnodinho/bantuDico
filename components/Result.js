@@ -13,28 +13,48 @@ class Result extends React.Component {
         this.state = {
           translation: undefined,
           isLoading: true, // A l'ouverture de la vue, on affiche le chargement, le temps de récupérer le détail de la translation
-          id : this.props.id,
-          random: 0
+          id : this.props.id
         }
         this._getTranslation = this._getTranslation.bind(this)
-        this._handleRandom = this._handleRandom .bind(this)
+        this._handleRandom   = this._handleRandom.bind(this)
+        this._setErrorMesg   = this._setErrorMesg.bind(this)
       }
 
       componentDidMount() {
-        console.log("component result monté")
-        this._getTranslation(this.state.id, this.props.target)
+        console.log("component result monté avec target "+this.props.target)
+        console.log(this.state.id)
+        if (this.state.id == 0) {
+          console.log("on affiche error message")
+          this._setErrorMesg()
+        }else if (true == this.props.random) {
+          this._handleRandom()
+        }else {
+            this._getTranslation(this.state.id, this.props.target)
+        }
+
       }
 
     componentDidUpdate() {
         console.log("component result mis a jour")
+
+    }
+    _setErrorMesg() {
+        this.setState({
+          translation: 'error',
+          isLoading:true
+        })
     }
 
     changeId = (id) => {
-      this._getTranslation(id, this.props.target)
+      if (id == undefined) {
+        this._setErrorMesg()
+      }else {
+        this._getTranslation(id, this.props.target)
+      }
+
     }
       _handleRandom(){
           trad = randomTranslation(this.props.target)
-
           this.setState({
             translation: trad,
             isLoading: false
@@ -58,8 +78,46 @@ class Result extends React.Component {
         )
       }
     }
+
     _displayTranslation() {
-      if (this.state.translation != undefined) {
+      if (this.state.translation === 'error') {
+        return(
+          <View style={styles.wrapperContainer}>
+              <View style={styles.resultContainer}>
+                  <View style={styles.resultDefinition}>
+                      <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
+                          <Text style={styles.textDefinition}>Mot non trouvé</Text>
+                            {this._displayImageTranslationNotFound()}
+                      </View>
+                  </View>
+              </View>
+              {/*onPress={() => this.handleRoute.bind('x')} in this case handleRoute doesn't called as soon as render happen*/}
+              <TouchableOpacity  style={{ flex:1, alignItems: 'center'}}  onPress={this._handleRandom}>
+                  <LinearGradient
+                      colors={['#4c669f', '#3b5998', '#192f6a']}
+                      style={{
+                          marginTop:5,
+                          paddingTop: 15,
+                          paddingBottom: 15,
+                          paddingLeft: 55,
+                          paddingRight: 55,
+                          alignItems: 'center',
+                          borderRadius: 5 }}>
+                      <Text
+                          style={{
+                              backgroundColor: 'transparent',
+                              fontSize: 15,
+                              color: '#fff',
+                          }}>
+                          Aléatoire
+                      </Text>
+                  </LinearGradient>
+              </TouchableOpacity >
+
+          </View>
+        )
+      }
+      else if (this.state.translation != undefined && this.state.translation != 'error' ) {
         return (
           <View style={styles.wrapperContainer}>
               <View style={styles.resultContainer}>
@@ -148,6 +206,11 @@ class Result extends React.Component {
     }
     _displayImageTraduction(){
         sourceImage = require('../assets/images/transfer.png')
+        return ( <Image  source={sourceImage}/>)
+    }
+
+    _displayImageTranslationNotFound(){
+        sourceImage = require('../assets/images/frown.png')
         return ( <Image  source={sourceImage}/>)
     }
 }
