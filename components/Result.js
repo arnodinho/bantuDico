@@ -4,7 +4,7 @@ import { View, StyleSheet,Text, Platform, Image, ActivityIndicator,TouchableOpac
 import { MonoText } from '../components/StyledText';
 import RandomButton from '../components/RandomButton'
 import {getTranslationById,randomId,randomTranslation} from '../API/bantuDico'
-import { LinearGradient } from 'expo';
+import LinearGradient from 'react-native-linear-gradient';
 class Result extends React.Component {
  // Si, dans votre application, les props d'un component change, celui-ci passe
  // automatiquement dans le cycle de vie updating et se re-rend.

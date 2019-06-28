@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity} from 'react-native';
-import { LinearGradient } from 'expo';
+import LinearGradient from 'react-native-linear-gradient';
 import {searchTraduction} from '../API/bantuDico'
 
 class SearchButton extends React.Component {

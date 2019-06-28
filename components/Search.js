@@ -16,7 +16,7 @@ import {
 import SearchItem from './SearchItem'
 import Result from './Result'
 import {searchTraduction,randomId,randomTranslation} from '../API/bantuDico'
-import { LinearGradient } from 'expo';
+import LinearGradient from 'react-native-linear-gradient';
 import { createStackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 

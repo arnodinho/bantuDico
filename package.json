@@ -13,6 +13,7 @@
     "@expo/samples": "2.1.1",
     "react": "^16.8.6",
     "react-native": "0.57.1",
+    "react-native-linear-gradient": "^2.5.4",
     "react-navigation": "^3.0.7",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1"

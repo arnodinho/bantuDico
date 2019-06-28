@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { StyleSheet, View, Text,TouchableOpacity } from 'react-native'
-import { LinearGradient } from 'expo';
+import LinearGradient from 'react-native-linear-gradient';
 import { connect } from 'react-redux'
 
 class SearchItem extends React.Component {
