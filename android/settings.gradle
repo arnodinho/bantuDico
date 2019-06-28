@@ -1,0 +1,3 @@
+rootProject.name = 'BantuDico'
+
+include ':app'
