@@ -5,7 +5,6 @@ import {
   Text,
   View,
 } from 'react-native';
-import { WebBrowser } from 'expo';
 import Search from '../components/Search'
 import HeaderLogo from '../components/HeaderLogo'
 

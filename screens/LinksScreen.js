@@ -4,7 +4,6 @@ import StandardButton from '../components/StandardButton'
 import Lingala from '../components/Lingala'
 import Sango from '../components/Sango'
 import Touchable from 'react-native-platform-touchable';
-import { Ionicons } from '@expo/vector-icons';
 export default class LinksScreen extends React.Component {
   // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
   // et retourner (return) les éléments graphiques
