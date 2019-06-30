@@ -1,8 +1,7 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, StyleSheet, Image} from 'react-native';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 
-import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
@@ -13,16 +12,15 @@ const HomeStack = createStackNavigator({
 
 HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-        ? 'ios-home'
-        : 'md-home'
-      }
-    />
-  ),
+  tabBarIcon: () => {
+    return <Image source={require('../assets/images/home.png')} style={styles.icon}/> // On applique un style pour les redimensionner comme il faut
+  },
+   tabBarOptions: {
+      activeBackgroundColor: '#DDDDDD', // Couleur d'arrière-plan de l'onglet sélectionné
+      inactiveBackgroundColor: '#FFFFFF', // Couleur d'arrière-plan des onglets non sélectionnés
+      showLabel: false, // On masque les titres
+      showIcon: true // On informe le TabNavigator qu'on souhaite afficher les icônes définis
+    }
 };
 
 const LinksStack = createStackNavigator({
@@ -31,12 +29,16 @@ const LinksStack = createStackNavigator({
 
 LinksStack.navigationOptions = {
   tabBarLabel: 'Expressions',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-book' : 'md-book'}
-    />
-  ),
+  tabBarIcon: () => {
+    return <Image source={require('../assets/images/open-book.png')} style={styles.icon}/> // On applique un style pour les redimensionner comme il faut
+  },
+   tabBarOptions: {
+      activeBackgroundColor: '#DDDDDD', // Couleur d'arrière-plan de l'onglet sélectionné
+      inactiveBackgroundColor: '#FFFFFF', // Couleur d'arrière-plan des onglets non sélectionnés
+      showLabel: false, // On masque les titres
+      showIcon: true // On informe le TabNavigator qu'on souhaite afficher les icônes définis
+    }
+
 };
 
 const SettingsStack = createStackNavigator({
@@ -45,21 +47,26 @@ const SettingsStack = createStackNavigator({
 
 SettingsStack.navigationOptions = {
   tabBarLabel: 'A propos',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ?  `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-        }
-    />
-  ),
+  tabBarIcon: () => {
+    return <Image source={require('../assets/images/information.png')} style={styles.icon}/> // On applique un style pour les redimensionner comme il faut
+  },
+   tabBarOptions: {
+      activeBackgroundColor: '#DDDDDD', // Couleur d'arrière-plan de l'onglet sélectionné
+      inactiveBackgroundColor: '#FFFFFF', // Couleur d'arrière-plan des onglets non sélectionnés
+      showLabel: false, // On masque les titres
+      showIcon: true // On informe le TabNavigator qu'on souhaite afficher les icônes définis
+    }
 };
 
+const styles = StyleSheet.create({
+  icon: {
+    width: 30,
+    height: 30
+  }
+})
 
 export default createAppContainer (createBottomTabNavigator({
   HomeStack,
   LinksStack,
-  SettingsStack,
+  SettingsStack
 }));

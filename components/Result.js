@@ -142,7 +142,7 @@ class Result extends React.Component {
 
                   <View style={styles.resultDefinition}>
                       <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
-                          <Text style={styles.textDefinition}>{this.state.translation.source.word}</Text>
+                          <Text style={styles.textDefinition}>{this.state.translation.source.word.toUpperCase()}</Text>
 
 
                       </View>
@@ -150,7 +150,7 @@ class Result extends React.Component {
                           <Text style={styles.textDefinition}>{this._displayImageTraduction()}</Text>
                       </View>
                       <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
-                          <Text style={styles.textDefinition}>{this.state.translation.target.word}</Text>
+                          <Text style={styles.textDefinition}>{this.state.translation.target.word.toUpperCase()}</Text>
 
                       </View>
                   </View>
