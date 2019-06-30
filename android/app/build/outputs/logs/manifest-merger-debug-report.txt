@@ -76,7 +76,7 @@ ADDED from /home/ayanga/projets/bantuDico/android/app/src/main/AndroidManifest.x
 	android:label
 		ADDED from /home/ayanga/projets/bantuDico/android/app/src/main/AndroidManifest.xml:15:9-41
 	android:windowSoftInputMode
-		ADDED from /home/ayanga/projets/bantuDico/android/app/src/main/AndroidManifest.xml:17:9-51
+		ADDED from /home/ayanga/projets/bantuDico/android/app/src/main/AndroidManifest.xml:17:9-52
 	android:configChanges
 		ADDED from /home/ayanga/projets/bantuDico/android/app/src/main/AndroidManifest.xml:16:9-79
 	android:name
