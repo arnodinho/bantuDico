@@ -40,8 +40,18 @@ class Search extends React.Component {
          this._handleSearch = this._handleSearch.bind(this)
          this._displayTranslation =  this._displayTranslation.bind(this)
          this._toggleLanguage = this._toggleLanguage.bind(this)
+         this._handleLanguage = this._handleLanguage.bind(this)
          this.resultElement = React.createRef()
     }
+    _handleLanguage() {
+      var source = this.state.source
+      var target = this.state.target
+       this.setState({
+         source:target,
+         target:source,
+        })
+    }
+
     _toggleLanguage() {
         const action = { type: "TOGGLE_LANGUAGE", value: this.state.target }
         this.props.dispatch(action)
@@ -61,8 +71,6 @@ class Search extends React.Component {
             // Dès lors que vous utilisez la fonction connect
             // sur un component, Redux va mapper la fonction  dispatch  à votre component.
             if (this.state.multipleResults == true && data.length == 1) {
-                console.log("yessssss")
-                console.log(this.state.multipleResults)
                 var def = data.pop()
                 var dataId = def.id
 
@@ -138,13 +146,11 @@ class Search extends React.Component {
         )
       } else if (this.state.definitions.length == 1 && this.state.multipleResults == false ) {
         // var translate = this.state.definitions.pop()
-        console.log("un resultat")
-        console.log("multiple "+this.state.multipleResults)
+
         return (
           <Result id ={translate.id} target ={this.state.target} ref={this.resultElement}/>
         )
       } else if(this.state.definitions.length > 1) {
-        console.log("plusieurs resultats "+this.state.multipleResults)
         return (
           <View style={styles.resultsModuleContainer}>
             <Text style={styles.infoTextResult}>
@@ -202,9 +208,11 @@ class Search extends React.Component {
                                       <Picker.Item label="Lingala" value="lingala" />
                                   </Picker>
                               </View>
-                              <View style={styles.searchArrow}>
-                                  <View >{this._displayImageArrow()}</View>
-                              </View>
+                              <TouchableOpacity onPress={this._handleLanguage}>
+                                  <View style={styles.searchArrow}>
+                                      <View >{this._displayImageArrow()}</View>
+                                  </View>
+                              </TouchableOpacity >
                               <View style={styles.searchItem}>
                                   <Picker
                                       selectedValue={this.state.target}
