@@ -4,6 +4,7 @@ ADDED from /home/ayanga/projets/bantuDico/android/app/src/main/AndroidManifest.x
 INJECTED from /home/ayanga/projets/bantuDico/android/app/src/main/AndroidManifest.xml:1:1-26:12
 INJECTED from /home/ayanga/projets/bantuDico/android/app/src/main/AndroidManifest.xml:1:1-26:12
 INJECTED from /home/ayanga/projets/bantuDico/android/app/src/main/AndroidManifest.xml:1:1-26:12
+MERGED from [:@react-native-community_netinfo] /home/ayanga/projets/bantuDico/node_modules/@react-native-community/netinfo/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-linear-gradient] /home/ayanga/projets/bantuDico/node_modules/react-native-linear-gradient/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-gesture-handler] /home/ayanga/projets/bantuDico/node_modules/react-native-gesture-handler/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [com.facebook.react:react-native:0.57.1] /home/ayanga/.gradle/caches/transforms-1/files-1.1/react-native-0.57.1.aar/a94bfe881cf775e746d94364e27ab4c3/AndroidManifest.xml:2:1-15:12
@@ -99,6 +100,8 @@ uses-sdk
 INJECTED from /home/ayanga/projets/bantuDico/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/ayanga/projets/bantuDico/android/app/src/main/AndroidManifest.xml
 INJECTED from /home/ayanga/projets/bantuDico/android/app/src/main/AndroidManifest.xml
+MERGED from [:@react-native-community_netinfo] /home/ayanga/projets/bantuDico/node_modules/@react-native-community/netinfo/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:@react-native-community_netinfo] /home/ayanga/projets/bantuDico/node_modules/@react-native-community/netinfo/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-linear-gradient] /home/ayanga/projets/bantuDico/node_modules/react-native-linear-gradient/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-linear-gradient] /home/ayanga/projets/bantuDico/node_modules/react-native-linear-gradient/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-gesture-handler] /home/ayanga/projets/bantuDico/node_modules/react-native-gesture-handler/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
@@ -151,6 +154,10 @@ INJECTED from /home/ayanga/projets/bantuDico/android/app/src/main/AndroidManifes
 		INJECTED from /home/ayanga/projets/bantuDico/android/app/src/main/AndroidManifest.xml
 		ADDED from /home/ayanga/projets/bantuDico/android/app/src/main/AndroidManifest.xml
 		INJECTED from /home/ayanga/projets/bantuDico/android/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [:@react-native-community_netinfo] /home/ayanga/projets/bantuDico/node_modules/@react-native-community/netinfo/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:9:5-79
+	android:name
+		ADDED from [:@react-native-community_netinfo] /home/ayanga/projets/bantuDico/node_modules/@react-native-community/netinfo/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:9:22-76
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
 IMPLIED from /home/ayanga/projets/bantuDico/android/app/src/main/AndroidManifest.xml:1:1-26:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
 uses-permission#android.permission.READ_PHONE_STATE

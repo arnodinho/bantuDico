@@ -18,7 +18,7 @@ import Result from './Result'
 import {searchTraduction,randomId,randomTranslation} from '../API/bantuDico'
 import LinearGradient from 'react-native-linear-gradient';
 import { createStackNavigator } from 'react-navigation'
-import { connect } from 'react-redux'
+import NetInfo from "@react-native-community/netinfo";
 
 class Search extends React.Component {
     // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
@@ -57,7 +57,11 @@ class Search extends React.Component {
         this.props.dispatch(action)
     }
     _handleSearch(){
-      console.log("handle search")
+      NetInfo.fetch().then(state => {
+        console.log("Connection type", state.type);
+        console.log("Is connected?", state.isConnected);
+      });
+      console.log("handle search okay")
        if (this.searchedText.length > 0) { // Seulement si le texte recherché n'est pas vide
 
          // Hide that keyboard!
