@@ -13,15 +13,15 @@ export default class SettingsScreen extends React.Component {
             <ScrollView style={styles.container}>
               <View style={styles.main}>
                   <Text style={styles.tabBarInfoText}>
-                  Ce site est destiné à la promotion des langues Lingala et
+                  Cette application est destinée à la promotion des langues Lingala et
                   Sango. Par cet outil,  nous souhaitons rendre  disponible à
                    tous et  gratuitement la connaissance de ces belles langues,
                    très souvent méconnues  auprès de la jeune  génération.
                  </Text>
 
                  <Text style={styles.tabBarInfoText}>
-                    Nous souhaions de tout coeur que ce site contribuera à
-                    la promotion des langues bantoues  et de l''Afrique centrale.
+                    Nous souhaions de tout coeur que cette application contribuera à
+                    la promotion des langues bantoues  et de l'Afrique centrale.
                   </Text>
                 </View>
                 <View style={styles.credits}>
@@ -51,7 +51,7 @@ export default class SettingsScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
+    paddingTop: 35,
 
       ...Platform.select({
           ios: {
@@ -77,14 +77,13 @@ const styles = StyleSheet.create({
         marginTop: 1,
         justifyContent: "center",
         alignItems: "center",
-        fontSize: 20,
+        fontSize: 16,
         color: '#061646',
         textAlign: 'center',
-        fontWeight: 'bold',
     },
     tabBarInfo: {
         marginTop: 1,
-        fontSize: 20,
+        fontSize: 14,
         color: '#061646',
 
     },

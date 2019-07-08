@@ -204,7 +204,7 @@ class Search extends React.Component {
                               <View style={styles.searchItem}>
                                   <Picker
                                       selectedValue={this.state.source}
-                                      style={{  height: 50, width: 130 }}
+                                      style={{  height: 50, width: 125 }}
                                       onValueChange={(itemValue, itemIndex) => this.setState({source: itemValue})}
                                       >
                                       <Picker.Item label="Français" value="french" />
@@ -220,7 +220,7 @@ class Search extends React.Component {
                               <View style={styles.searchItem}>
                                   <Picker
                                       selectedValue={this.state.target}
-                                      style={{ height: 50, width: 130 }}
+                                      style={{ height: 50, width: 125 }}
                                       onValueChange={(itemTarget, itemIndex) => this.setState({target: itemTarget})}
                                       >
                                       <Picker.Item label="Français" value="french" />
@@ -275,11 +275,12 @@ const styles = StyleSheet.create({
       backgroundColor: '#eee',
     },
     searchModuleContainer: {
-        flex: 1,
+        flex: 3,
           marginTop:15,
     },
+
     resultsModuleContainer: {
-        flex: 2,
+        flex: 5,
         backgroundColor: '#eee',
     },
     containerSearch: {
