@@ -142,7 +142,7 @@ class Result extends React.Component {
 
                   <View style={styles.resultDefinition}>
                       <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
-                          <Text style={styles.textDefinition}>{this.state.translation.source.word}</Text>
+                          <Text style={styles.textDefinition}>{this.state.translation.source.word.toUpperCase()}</Text>
 
 
                       </View>
@@ -150,7 +150,7 @@ class Result extends React.Component {
                           <Text style={styles.textDefinition}>{this._displayImageTraduction()}</Text>
                       </View>
                       <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
-                          <Text style={styles.textDefinition}>{this.state.translation.target.word}</Text>
+                          <Text style={styles.textDefinition}>{this.state.translation.target.word.toUpperCase()}</Text>
 
                       </View>
                   </View>
@@ -162,7 +162,7 @@ class Result extends React.Component {
 
               </View>
               {/*onPress={() => this.handleRoute.bind('x')} in this case handleRoute doesn't called as soon as render happen*/}
-              <TouchableOpacity  style={{ flex:1, alignItems: 'center'}}  onPress={this._handleRandom}>
+              <TouchableOpacity  style={{  alignItems: 'center',marginBottom:5}}  onPress={this._handleRandom}>
                   <LinearGradient
                       colors={['#4c669f', '#3b5998', '#192f6a']}
                       style={{
@@ -217,7 +217,7 @@ class Result extends React.Component {
 
 const styles = StyleSheet.create({
     wrapperContainer: {
-        flex:2,
+        flex:5,
         marginTop:10
     },
     resultContainer:{
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
         marginTop: 1,
         justifyContent: "center",
         alignItems: "center",
-        fontSize: 30,
+        fontSize: 28,
         color: '#061646',
         textAlign: 'center',
         fontWeight: 'bold',

@@ -1,7 +1,7 @@
 //C'est une très bonne pratique de séparer la logique API du reste de l'application.
 import dataLingala from '../Helpers/FrenchLingala'
 import dataSango   from '../Helpers/FrenchSango'
-const API_TOKEN = "zCTYG3hLsggB0lx4nCRjR6wZ3NUTu1IGzlHk45AngszGGKblTh1cJ6ZqooefftXqPZs=";
+const API_TOKEN = "T/6wiLml8CM8yiuAxl0NJurKWQvb6JW4ttSN1XMLzZeJFwHmVpf0CWO79E5AsTegFec=";
 
 export function searchTraduction (text,source,target) {
 
