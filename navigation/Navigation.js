@@ -18,7 +18,7 @@ HomeStack.navigationOptions = {
    tabBarOptions: {
       activeBackgroundColor: '#DDDDDD', // Couleur d'arrière-plan de l'onglet sélectionné
       inactiveBackgroundColor: '#FFFFFF', // Couleur d'arrière-plan des onglets non sélectionnés
-      showLabel: false, // On masque les titres
+      showLabel: true, // On masque les titres
       showIcon: true // On informe le TabNavigator qu'on souhaite afficher les icônes définis
     }
 };
@@ -35,7 +35,7 @@ LinksStack.navigationOptions = {
    tabBarOptions: {
       activeBackgroundColor: '#DDDDDD', // Couleur d'arrière-plan de l'onglet sélectionné
       inactiveBackgroundColor: '#FFFFFF', // Couleur d'arrière-plan des onglets non sélectionnés
-      showLabel: false, // On masque les titres
+      showLabel: true, // On masque les titres
       showIcon: true // On informe le TabNavigator qu'on souhaite afficher les icônes définis
     }
 
@@ -53,15 +53,15 @@ SettingsStack.navigationOptions = {
    tabBarOptions: {
       activeBackgroundColor: '#DDDDDD', // Couleur d'arrière-plan de l'onglet sélectionné
       inactiveBackgroundColor: '#FFFFFF', // Couleur d'arrière-plan des onglets non sélectionnés
-      showLabel: false, // On masque les titres
+      showLabel: true, // On masque les titres
       showIcon: true // On informe le TabNavigator qu'on souhaite afficher les icônes définis
     }
 };
 
 const styles = StyleSheet.create({
   icon: {
-    width: 30,
-    height: 30
+    width: 20,
+    height: 20
   }
 })
 
