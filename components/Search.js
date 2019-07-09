@@ -158,7 +158,7 @@ class Search extends React.Component {
         return (
           <View style={styles.resultsModuleContainer}>
             <Text style={styles.infoTextResult}>
-              Cette definition comporte plusieurs traductions en Lingala
+              Cette definition comporte plusieurs traductions en {this.state.target}
             </Text>
             <FlatList
                 data={this.state.definitions}
