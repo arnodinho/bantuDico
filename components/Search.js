@@ -74,6 +74,9 @@ class Search extends React.Component {
           searchTraduction(this.searchedText,this.state.source,this.state.target).then(data =>{
             // Dès lors que vous utilisez la fonction connect
             // sur un component, Redux va mapper la fonction  dispatch  à votre component.
+             if (typeof data.errCode !== 'undefined')  {
+              console.log("PAS DE CONNEXION INTERNET")
+            }else 
             if (this.state.multipleResults == true && data.length == 1) {
                 var def = data.pop()
                 var dataId = def.id

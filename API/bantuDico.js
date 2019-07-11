@@ -31,7 +31,7 @@ export function searchTraduction (text,source,target) {
                 search: text,
               }),
             }).then((response) => response.json())
-              .catch((error) => console.error(error));
+              .catch((error) => JSON.parse('{ "errCode": 500, "errMesg": "api not responding" }'));
 }
 
 // Récupération du détail
