@@ -11,6 +11,7 @@ import {
   Text,
   FlatList,
   Keyboard,
+  Alert,
   ActivityIndicator } from 'react-native'
 
 import SearchItem from './SearchItem'
@@ -57,16 +58,12 @@ class Search extends React.Component {
         this.props.dispatch(action)
     }
     _handleSearch(){
-      NetInfo.fetch().then(state => {
-        console.log("Connection type", state.type);
-        console.log("Is connected?", state.isConnected);
-      });
+
       console.log("handle search okay")
        if (this.searchedText.length > 0) { // Seulement si le texte recherché n'est pas vide
 
          // Hide that keyboard!
          Keyboard.dismiss()
-
           //setState  récupère les modifications de vos données et indique
           // à React que le component a besoin d'être re-rendu avec ces  nouvelles données.
           this.setState({ isLoading: true,  detail: false }) // Lancement du chargement
@@ -75,8 +72,15 @@ class Search extends React.Component {
             // Dès lors que vous utilisez la fonction connect
             // sur un component, Redux va mapper la fonction  dispatch  à votre component.
              if (typeof data.errCode !== 'undefined')  {
-              console.log("PAS DE CONNEXION INTERNET")
-            }else 
+               Alert.alert(
+                 'Pas de connexion internet!',
+                 'Vérifiez votre connexion puis rééssayez',
+                 [
+                   {text: 'OK', onPress: () => console.log('OK Pressed')},
+                 ],
+                 {cancelable: true},
+               );
+            }else
             if (this.state.multipleResults == true && data.length == 1) {
                 var def = data.pop()
                 var dataId = def.id
