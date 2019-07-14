@@ -28,7 +28,7 @@ export function searchTraduction (text,source,target) {
               },
               body: JSON.stringify({
                 identifier: identifier,
-                search: text,
+                search: text.trim(),
               }),
             }).then((response) => response.json())
               .catch((error) => JSON.parse('{ "errCode": 500, "errMesg": "api not responding" }'));
