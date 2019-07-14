@@ -162,10 +162,11 @@ class Search extends React.Component {
           <Result id ={translate.id} target ={this.state.target} ref={this.resultElement}/>
         )
       } else if(this.state.definitions.length > 1) {
+        var langDest = this.state.target == 'french' ? 'français' : this.state.target
         return (
           <View style={styles.resultsModuleContainer}>
             <Text style={styles.infoTextResult}>
-              Cette definition comporte plusieurs traductions en {this.state.target}
+              Cette definition comporte plusieurs traductions en {langDest}
             </Text>
             <FlatList
                 data={this.state.definitions}

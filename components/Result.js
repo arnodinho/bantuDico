@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
         marginTop: 1,
         justifyContent: "center",
         alignItems: "center",
-        fontSize: 28,
+        fontSize: 24,
         color: '#061646',
         textAlign: 'center',
         fontWeight: 'bold',
