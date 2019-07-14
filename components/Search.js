@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
     },
 
     resultsModuleContainer: {
-        flex: 5,
+        flex: 4,
         backgroundColor: '#eee',
     },
     containerSearch: {
