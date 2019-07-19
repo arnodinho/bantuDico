@@ -19,7 +19,7 @@ import Result from './Result'
 import {searchTraduction,randomId,randomTranslation} from '../API/bantuDico'
 import LinearGradient from 'react-native-linear-gradient';
 import { createStackNavigator } from 'react-navigation'
-import NetInfo from "@react-native-community/netinfo";
+
 
 class Search extends React.Component {
     // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
@@ -73,8 +73,8 @@ class Search extends React.Component {
             // sur un component, Redux va mapper la fonction  dispatch  à votre component.
              if (typeof data.errCode !== 'undefined')  {
                Alert.alert(
-                 'Pas de connexion internet!',
-                 'Vérifiez votre connexion puis rééssayez',
+                 'Pas de connexion internet !',
+                 'La recherche nécessite une connexion internet',
                  [
                    {text: 'OK', onPress: () => console.log('OK Pressed')},
                  ],
