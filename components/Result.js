@@ -147,7 +147,7 @@ class Result extends React.Component {
 
                       </View>
                       <View style={{ flex:1, justifyContent: "center"}} >
-                          <Text style={styles.textDefinition}>{this._displayImageTraduction()}</Text>
+                          {this._displayImageTraduction()}
                       </View>
                       <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
                           <Text style={styles.textDefinition}>{this.state.translation.target.word.toUpperCase()}</Text>
@@ -163,7 +163,7 @@ class Result extends React.Component {
               </View>
               {/*onPress={() => this.handleRoute.bind('x')} in this case handleRoute doesn't called as soon as render happen*/}
               <TouchableOpacity  style={{  alignItems: 'center',marginBottom:5}}  onPress={this._handleRandom}>
-                  <LinearGradient
+                  <View
                       colors={['#4c669f', '#3b5998', '#192f6a']}
                       style={{
                           marginTop:5,
@@ -181,7 +181,7 @@ class Result extends React.Component {
                           }}>
                           Aléatoire
                       </Text>
-                  </LinearGradient>
+                  </View>
               </TouchableOpacity >
           </View>
 
