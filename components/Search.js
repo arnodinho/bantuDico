@@ -268,13 +268,14 @@ const styles = StyleSheet.create({
     },
 
     resultsModuleContainer: {
-        flex: 5,
+        flex: 7,
         backgroundColor: '#eee',
     },
     containerSearch: {
-        flex: 2,
+        flex: 6,
         flexDirection: 'row',
         marginRight: 5,
+        backgroundColor: '#eee',
     },
 
     containerTitle: {
