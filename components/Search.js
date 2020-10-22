@@ -221,7 +221,7 @@ class Search extends React.Component {
 
                       <TouchableOpacity
                         style={{  alignItems: 'center'}} onPress={this._handleSearch}>
-                         <LinearGradient
+                         <View
                              colors={['#4c669f', '#3b5998', '#192f6a']}
                              style={{
                                  paddingTop: 35,
@@ -238,7 +238,7 @@ class Search extends React.Component {
                                  }}>
                                  Chercher
                              </Text>
-                         </LinearGradient>
+                         </View>
                      </TouchableOpacity >
 
                   </View>
@@ -263,16 +263,17 @@ const styles = StyleSheet.create({
       backgroundColor: '#eee',
     },
     searchModuleContainer: {
-        flex: 3,
-          marginTop:15,
+        flex:2,
+        marginTop:15,
+        backgroundColor: '#eee',
     },
 
     resultsModuleContainer: {
         flex: 7,
         backgroundColor: '#eee',
     },
-    containerSearch: {
-        flex: 6,
+    containerSearch: { //container du bloc recherche et bouton
+        flex: 5,
         flexDirection: 'row',
         marginRight: 5,
         backgroundColor: '#eee',
