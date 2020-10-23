@@ -121,21 +121,11 @@ class Result extends React.Component {
         return (
           <View style={styles.wrapperContainer}>
               <View style={styles.resultContainer}>
-                  <View style={styles.resultShare}>
-                      <View style={{ flex:5, alignItems:'center' }}></View>
-                      <View style={{ flex:1 , alignItems:'center' }}>
-                          {this._displayImageShare()}
-                      </View>
-                      <View style={{ flex:1, alignItems:'flex-start' }}>
-                          <Text  style={{ fontSize: 15, color: '#061646'}}>{this.state.translation.likes}</Text>
-                      </View>
-                  </View>
-
                   <View style={styles.resulLangage}>
-                      <View style={{ flex:1, alignItems:'center' }} >
+                      <View style={{ flex:1, alignItems:'center', justifyContent: 'center'}} >
                           <Text style={styles.tabBarInfoText}>Français</Text>
                       </View>
-                      <View style={{ flex:1, alignItems:'center' }} >
+                      <View style={{ flex:1, alignItems:'center', justifyContent: 'center' }} >
                           <Text style={styles.tabBarInfoText}>{this.state.translation.target.name}</Text>
                       </View>
                   </View>
@@ -143,8 +133,6 @@ class Result extends React.Component {
                   <View style={styles.resultDefinition}>
                       <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
                           <Text style={styles.textDefinition}>{this.state.translation.source.word.toUpperCase()}</Text>
-
-
                       </View>
                       <View style={{ flex:1, justifyContent: "center"}} >
                           {this._displayImageTraduction()}
@@ -152,6 +140,17 @@ class Result extends React.Component {
                       <View style={{ flex:3, alignItems:'center' ,justifyContent: "center"}} >
                           <Text style={styles.textDefinition}>{this.state.translation.target.word.toUpperCase()}</Text>
 
+                      </View>
+                  </View>
+
+                  {/*audio icons*/}
+                  <View style={styles.resultShare}>
+                      <View style={{ flex:3,justifyContent: "center", alignItems:'center' }}>
+                          {this._displayAudio()}
+                      </View>
+
+                      <View style={{ flex:3, justifyContent: "center",alignItems:'center' }}>
+                          {this._displayAudio()}
                       </View>
                   </View>
 
@@ -200,9 +199,9 @@ class Result extends React.Component {
         )
     }
 
-    _displayImageShare(){
-        sourceImage = require('../assets/images/like-sm-24.png')
-        return ( <Image style={{ width:24 }}  source={sourceImage}/>)
+    _displayAudio(){
+        sourceImage = require('../assets/images/volume-32.png')
+        return ( <Image style={{ width:32 }}  source={sourceImage}/>)
     }
     _displayImageTraduction(){
         sourceImage = require('../assets/images/transfer.png')
@@ -282,13 +281,11 @@ const styles = StyleSheet.create({
     resultShare:{
         flex:1,
         marginTop:1,
-        flexDirection: 'row',
-
-
+        flexDirection: 'row'
     },
     resulLangage:{
         flex:1,
-        flexDirection: 'row',
+        flexDirection: 'row'
     },
     resultDefinition:{
         flex:3,
@@ -299,7 +296,7 @@ const styles = StyleSheet.create({
         flex:2,
         flexDirection: 'row',
         textAlign:'center',
-        alignItems: "center",
+        alignItems: "center"
     },
     loading_container: {
       position: 'absolute',

@@ -262,8 +262,8 @@ const styles = StyleSheet.create({
       flex: 9,
       backgroundColor: '#eee',
     },
-    searchModuleContainer: {
-        flex:2,
+    searchModuleContainer: { // container parent du containerSearch
+        flex: 3,
         marginTop:15,
         backgroundColor: '#eee',
     },
