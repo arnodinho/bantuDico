@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { StyleSheet, View, Text,TouchableOpacity } from 'react-native'
-import { LinearGradient } from 'expo';
+import { LinearGradient } from 'expo-linear-gradient';
 import { connect } from 'react-redux'
 
 class SearchItem extends React.Component {
@@ -67,8 +67,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',  // horizontal align
     alignSelf: 'stretch', //width 100%
     marginTop:5,
-    paddingLeft: 5,
-    paddingRight: 5,
+    marginLeft: 5,
+    marginRight: 5,
     borderRadius: 10,
   },
   definitionTitle: {
