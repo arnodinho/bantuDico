@@ -4,7 +4,8 @@ import { View, StyleSheet,Text, Platform, Image, ActivityIndicator,TouchableOpac
 import { MonoText } from '../components/StyledText';
 import RandomButton from '../components/RandomButton'
 import {getTranslationById,randomId,randomTranslation} from '../API/bantuDico'
-import { LinearGradient } from 'expo';
+import { LinearGradient } from 'expo-linear-gradient';
+
 class Result extends React.Component {
  // Si, dans votre application, les props d'un component change, celui-ci passe
  // automatiquement dans le cycle de vie updating et se re-rend.
@@ -162,7 +163,7 @@ class Result extends React.Component {
               </View>
               {/*onPress={() => this.handleRoute.bind('x')} in this case handleRoute doesn't called as soon as render happen*/}
               <TouchableOpacity  style={{  alignItems: 'center',marginBottom:5}}  onPress={this._handleRandom}>
-                  <View
+                  <LinearGradient
                       colors={['#4c669f', '#3b5998', '#192f6a']}
                       style={{
                           marginTop:5,
@@ -172,15 +173,11 @@ class Result extends React.Component {
                           paddingRight: 55,
                           alignItems: 'center',
                           borderRadius: 5 }}>
-                      <Text
-                          style={{
-                              backgroundColor: 'transparent',
-                              fontSize: 15,
-                              color: '#fff',
-                          }}>
+                      <Text style={{ backgroundColor: 'transparent',fontSize: 15,color: '#fff'}}>
                           Aléatoire
                       </Text>
-                  </View>
+
+                  </LinearGradient>
               </TouchableOpacity >
           </View>
 

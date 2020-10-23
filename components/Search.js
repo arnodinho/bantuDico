@@ -16,7 +16,7 @@ import {
 import SearchItem from './SearchItem'
 import Result from './Result'
 import {searchTraduction,randomId,randomTranslation} from '../API/bantuDico'
-import { LinearGradient } from 'expo';
+import { LinearGradient } from 'expo-linear-gradient';
 import { createStackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 
@@ -221,7 +221,7 @@ class Search extends React.Component {
 
                       <TouchableOpacity
                         style={{  alignItems: 'center'}} onPress={this._handleSearch}>
-                         <View
+                         <LinearGradient
                              colors={['#4c669f', '#3b5998', '#192f6a']}
                              style={{
                                  paddingTop: 35,
@@ -238,7 +238,7 @@ class Search extends React.Component {
                                  }}>
                                  Chercher
                              </Text>
-                         </View>
+                         </LinearGradient>
                      </TouchableOpacity >
 
                   </View>
