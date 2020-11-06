@@ -39,6 +39,26 @@ LinksStack.navigationOptions = {
   ),
 };
 
+
+
+const AddStack = createStackNavigator({
+  Add: SettingsScreen,
+});
+
+AddStack.navigationOptions = {
+  tabBarLabel: 'Ajout',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ?  `ios-add-circle${focused ? '' : '-outline'}`
+          : 'md-add-circle'
+        }
+    />
+  ),
+};
+
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen,
 });
@@ -61,5 +81,6 @@ SettingsStack.navigationOptions = {
 export default createAppContainer (createBottomTabNavigator({
   HomeStack,
   LinksStack,
+  AddStack,
   SettingsStack,
 }));
