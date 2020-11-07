@@ -1,5 +1,12 @@
 import React from 'react';
-import { ScrollView, StyleSheet,Platform, View,Text,  TextInput, TouchableOpacity} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Platform,
+  View,Text,
+  TextInput,
+  TouchableOpacity,
+  Picker} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default class AddScreen extends React.Component {
@@ -27,7 +34,7 @@ export default class AddScreen extends React.Component {
 
                 <View style={styles.containerTradution}>
                   <View style={styles.traduction}>
-                    <View style={{ flex: 1, justifyContent: "center"}}>
+                    <View style={{ flex: 1, justifyContent: "center",alignItems: "flex-start"}}>
                       <Text style={styles.infoTraduction}>
                       Français :
                        </Text>
@@ -38,13 +45,17 @@ export default class AddScreen extends React.Component {
                   </View>
 
                   <View style={styles.traduction}>
-                    <View style={{ flex: 1, justifyContent: "center"}}>
-                      <Text style={styles.infoTraduction}>
-                      Français :
-                       </Text>
+                    <View style={{ flex: 1 }}>
+                      <View>
+                          <Picker style={{  height: 50, width: 110 }} selectedValue="Sango">
+                              <Picker.Item label="Sango" value="sango" />
+                              <Picker.Item label="Lingala" value="lingala" />
+                          </Picker>
+                      </View>
+
                     </View>
                     <View style={{ flex: 2 , marginRight:10, justifyContent: "center"}}>
-                     <TextInput style={styles.textinput} placeholder='Taper votre mot en français'/>
+                     <TextInput style={styles.textinput} placeholder='Traduction'/>
                     </View>
                   </View>
 
@@ -119,12 +130,11 @@ const styles = StyleSheet.create({
         marginBottom: 9,
     },
     infoTraduction: {
-      justifyContent: "center",
-      alignItems: "center",
+
       fontSize: 16,
       color: '#061646',
-      textAlign: 'center',
       fontWeight: 'bold',
+      marginLeft: 6
     },
     tabBarInfo: {
         marginTop: 1,
