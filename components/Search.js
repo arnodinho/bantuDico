@@ -25,9 +25,11 @@ class Search extends React.Component {
     // et retourner (return) les éléments graphiques
     constructor(props) {
       super(props)
-         this.searchedText = "" // Initialisation de notre donnée searchedText en dehors du state
+         this.searchedText = "" // Initialisation de notre donnée searchedText en dehors du state. exemple de modification d'un props sans changer l'etat du component
+
       // On va donc initialiser notre state avec un tableau de definitions vide
       //pour modifier une donnée du state, on passe toujours par  setState
+      //Dans le state, on ne gère que des données qui, une fois modifiées, peuvent affecter le rendu de notre component.
          this.state = {
             definitions: [],
             source:"french",
@@ -42,6 +44,7 @@ class Search extends React.Component {
          this._toggleLanguage = this._toggleLanguage.bind(this)
          this.resultElement = React.createRef()
     }
+
     _toggleLanguage() {
         const action = { type: "TOGGLE_LANGUAGE", value: this.state.target }
         this.props.dispatch(action)
@@ -150,6 +153,7 @@ class Search extends React.Component {
             <Text style={styles.infoTextResult}>
               Cette definition comporte plusieurs traductions en Lingala
             </Text>
+              {/*Index de la FlatList - la propriété key du keyExtractor doit être une chaîne de caractères*/}
             <FlatList
                 data={this.state.definitions}
                 keyExtractor={(item) => item.id.toString()}
@@ -183,6 +187,7 @@ class Search extends React.Component {
                   </View>
 
                   <View style={styles.containerSearch}>
+                    {/* onSubmitEditing : validation text par le clavier*/}
 
                       <View style={{ flex:3 }} >
                           <TextInput style={styles.textinput}
@@ -364,7 +369,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     loading_container: {
-      position: 'absolute',
+      position: 'absolute', // La définition de la position  absolute  va nous permettre de faire passer le chargement par-dessus notre FlatList. 
       left: 0,
       right: 0,
       top: 100,
