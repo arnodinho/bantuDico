@@ -14,6 +14,23 @@ export default class AddScreen extends React.Component {
     title: 'Ajout de traduction',
   };
 
+  constructor(props) {
+    super(props)
+       this.sourceText = ""
+       this.targetText = "" // Initialisation de notre donnée searchedText en dehors du state. exemple de modification d'un props sans changer l'etat du component
+
+    }
+
+  _searchSourceChanged (text) {
+    this.sourceText = text // Modification du texte recherché à chaque saisie de texte, sans passer par le setState comme avant
+    console.log(this.sourceText)
+  }
+
+  _searchTargetChanged (text) {
+    this.targetText = text // Modification du texte recherché à chaque saisie de texte, sans passer par le setState comme avant
+    console.log(this.targetText)
+  }
+
   render() {
     /* Go ahead and delete ExpoConfigView and replace it with your
      * content, we just wanted to give you a quick view of your config */
@@ -40,7 +57,10 @@ export default class AddScreen extends React.Component {
                        </Text>
                     </View>
                     <View style={{ flex: 2 , marginRight:10, justifyContent: "center"}}>
-                     <TextInput style={styles.textinput} placeholder='Taper votre mot en français'/>
+                     <TextInput
+                       style={styles.textinput}
+                       placeholder='Taper votre mot en français'
+                       onChangeText = {(text)=>this._searchSourceChanged(text)}/>
                     </View>
                   </View>
 
@@ -55,7 +75,10 @@ export default class AddScreen extends React.Component {
 
                     </View>
                     <View style={{ flex: 2 , marginRight:10, justifyContent: "center"}}>
-                     <TextInput style={styles.textinput} placeholder='Traduction'/>
+                     <TextInput
+                       style={styles.textinput}
+                       placeholder='Traduction'
+                       onChangeText = {(text)=>this._searchTargetChanged(text)}/>
                     </View>
                   </View>
 
