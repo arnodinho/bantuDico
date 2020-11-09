@@ -18,7 +18,10 @@ export default class AddScreen extends React.Component {
     super(props)
        this.sourceText = ""
        this.targetText = "" // Initialisation de notre donnée searchedText en dehors du state. exemple de modification d'un props sans changer l'etat du component
-
+       this.state = {
+          target:"lingala",
+          isLoading: false, // Par défaut à false car il n'y a pas de chargement tant qu'on ne lance pas de recherche
+        }
     }
 
   _searchSourceChanged (text) {
@@ -67,7 +70,12 @@ export default class AddScreen extends React.Component {
                   <View style={styles.traduction}>
                     <View style={{ flex: 1 }}>
                       <View>
-                          <Picker style={{  height: 50, width: 110 }} selectedValue="Sango">
+                          <Picker
+                            style={{  height: 50, width: 120 }}
+                            selectedValue={this.state.target}
+                            onValueChange={(itemTarget, itemIndex) => this.setState({target: itemTarget})}
+
+                            >
                               <Picker.Item label="Sango" value="sango" />
                               <Picker.Item label="Lingala" value="lingala" />
                           </Picker>
