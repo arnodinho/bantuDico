@@ -6,6 +6,7 @@ import {
   View,Text,
   TextInput,
   Keyboard,
+  Alert,
   TouchableOpacity,
   Picker} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -38,7 +39,14 @@ export default class AddScreen extends React.Component {
   _addTraduction() {
     console.log("call api")
     if (this.sourceText == 0 || this.targetText == 0) {
-      console.log('show alert')
+      Alert.alert(
+        'Erreur de saisie!', 
+        'Veuillez renseigner tous les champs',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        {cancelable: true},
+      );
     }
 
     // Hide that keyboard!
