@@ -5,6 +5,7 @@ import {
   Platform,
   View,Text,
   TextInput,
+  Keyboard,
   TouchableOpacity,
   Picker} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -24,14 +25,24 @@ export default class AddScreen extends React.Component {
         }
     }
 
-  _searchSourceChanged (text) {
+  _textSourceChanged (text) {
     this.sourceText = text // Modification du texte recherché à chaque saisie de texte, sans passer par le setState comme avant
-    console.log(this.sourceText)
+    console.log('input')
   }
 
-  _searchTargetChanged (text) {
+  _textTargetChanged (text) {
     this.targetText = text // Modification du texte recherché à chaque saisie de texte, sans passer par le setState comme avant
-    console.log(this.targetText)
+    console.log('target')
+  }
+
+  _addTraduction() {
+    console.log("call api")
+    if (this.sourceText == 0 || this.targetText == 0) {
+      console.log('show alert')
+    }
+
+    // Hide that keyboard!
+    Keyboard.dismiss()
   }
 
   render() {
@@ -63,7 +74,7 @@ export default class AddScreen extends React.Component {
                      <TextInput
                        style={styles.textinput}
                        placeholder='Taper votre mot en français'
-                       onChangeText = {(text)=>this._searchSourceChanged(text)}/>
+                       onChangeText = {(text)=>this._textSourceChanged(text)}/>
                     </View>
                   </View>
 
@@ -86,11 +97,12 @@ export default class AddScreen extends React.Component {
                      <TextInput
                        style={styles.textinput}
                        placeholder='Traduction'
-                       onChangeText = {(text)=>this._searchTargetChanged(text)}/>
+                       onChangeText = {(text)=>this._textTargetChanged(text)}
+                       onSubmitEditing={() => this._addTraduction()}/>
                     </View>
                   </View>
 
-                  <TouchableOpacity  style={{  alignItems: 'center',marginTop:25}}>
+                  <TouchableOpacity  style={{  alignItems: 'center',marginTop:25}} onPress={() => this._addTraduction()}>
                       <LinearGradient
                           colors={['#4c669f', '#3b5998', '#192f6a']}
                           style={{
