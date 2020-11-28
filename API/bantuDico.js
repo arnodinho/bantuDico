@@ -66,3 +66,25 @@ export function randomTranslation(language){
 
   return trad
 }
+
+
+export function createTranslation (language, source, target) {
+
+  translate = language === 'sango' ? 'frenchsango' : 'frenchlingala';
+
+  url = 'https://bantu-dico.com/api/'+translate;
+  return fetch(url, {
+              method: 'POST',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'X-Auth-Token': API_TOKEN
+              },
+              body: JSON.stringify({
+                french: source,
+                traduction: target,
+                check: true
+              }),
+            }).then((response) => response.json())
+              .catch((error) => console.error(error));
+}

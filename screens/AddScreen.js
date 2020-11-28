@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   Picker} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import {createTranslation} from '../API/bantuDico'
 
 export default class AddScreen extends React.Component {
   static navigationOptions = {
@@ -37,10 +38,11 @@ export default class AddScreen extends React.Component {
   }
 
   _addTraduction() {
-    console.log("call api")
+    // Hide that keyboard!
+    Keyboard.dismiss()
     if (this.sourceText == 0 || this.targetText == 0) {
       Alert.alert(
-        'Erreur de saisie!', 
+        'Erreur de saisie!',
         'Veuillez renseigner tous les champs',
         [
           {text: 'OK', onPress: () => console.log('OK Pressed')},
@@ -49,8 +51,24 @@ export default class AddScreen extends React.Component {
       );
     }
 
-    // Hide that keyboard!
-    Keyboard.dismiss()
+    console.log("call api")
+    createTranslation(this.state.target, this.sourceText, this.targetText).then(data =>{
+      console.log(data)
+      Alert.alert(
+        'Merci pour votre contribution!',
+        "Votre proposition sera traitée par nos équipes. Une fois validée, elle sera disponible sur l'application",
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        {cancelable: true},
+      );
+
+      //reinitialize inputs
+      this.sourceInput.clear()
+      this.targetInput.clear()
+    })
+
+
   }
 
   render() {
@@ -64,7 +82,7 @@ export default class AddScreen extends React.Component {
                   Proposez une nouvelle traduction
                  </Text>
                  <Text style={styles.infoText}>
-                   Vous pouvez vous aussi apporter votre contribution en proposant une nouvelle traduction.
+                   Vous pouvez aussi apporter votre contribution en proposant une nouvelle traduction.
                   </Text>
                   <Text style={styles.infoText2}>
                     Une fois validée par nos équipes elle sera disponible sur l'application.
@@ -80,6 +98,7 @@ export default class AddScreen extends React.Component {
                     </View>
                     <View style={{ flex: 2 , marginRight:10, justifyContent: "center"}}>
                      <TextInput
+                       ref={source => { this.sourceInput = source }}
                        style={styles.textinput}
                        placeholder='Taper votre mot en français'
                        onChangeText = {(text)=>this._textSourceChanged(text)}/>
@@ -103,6 +122,8 @@ export default class AddScreen extends React.Component {
                     </View>
                     <View style={{ flex: 2 , marginRight:10, justifyContent: "center"}}>
                      <TextInput
+                       ref={target => { this.targetInput = target }}
+
                        style={styles.textinput}
                        placeholder='Traduction'
                        onChangeText = {(text)=>this._textTargetChanged(text)}
