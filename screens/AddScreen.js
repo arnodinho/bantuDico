@@ -65,27 +65,26 @@ export default class AddScreen extends React.Component {
         ],
         {cancelable: true},
       );
+    }else {
+      this.setState({ isLoading: true})
+      console.log("call api")
+      createTranslation(this.state.target, this.sourceText, this.targetText).then(data =>{
+        console.log(data)
+        Alert.alert(
+          'Merci pour votre contribution!',
+          "Votre proposition sera traitée par nos équipes. Une fois validée, elle sera disponible sur l'application.",
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          {cancelable: true},
+        );
+
+        //reinitialize inputs
+        this.sourceInput.clear()
+        this.targetInput.clear()
+        this.setState({ isLoading: false})
+      })
     }
-    this.setState({ isLoading: true})
-    console.log("call api")
-    createTranslation(this.state.target, this.sourceText, this.targetText).then(data =>{
-      console.log(data)
-      Alert.alert(
-        'Merci pour votre contribution!',
-        "Votre proposition sera traitée par nos équipes. Une fois validée, elle sera disponible sur l'application",
-        [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
-        {cancelable: true},
-      );
-
-      //reinitialize inputs
-      this.sourceInput.clear()
-      this.targetInput.clear()
-      this.setState({ isLoading: false})
-    })
-
-
   }
 
   render() {
@@ -119,6 +118,7 @@ export default class AddScreen extends React.Component {
                        style={styles.textinput}
                        placeholder='Taper votre mot en français'
                        onChangeText = {(text)=>this._textSourceChanged(text)}/>
+                       {/*Quand vous créez une fonction fléchée, celle-ci est automatiquement bindée avec le contexte qui l'englobe*/}
                     </View>
                   </View>
 
