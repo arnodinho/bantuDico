@@ -8,6 +8,7 @@ import {
   Keyboard,
   Alert,
   TouchableOpacity,
+  ActivityIndicator,
   Picker} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import {createTranslation} from '../API/bantuDico'
@@ -25,6 +26,8 @@ export default class AddScreen extends React.Component {
           target:"lingala",
           isLoading: false, // Par défaut à false car il n'y a pas de chargement tant qu'on ne lance pas de recherche
         }
+
+      this._addTraduction =  this._addTraduction.bind(this)
     }
 
   _textSourceChanged (text) {
@@ -37,9 +40,22 @@ export default class AddScreen extends React.Component {
     console.log('target')
   }
 
+  _displayLoading() {
+    if (this.state.isLoading) {
+      console.log("display loading")
+      return (
+        <View style={styles.loading_container}>
+          <ActivityIndicator size='large' />
+          {/* Le component ActivityIndicator possède une propriété size pour définir la taille du visuel de chargement : small ou large. Par défaut size vaut small, on met donc large pour que le chargement soit bien visible */}
+        </View>
+      )
+    }
+  }
+
   _addTraduction() {
     // Hide that keyboard!
     Keyboard.dismiss()
+
     if (this.sourceText == 0 || this.targetText == 0) {
       Alert.alert(
         'Erreur de saisie!',
@@ -50,7 +66,7 @@ export default class AddScreen extends React.Component {
         {cancelable: true},
       );
     }
-
+    this.setState({ isLoading: true})
     console.log("call api")
     createTranslation(this.state.target, this.sourceText, this.targetText).then(data =>{
       console.log(data)
@@ -66,6 +82,7 @@ export default class AddScreen extends React.Component {
       //reinitialize inputs
       this.sourceInput.clear()
       this.targetInput.clear()
+      this.setState({ isLoading: false})
     })
 
 
@@ -149,6 +166,8 @@ export default class AddScreen extends React.Component {
                       </LinearGradient>
                   </TouchableOpacity >
               </View>
+
+              {this._displayLoading()}
             </View>
     );
   }
@@ -248,4 +267,13 @@ const styles = StyleSheet.create({
         color: '#061646',
         fontSize: 15,
     },
+    loading_container: {
+      position: 'absolute', // La définition de la position  absolute  va nous permettre de faire passer le chargement par-dessus notre FlatList.
+      left: 0,
+      right: 0,
+      top: 100,
+      bottom: 0,
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
 });
