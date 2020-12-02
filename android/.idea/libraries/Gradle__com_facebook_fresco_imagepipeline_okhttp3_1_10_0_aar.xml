@@ -3,6 +3,9 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/imagepipeline-okhttp3-1.10.0.aar/9a6ef1bec461653b4e85be15e7022dfa/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/imagepipeline-okhttp3-1.10.0.aar/9a6ef1bec461653b4e85be15e7022dfa/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ce138d4581b21f5049d1a866d7dbb8a3/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ce138d4581b21f5049d1a866d7dbb8a3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ce138d4581b21f5049d1a866d7dbb8a3/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

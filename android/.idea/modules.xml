@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../node_modules/@react-native-community/netinfo/android/@react-native-community_netinfo.iml" filepath="$PROJECT_DIR$/../node_modules/@react-native-community/netinfo/android/@react-native-community_netinfo.iml" />
       <module fileurl="file://$PROJECT_DIR$/BantuDico.iml" filepath="$PROJECT_DIR$/BantuDico.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-gesture-handler/android/react-native-gesture-handler.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-gesture-handler/android/react-native-gesture-handler.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-gesture-handler/android/react-native-gesture-handler.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-gesture-handler/android/react-native-gesture-handler.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-linear-gradient/android/react-native-linear-gradient.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-linear-gradient/android/react-native-linear-gradient.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-linear-gradient/android/react-native-linear-gradient.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-linear-gradient/android/react-native-linear-gradient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1605982859/BantuDico.@react-native-community_netinfo.iml" filepath="$PROJECT_DIR$/.idea/modules/1605982859/BantuDico.@react-native-community_netinfo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BantuDico.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BantuDico.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/611447120/BantuDico.react-native-gesture-handler.iml" filepath="$PROJECT_DIR$/.idea/modules/611447120/BantuDico.react-native-gesture-handler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1231398242/BantuDico.react-native-linear-gradient.iml" filepath="$PROJECT_DIR$/.idea/modules/1231398242/BantuDico.react-native-linear-gradient.iml" />
     </modules>
   </component>
 </project>

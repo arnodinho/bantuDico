@@ -3,6 +3,9 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/drawee-1.10.0.aar/7232f7b7f2ca22bbab54f3100de0ea17/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/drawee-1.10.0.aar/7232f7b7f2ca22bbab54f3100de0ea17/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/06c5188e70b05656bac3593d2c75b406/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/06c5188e70b05656bac3593d2c75b406/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/06c5188e70b05656bac3593d2c75b406/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
