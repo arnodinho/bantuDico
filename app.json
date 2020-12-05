@@ -22,8 +22,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bantudico"
     },
-    "description": ""
+    "description": "",
+    "android": {
+      "package": "com.bantudico"
+    }
   }
 }
