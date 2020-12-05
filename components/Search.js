@@ -369,7 +369,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     loading_container: {
-      position: 'absolute', // La définition de la position  absolute  va nous permettre de faire passer le chargement par-dessus notre FlatList. 
+      position: 'absolute', // La définition de la position  absolute  va nous permettre de faire passer le chargement par-dessus notre FlatList.
       left: 0,
       right: 0,
       top: 100,
