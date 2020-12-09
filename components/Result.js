@@ -144,7 +144,7 @@ class Result extends React.Component {
                       </View>
                   </View>
 
-                  {/*audio icons*/}
+                  {/*audio icons
                   <View style={styles.resultShare}>
                       <View style={{ flex:3,justifyContent: "center", alignItems:'center' }}>
                           {this._displayAudio()}
@@ -154,7 +154,7 @@ class Result extends React.Component {
                           {this._displayAudio()}
                       </View>
                   </View>
-
+                  */}
                   <View style={styles.resultExample}>
                       <Text style={styles.textExemple}>{this.state.translation.description_source}</Text>
                       <Text style={styles.textExemple}>{this.state.translation.description_target}</Text>
