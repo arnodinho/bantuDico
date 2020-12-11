@@ -176,29 +176,42 @@ and
 ```
 http://192.168.0.1:19001
 ```
+====================================================================================================
 
-If this works, but you're still unable to load your app by scanning the QR code, please open an issue on the [Create React Native App repository](https://github.com/react-community/create-react-native-app) with details about these steps and any other error messages you may have received.
+running project
 
-If you're not able to load the `http` URL in your phone's web browser, try using the tethering/mobile hotspot feature on your phone (beware of data usage, though), connecting your computer to that WiFi network, and restarting the packager. If you are using a VPN you may need to disable it.
+--> react-native start && react-native run-android
 
-### iOS Simulator won't open
+===================================================================================================
 
-If you're on a Mac, there are a few errors that users sometimes see when attempting to `npm run ios`:
+Lorsque vos utilisateurs vont télécharger l'application sur les stores, leurs devices ne vont pas se connecter à votre serveur Node.JS. Déjà, parce que c'est impossible et ensuite, parce que vous n'allez pas faire tourner un serveur Node.JS éternellement sur votre machine. :D La solution est de générer nous-mêmes le fichier bundle Javascript et de l'intégrer dans le projet mobile natif. Ainsi, votre application, une fois sur le device de l'utilisateur, n'aura qu'à exécuter le fichier bundle Javascript qu'elle contient et à afficher le rendu à l'écran.
 
-* "non-zero exit code: 107"
-* "You may need to install Xcode" but it is already installed
-* and others
-
-There are a few steps you may want to take to troubleshoot these kinds of errors:
-
-1. Make sure Xcode is installed and open it to accept the license agreement if it prompts you. You can install it from the Mac App Store.
-2. Open Xcode's Preferences, the Locations tab, and make sure that the `Command Line Tools` menu option is set to something. Sometimes when the CLI tools are first installed by Homebrew this option is left blank, which can prevent Apple utilities from finding the simulator. Make sure to re-run `npm/yarn run ios` after doing so.
-3. If that doesn't work, open the Simulator, and under the app menu select `Reset Contents and Settings...`. After that has finished, quit the Simulator, and re-run `npm/yarn run ios`.
-
-### QR Code does not scan
-
-If you're not able to scan the QR code, make sure your phone's camera is focusing correctly, and also make sure that the contrast on the two colors in your terminal is high enough. For example, WebStorm's default themes may [not have enough contrast](https://github.com/react-community/create-react-native-app/issues/49) for terminal QR codes to be scannable with the system barcode scanners that the Expo app uses.
-
-If this causes problems for you, you may want to try changing your terminal's color theme to have more contrast, or running Create React Native App from a different terminal. You can also manually enter the URL printed by the packager script in the Expo app's search bar to load it manually.
+Pour générer un bundle, il faut exécuter la commande suivante, à la racine du projet
 
 react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+
+
+==========================================================================================
+Generation de l'APK
+
+cd android && ./gradlew assembleRelease
+
+Votre APK est généré dans le dossier /android/app/build/outputs/apk/. Enfin... vous devriez voir deux APK : un debug et un release. L'APK debug est généré à chaque fois que vous compilez (buildez) votre application pendant vos phases de développement. L'APK release est celui que vous enverrez au Google Play et qui est généré par la commande  ./gradlew assembleRelease  .
+
+==============================================================================================================
+Pb Inotify limit reached
+
+Linux uses the inotify package to observe filesystem events, individual files or directories.
+
+Since React / Angular hot-reloads and recompiles files on save it needs to keep track of all project's files. Increasing the inotify watch limit should hide the warning messages.
+
+You could try editing
+# insert the new value into the system config
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
+# check that the new value was applied
+cat /proc/sys/fs/inotify/max_user_watches
+
+# config variable name (not runnable)
+fs.inotify.max_user_watches=524288
+====================================================================================================================
