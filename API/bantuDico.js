@@ -60,7 +60,7 @@ return Math.floor(Math.random() * (+max - +min)) + +min;
 //retourne une translation random en fonction du language
 export function randomTranslation(language){
   var min=1;
-  var max=5;
+  var max=250;
   var id = Math.floor(Math.random() * (+max - +min)) + +min;
   var trad =  language == 'lingala' ? dataLingala[id] :dataSango[id]
 

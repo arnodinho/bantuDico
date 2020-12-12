@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <resources>
-  <string name="app_name">BantuDico</string>
+  <string name="app_name">Bantu-dico</string>
+  <string name="url_site">https://bantu-dico.com</string>
+  <string name="creator">Powered by arnaud Yanga Esso</string>
 </resources>
