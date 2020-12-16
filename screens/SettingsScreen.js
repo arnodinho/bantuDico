@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet,Platform, View,Text} from 'react-native';
-
+import {BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
+const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9385763512190012/7161841978';
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     title: 'A propos',
@@ -43,6 +44,7 @@ export default class SettingsScreen extends React.Component {
                   bantu-dico@gmail.com
                   </Text>
               </View>
+              <BannerAd unitId={adUnitId} size={BannerAdSize.SMART_BANNER} />
             </ScrollView>
     );
   }
@@ -80,6 +82,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#061646',
         textAlign: 'center',
+        marginBottom: 10
     },
     tabBarInfo: {
         marginTop: 1,
@@ -102,5 +105,6 @@ const styles = StyleSheet.create({
     credits: {
         marginLeft:2,
         marginTop:30,
+        marginBottom:10
     },
 });

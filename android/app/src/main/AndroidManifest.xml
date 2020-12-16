@@ -11,9 +11,7 @@
     android:allowBackup="true"
     android:theme="@style/AppTheme"
   >
-    <meta-data
-        android:name="com.google.android.gms.ads.APPLICATION_ID"
-        android:value="ca-app-pub-9385763512190012~7929266844"/>
+
     <meta-data android:name="expo.modules.updates.EXPO_UPDATE_URL" android:value="https://exp.host/@arnodinho/BantuDico"/>
     <meta-data android:name="expo.modules.updates.EXPO_SDK_VERSION" android:value="39.0.0"/>
     <meta-data android:name="expo.modules.updates.ENABLED" android:value="true"/>

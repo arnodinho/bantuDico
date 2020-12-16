@@ -12,7 +12,8 @@ import {
   Picker} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import {createTranslation} from '../API/bantuDico'
-
+import {BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
+const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9385763512190012/7161841978';
 export default class AddScreen extends React.Component {
   static navigationOptions = {
     title: 'Ajout de traduction',
@@ -91,7 +92,7 @@ export default class AddScreen extends React.Component {
     /* Go ahead and delete ExpoConfigView and replace it with your
      * content, we just wanted to give you a quick view of your config */
     return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
 
               <View style={styles.main}>
                   <Text style={styles.tabBarInfoTitle}>
@@ -148,7 +149,7 @@ export default class AddScreen extends React.Component {
                     </View>
                   </View>
 
-                  <TouchableOpacity  style={{  alignItems: 'center',marginTop:25}} onPress={() => this._addTraduction()}>
+                  <TouchableOpacity  style={{  alignItems: 'center',marginTop:25, marginBottom:15}} onPress={() => this._addTraduction()}>
                       <LinearGradient
                           colors={['#4c669f', '#3b5998', '#192f6a']}
                           style={{
@@ -166,9 +167,9 @@ export default class AddScreen extends React.Component {
                       </LinearGradient>
                   </TouchableOpacity >
               </View>
-
+              <BannerAd unitId={adUnitId} size={BannerAdSize.SMART_BANNER} />
               {this._displayLoading()}
-            </View>
+            </ScrollView>
     );
   }
 }

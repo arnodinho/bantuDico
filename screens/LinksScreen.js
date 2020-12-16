@@ -4,6 +4,9 @@ import StandardButton from '../components/StandardButton'
 import Lingala from '../components/Lingala'
 import Sango from '../components/Sango'
 import Touchable from 'react-native-platform-touchable';
+import {BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
+const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9385763512190012/7161841978';
+
 export default class LinksScreen extends React.Component {
   // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
   // et retourner (return) les éléments graphiques
@@ -46,6 +49,7 @@ export default class LinksScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
+        <BannerAd unitId={adUnitId} size={BannerAdSize.FULL_BANNER} />
         <View style={styles.expressionsContainer}>
           <View style={styles.resulButtons}>
               <View style={{ flex:1, alignItems:'flex-end',marginRight:5 }} >
