@@ -58,7 +58,7 @@ class SearchItem extends React.Component {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    height: 135,
+    height: 105,
     flexDirection: 'row'
   },
   button: {

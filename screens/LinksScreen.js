@@ -60,8 +60,8 @@ export default class LinksScreen extends React.Component {
               </View>
           </View>
           {this._manageDisplay()}
-          </View>
-
+        </View>
+       <BannerAd unitId={adUnitId} size={BannerAdSize.FULL_BANNER} />
       </ScrollView>
     );
   }

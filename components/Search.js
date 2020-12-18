@@ -19,6 +19,12 @@ import {searchTraduction,randomId,randomTranslation} from '../API/bantuDico'
 import { LinearGradient } from 'expo-linear-gradient';
 import { createStackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
+import {BannerAd, BannerAdSize,InterstitialAd, TestIds, AdEventType } from '@react-native-firebase/admob';
+
+import firebase from "firebase/app";
+const adUnitIdInterstitial = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-9385763512190012/1734131761';
+const adUnitIdBanner = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9385763512190012/7161841978';
+
 
 class Search extends React.Component {
     // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
@@ -165,6 +171,7 @@ class Search extends React.Component {
                                           />
                 }
             />
+            <BannerAd unitId={adUnitIdBanner} size={BannerAdSize.SMART_BANNER} />
           </View>
         )
       }else{
