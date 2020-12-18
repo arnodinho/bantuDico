@@ -1,6 +1,8 @@
 import React from 'react';
 import { ScrollView, StyleSheet,Platform, View,Text} from 'react-native';
 import Touchable from 'react-native-platform-touchable';
+import {BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
+const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9385763512190012/7161841978';
 
 class Lingala extends React.Component {
   render() {
@@ -250,6 +252,7 @@ class Lingala extends React.Component {
 
                           </View>
                       </Touchable>
+                      <BannerAd unitId={adUnitId} size={BannerAdSize.FULL_BANNER} />
                       <Touchable style={styles.optionSection}>
                           <View style={{ flexDirection: 'row' }}>
                               <View style={styles.optionTextContainer}>
@@ -365,6 +368,187 @@ class Lingala extends React.Component {
 
                           </View>
                       </Touchable>
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                            nous nous aimerons jusqu’à ce que la mort nous sépare
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                          bolingo ya nga na yo suka se lilita
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                          ton sourire me rend fou, ton sourire m’envoûte
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                         esekeli na yo elangwisi ngai
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                        pardonne-moi
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                        limbisa ngayi
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                      mon cœur bat quand je pense à toi
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                      motema ekobeta soki nakanisi yo
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                      j’ai le coup de foudre
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                      nakueyi ndeke
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                      j’aime ta façon de sourire, j’aime ton sourire
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                       nalingaka esekeli na yo
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                      je t’aime très fort
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                    nalingi yo makasi koleka
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                       je t’aime pour la vie
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                    nalingi yo na bolingo ya seko
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                       j’ai envie de toi
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                    naza na posa na yo
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                        tu es très beau, belle
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                  ozali kitoko mingi
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                        tu me caches des choses
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                ozo bombela nga makambo
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+                      <BannerAd unitId={adUnitId} size={BannerAdSize.FULL_BANNER} />
+
                       <Touchable style={styles.optionSection}>
                           <View style={{ flexDirection: 'row' }}>
                               <View style={styles.optionTextContainer}>
@@ -476,7 +660,7 @@ class Lingala extends React.Component {
                               </View>
                               <View style={styles.optionTextContainer}>
                                   <Text style={styles.optionText}>
-                        Nalembi
+                        nazo yoka nzoto malamu te
                                   </Text>
                               </View>
                           </View>
@@ -537,6 +721,103 @@ class Lingala extends React.Component {
                               </View>
                           </View>
                       </Touchable>
+                      <BannerAd unitId={adUnitId} size={BannerAdSize.FULL_BANNER} />
+
+                        <Touchable style={styles.optionSection}>
+                            <View style={{ flexDirection: 'row' }}>
+                                <View style={styles.optionTextContainer}>
+                                    <Text style={styles.optionTextSection}>
+                              La nourriture
+                                    </Text>
+                                </View>
+                            </View>
+                        </Touchable>
+                        <Touchable style={styles.option}>
+                            <View style={{ flexDirection: 'row' }}>
+                                <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                    J’ai faim
+                                </Text>
+                                </View>
+                                <View style={styles.optionTextContainer}>
+                                    <Text style={styles.optionText}>
+                        Naza na nzala
+                                    </Text>
+                                </View>
+                            </View>
+                        </Touchable>
+                        <Touchable style={styles.option}>
+                            <View style={{ flexDirection: 'row' }}>
+                                <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                      j’ai soif
+                                </Text>
+                                </View>
+                                <View style={styles.optionTextContainer}>
+                                    <Text style={styles.optionText}>
+                          naza na posa ya komela
+                                    </Text>
+                                </View>
+                            </View>
+                        </Touchable>
+                        <Touchable style={styles.option}>
+                            <View style={{ flexDirection: 'row' }}>
+                                <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                      C’était délicieux !
+                                </Text>
+                                </View>
+                                <View style={styles.optionTextContainer}>
+                                    <Text style={styles.optionText}>
+                        Ezali elengi
+                                    </Text>
+                                </View>
+                            </View>
+                        </Touchable>
+                        <Touchable style={styles.option}>
+                            <View style={{ flexDirection: 'row' }}>
+                                <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                        bokomela nini ?
+                                </Text>
+                                </View>
+                                <View style={styles.optionTextContainer}>
+                                    <Text style={styles.optionText}>
+                          que prendrez vous ?
+                                    </Text>
+                                </View>
+                            </View>
+                        </Touchable>
+                        <Touchable style={styles.option}>
+                            <View style={{ flexDirection: 'row' }}>
+                                <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                        bolei bolamu !
+                                </Text>
+                                </View>
+                                <View style={styles.optionTextContainer}>
+                                    <Text style={styles.optionText}>
+                          bon appétit !
+                                    </Text>
+                                </View>
+                            </View>
+                        </Touchable>
+
+                        <Touchable style={styles.option}>
+                            <View style={{ flexDirection: 'row' }}>
+                                <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                      allons à table
+                                </Text>
+                                </View>
+                                <View style={styles.optionTextContainer}>
+                                    <Text style={styles.optionText}>
+                          tokende na mesa
+                                    </Text>
+                                </View>
+                            </View>
+                        </Touchable>
+                        <BannerAd unitId={adUnitId} size={BannerAdSize.FULL_BANNER} />
         </View>
     )
 }
