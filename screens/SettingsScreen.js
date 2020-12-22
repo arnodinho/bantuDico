@@ -1,11 +1,13 @@
 import React from 'react';
-import { ScrollView, StyleSheet,Platform, View,Text} from 'react-native';
+import { ScrollView, StyleSheet,Platform, View,Text, Share, TouchableOpacity, Image} from 'react-native';
+import ShareButton from '../components/ShareButton';
 import {BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9385763512190012/7161841978';
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     title: 'A propos',
   };
+
 
   render() {
     /* Go ahead and delete ExpoConfigView and replace it with your
@@ -43,6 +45,7 @@ export default class SettingsScreen extends React.Component {
                   <Text style={styles.tabBarInfo}>
                   bantu-dico@gmail.com
                   </Text>
+                  <ShareButton/>
               </View>
               <BannerAd unitId={adUnitId} size={BannerAdSize.SMART_BANNER} />
             </ScrollView>

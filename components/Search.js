@@ -21,7 +21,6 @@ import { createStackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import {BannerAd, BannerAdSize,InterstitialAd, TestIds, AdEventType } from '@react-native-firebase/admob';
 
-import firebase from "firebase/app";
 const adUnitIdInterstitial = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-9385763512190012/1734131761';
 const adUnitIdBanner = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9385763512190012/7161841978';
 

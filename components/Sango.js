@@ -7,6 +7,7 @@ class Sango extends React.Component {
   render() {
     return (
         <View>
+                <BannerAd unitId={adUnitId} size={BannerAdSize.FULL_BANNER} />
           <View style={styles.resulLangage}>
               <View style={{ flex:1, alignItems:'center' }} >
                   <Text style={styles.tabBarInfoText}>Français</Text>
@@ -15,6 +16,7 @@ class Sango extends React.Component {
                   <Text style={styles.tabBarInfoText}>Sango</Text>
               </View>
           </View>
+
                 {/* Go ahead and delete ExpoLinksView and replace it with your
                    * content, we just wanted to provide you with some helpful links */}
                    <Touchable style={styles.optionSection}>
@@ -226,6 +228,273 @@ class Sango extends React.Component {
                           <View style={{ flexDirection: 'row' }}>
                               <View style={styles.optionTextContainer}>
                                   <Text style={styles.optionTextSection}>
+                              Expressions usuelles
+                                  </Text>
+                              </View>
+                          </View>
+                      </Touchable>
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                          La pluie menace!
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                        Ngû-nzapä  yeke löndö!
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                          Tu veux, ou tu ne veux pas ?
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                      Mo yê, wala mo yê äpëe ?
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                         Qu'est-ce que c'est ?
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                      Nye laâ ? / Sô nye laâ ?
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                        Venez vite !
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                      (Ala) Gä hîo, sï
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                        Qu'avez-vous acheté ?
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                      Nye lâ sï  ala  vö nye ?
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                          Quand est-il arrivé ?
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                        Lâwa sï lo gä ?
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                        À quel endroit ?
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                        Na ndo wa ?
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                        Qui est-ce ?
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                        Zo wa lâ ?
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                          Qui c'est qui est venu ?
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                        Zo wa lâ sï agä sô ?
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                          Pourquoi n'est-il pas venu ?
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                      Lo gä pëpë (sô) ngbanga tî nye ?
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                          Va-t-en! Allez-vous-en!
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                      Mo/âla hön kâ !
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                        J'aime beaucoup cette musique
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                      Mbï yê mozoko so mîngi
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                          Allons-nous-en!
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                       Ë hön !
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                        Quelle est ton ethnie ?
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                      Marâ tî mô nye ?
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                        	Tu es ressortissant de quel pays ?
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                        Mo yeke zo tî ködörö wa ?
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                        	Quel est le nom de ton pays ?
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                      Iri ti Ködörö tî mo  a yéké nye ?
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+                      <BannerAd unitId={adUnitId} size={BannerAdSize.FULL_BANNER} />
+                      <Touchable style={styles.optionSection}>
+                          <View style={{ flexDirection: 'row' }}>
+                              <View style={styles.optionTextContainer}>
+                                  <Text style={styles.optionTextSection}>
                               Le couple
                                   </Text>
                               </View>
@@ -266,12 +535,27 @@ class Sango extends React.Component {
                           <View style={{ flexDirection: 'row' }}>
                             <View style={styles.optionTextContainer}>
                                 <Text style={styles.optionText}>
-                        Mon mari, mon copain
+                        C'est mon mari, mon copain
                                 </Text>
                             </View>
                               <View style={styles.optionTextContainer}>
                               <Text style={styles.optionText}>
-                      Koli ti mbi
+                      Koli ti mbi la
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                       C'est ma femme, ma copine
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                      Wali ti mbi la
                               </Text>
                               </View>
 
@@ -296,6 +580,21 @@ class Sango extends React.Component {
                           <View style={{ flexDirection: 'row' }}>
                             <View style={styles.optionTextContainer}>
                                 <Text style={styles.optionText}>
+                        Je te trouve (très) beau/belle
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                        Mö yéké pendèrè (mingi) na lè ti mbi
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
                             c’est fini entre toi et moi
                                 </Text>
                             </View>
@@ -311,12 +610,12 @@ class Sango extends React.Component {
                           <View style={{ flexDirection: 'row' }}>
                             <View style={styles.optionTextContainer}>
                                 <Text style={styles.optionText}>
-                          Ma femme, ma copine
+                        J'ai envie de toi
                                 </Text>
                             </View>
                               <View style={styles.optionTextContainer}>
                               <Text style={styles.optionText}>
-                        Wali ti mbi
+                      Nzara ti mö a sara mbi
                               </Text>
                               </View>
 
@@ -332,6 +631,22 @@ class Sango extends React.Component {
                               <View style={styles.optionTextContainer}>
                               <Text style={styles.optionText}>
                         mô nzèrè la lè ti mbi
+                              </Text>
+                              </View>
+
+                          </View>
+                      </Touchable>
+
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.optionTextContainer}>
+                                <Text style={styles.optionText}>
+                          Qu'est ce que tu me caches ?
+                                </Text>
+                            </View>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                        Mö  hondè na mbi nyè ?
                               </Text>
                               </View>
 
@@ -482,6 +797,34 @@ class Sango extends React.Component {
                               <View style={styles.optionTextContainer}>
                                   <Text style={styles.optionText}>
                         iri wa nganga !
+                                  </Text>
+                              </View>
+                          </View>
+                      </Touchable>
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                      J'ai mal ici
+                              </Text>
+                              </View>
+                              <View style={styles.optionTextContainer}>
+                                  <Text style={styles.optionText}>
+                      A yéké sö mbi na mbagé ndo so
+                                  </Text>
+                              </View>
+                          </View>
+                      </Touchable>
+                      <Touchable style={styles.option}>
+                          <View style={{ flexDirection: 'row' }}>
+                              <View style={styles.optionTextContainer}>
+                              <Text style={styles.optionText}>
+                      Je ne me sens pas très bien
+                              </Text>
+                              </View>
+                              <View style={styles.optionTextContainer}>
+                                  <Text style={styles.optionText}>
+                      Tèrè ti mbi a sara nzoni a pè
                                   </Text>
                               </View>
                           </View>

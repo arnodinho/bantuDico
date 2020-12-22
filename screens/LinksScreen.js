@@ -4,6 +4,7 @@ import StandardButton from '../components/StandardButton'
 import Lingala from '../components/Lingala'
 import Sango from '../components/Sango'
 import Touchable from 'react-native-platform-touchable';
+import ShareButton from '../components/ShareButton';
 import {BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9385763512190012/7161841978';
 
@@ -48,20 +49,24 @@ export default class LinksScreen extends React.Component {
   }
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <BannerAd unitId={adUnitId} size={BannerAdSize.FULL_BANNER} />
-        <View style={styles.expressionsContainer}>
-          <View style={styles.resulButtons}>
-              <View style={{ flex:1, alignItems:'flex-end',marginRight:5 }} >
-                  <StandardButton title="Sango"  handleClick = {this._handleClick}/>
-              </View>
-              <View style={{ flex:1, alignItems:'flex-start',marginLeft:5 }} >
-                  <StandardButton title="Lingala" handleClick = {this._handleClick}/>
-              </View>
-          </View>
-          {this._manageDisplay()}
-        </View>
-      </ScrollView>
+      <View style={styles.container}>
+            <View style={styles.resulButtons}>
+                <View style={{ flex:1, alignItems:'flex-end',marginRight:5 }} >
+                    <StandardButton title="Sango"  handleClick = {this._handleClick}/>
+                </View>
+                <View style={{ flex:1, alignItems:'flex-start',marginLeft:5 }} >
+                    <StandardButton title="Lingala" handleClick = {this._handleClick}/>
+                </View>
+            </View >
+
+            <View style={{  flex: 12}}>
+                <ScrollView style={{  marginTop: 15}}>
+                  {this._manageDisplay()}
+                </ScrollView>
+                <ShareButton/>
+            </View>
+
+      </View>
     );
   }
     _handlePressSlack = () => {

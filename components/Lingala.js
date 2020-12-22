@@ -8,6 +8,7 @@ class Lingala extends React.Component {
   render() {
     return (
         <View>
+          <BannerAd unitId={adUnitId} size={BannerAdSize.FULL_BANNER} />
           <View style={styles.resulLangage}>
               <View style={{ flex:1, alignItems:'center' }} >
                   <Text style={styles.tabBarInfoText}>Français</Text>
@@ -16,6 +17,7 @@ class Lingala extends React.Component {
                   <Text style={styles.tabBarInfoText}>Lingala</Text>
               </View>
           </View>
+
                 {/* Go ahead and delete ExpoLinksView and replace it with your
                    * content, we just wanted to provide you with some helpful links */}
                    <Touchable style={styles.optionSection}>
@@ -27,6 +29,7 @@ class Lingala extends React.Component {
                            </View>
                        </View>
                    </Touchable>
+
                       <Touchable style={styles.option}>
                           <View style={{ flexDirection: 'row' }}>
                             <View style={styles.optionTextContainer}>
