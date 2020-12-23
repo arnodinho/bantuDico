@@ -36,7 +36,7 @@ class Result extends React.Component {
       }
 
     componentDidUpdate() {
-        console.log("component result mis a jour")
+        
 
     }
     _setErrorMesg() {

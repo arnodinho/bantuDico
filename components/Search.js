@@ -24,6 +24,10 @@ import {BannerAd, BannerAdSize,InterstitialAd, TestIds, AdEventType } from '@rea
 const adUnitIdInterstitial = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-9385763512190012/1734131761';
 const adUnitIdBanner = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9385763512190012/7161841978';
 
+const interstitial = InterstitialAd.createForAdRequest(adUnitIdInterstitial, {
+  requestNonPersonalizedAdsOnly: true,
+  keywords: ['fashion', 'clothing'],
+});
 
 class Search extends React.Component {
     // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
@@ -31,7 +35,7 @@ class Search extends React.Component {
     constructor(props) {
       super(props)
          this.searchedText = "" // Initialisation de notre donnée searchedText en dehors du state. exemple de modification d'un props sans changer l'etat du component
-
+         this.countSearch = 0  // compteur pour le nombre de fois que l'utiliseur lance une recherche
       // On va donc initialiser notre state avec un tableau de definitions vide
       //pour modifier une donnée du state, on passe toujours par  setState
       //Dans le state, on ne gère que des données qui, une fois modifiées, peuvent affecter le rendu de notre component.
@@ -48,6 +52,20 @@ class Search extends React.Component {
          this._displayTranslation =  this._displayTranslation.bind(this)
          this._toggleLanguage = this._toggleLanguage.bind(this)
          this.resultElement = React.createRef()
+         this._showFullAdvert = this._showFullAdvert.bind(this)
+    }
+
+    componentDidMount() {}
+
+    _showFullAdvert() {
+      interstitial.onAdEvent((type) => {
+        console.log('le type de la publicite '+type)
+          if (type === AdEventType.LOADED) {
+            interstitial.show();
+          }
+      });
+
+      interstitial.load();
     }
 
     _toggleLanguage() {
@@ -55,13 +73,19 @@ class Search extends React.Component {
         this.props.dispatch(action)
     }
     _handleSearch(){
-      console.log("handle search")
        if (this.searchedText.length > 0) { // Seulement si le texte recherché n'est pas vide
 
          // Hide that keyboard!
          Keyboard.dismiss()
 
-          //setState  récupère les modifications de vos données et indique
+        // gestion de l'affichage de la publicité plein ecrans
+         this.countSearch ++
+         if (3 == this.countSearch || (this.countSearch % 10) == 0) {
+            this._showFullAdvert()
+         }
+         console.log('compteur du nombre de recherche '+this.countSearch)
+
+          //setState   récupère les modifications de vos données et indique
           // à React que le component a besoin d'être re-rendu avec ces  nouvelles données.
           this.setState({ isLoading: true,  detail: false }) // Lancement du chargement
 
@@ -69,13 +93,11 @@ class Search extends React.Component {
             // Dès lors que vous utilisez la fonction connect
             // sur un component, Redux va mapper la fonction  dispatch  à votre component.
             if (this.state.multipleResults == true && data.length == 1) {
-                console.log("yessssss")
-                console.log(this.state.multipleResults)
                 var def = data.pop()
                 var dataId = def.id
 
                 if (def.id === undefined) {
-                  console.log('on est dans le cas inconnu')
+
                   dataId = 0
                 }
                 this.setState({
@@ -140,14 +162,13 @@ class Search extends React.Component {
     _manageDisplay()
     {
       if (this.state.detail) {
-            console.log("gestion de l'affichage result")
+
         return (
           <Result id ={this.state.id} target ={this.state.target}/>
         )
       } else if (this.state.definitions.length == 1 && this.state.multipleResults == false ) {
         // var translate = this.state.definitions.pop()
-        console.log("un resultat")
-        console.log("multiple "+this.state.multipleResults)
+
         return (
           <Result id ={translate.id} target ={this.state.target} ref={this.resultElement}/>
         )
@@ -175,7 +196,7 @@ class Search extends React.Component {
         )
       }else{
         //gestion de l'affichage random
-        console.log("gestion de l'affichage random")
+
         return (
            <Result id ={randomId()} target ={this.state.target} random = {true} />
         )
