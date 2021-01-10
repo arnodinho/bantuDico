@@ -25,7 +25,7 @@ const adUnitIdInterstitial = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-938576
 const adUnitIdBanner = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9385763512190012/7161841978';
 
 const interstitial = InterstitialAd.createForAdRequest(adUnitIdInterstitial, {
-  requestNonPersonalizedAdsOnly: true,
+  requestNonPersonalizedAdsOnly: false,
   keywords: ['fashion', 'clothing'],
 });
 
