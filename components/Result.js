@@ -63,7 +63,8 @@ class Result extends React.Component {
           trad = randomTranslation(this.props.target)
           this.setState({
             translation: trad,
-            isLoading: false
+            isLoading: false,
+            isAudio: false
           })
       }
 

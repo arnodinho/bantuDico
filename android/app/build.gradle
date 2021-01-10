@@ -135,7 +135,7 @@ android {
         applicationId 'com.bantudico'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2100007
+        versionCode 2100008
         versionName "1.0.0"
     }
     splits {
