@@ -6,24 +6,31 @@ import RandomButton from '../components/RandomButton'
 import {getTranslationById,randomId,randomTranslation} from '../API/bantuDico'
 import { LinearGradient } from 'expo-linear-gradient';
 
+// Import the react-native-sound module
+var Sound = require('react-native-sound');
+const baseUrl = 'https://bantu-dico.com'
 class Result extends React.Component {
  // Si, dans votre application, les props d'un component change, celui-ci passe
  // automatiquement dans le cycle de vie updating et se re-rend.
       constructor(props) {
         super(props)
+        this.songSource = null
+        this.songTarget = null
         this.state = {
           translation: undefined,
           isLoading: true, // A l'ouverture de la vue, on affiche le chargement, le temps de récupérer le détail de la translation
-          id : this.props.id
+          id : this.props.id,
+          isAudio: false
         }
         this._getTranslation = this._getTranslation.bind(this)
         this._handleRandom   = this._handleRandom.bind(this)
         this._setErrorMesg   = this._setErrorMesg.bind(this)
+        this._manageDisplayAudio = this._manageDisplayAudio.bind(this)
+        this._displayAudio = this._displayAudio.bind(this)
       }
 
       componentDidMount() {
-        console.log("component result monté avec target "+this.props.target)
-        console.log(this.state.id)
+
         if (this.state.id == 0) {
           console.log("on affiche error message")
           this._setErrorMesg()
@@ -32,11 +39,9 @@ class Result extends React.Component {
         }else {
             this._getTranslation(this.state.id, this.props.target)
         }
-
       }
 
     componentDidUpdate() {
-        
 
     }
     _setErrorMesg() {
@@ -61,11 +66,22 @@ class Result extends React.Component {
             isLoading: false
           })
       }
+
     _getTranslation(id, target){
       getTranslationById(id, target).then(data => {
+        let audio = false
+         if ( typeof data.target.url !== 'undefined' && typeof data.target.url !== 'undefined') {
+           if (data.target.url.length !== 0) {
+             audio = true
+             this.songSource = new Sound (baseUrl+data.source.url)
+             this.songTarget = new Sound (baseUrl+data.target.url)
+           }
+         }
+
         this.setState({
           translation: data,
-          isLoading: false
+          isLoading: false,
+          isAudio: audio
         })
       })
     }
@@ -78,6 +94,45 @@ class Result extends React.Component {
           </View>
         )
       }
+    }
+
+    playSoundSource = () => {
+      try {
+        this.songSource.play((success) => {
+              console.log('Sound source is playing '+success)
+        })
+      }catch(e) {
+        console.log(`cannot play the sound source file` , e)
+      }
+    }
+
+    playSoundTarget = () => {
+      try {
+        this.songTarget.play((success) => {
+              console.log('Sound target is playing '+success)
+            })
+      }catch(e) {
+        console.log(`cannot play the sound target file` , e)
+      }
+    }
+    _manageDisplayAudio () {
+      console.log('state audio '+this.state.isAudio)
+      if (this.state.isAudio) {
+        return (
+            <View style={styles.resultShare}>
+                <TouchableOpacity style={{ flex:3,justifyContent: "center", alignItems:'center' }} onPress={this.playSoundSource}>
+                    {this._displayAudio()}
+                </TouchableOpacity>
+
+                <TouchableOpacity style={{ flex:3, justifyContent: "center",alignItems:'center' }} onPress={this.playSoundTarget}>
+                    {this._displayAudio()}
+                </TouchableOpacity>
+            </View>
+        )
+      }else {
+        return  (<View></View>)
+      }
+
     }
 
     _displayTranslation() {
@@ -144,17 +199,8 @@ class Result extends React.Component {
                       </View>
                   </View>
 
-                  {/*audio icons
-                  <View style={styles.resultShare}>
-                      <View style={{ flex:3,justifyContent: "center", alignItems:'center' }}>
-                          {this._displayAudio()}
-                      </View>
+                  {this._manageDisplayAudio()}
 
-                      <View style={{ flex:3, justifyContent: "center",alignItems:'center' }}>
-                          {this._displayAudio()}
-                      </View>
-                  </View>
-                  */}
                   <View style={styles.resultExample}>
                       <Text style={styles.textExemple}>{this.state.translation.description_source}</Text>
                       <Text style={styles.textExemple}>{this.state.translation.description_target}</Text>
