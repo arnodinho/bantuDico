@@ -24,10 +24,10 @@ import {BannerAd, BannerAdSize,InterstitialAd, TestIds, AdEventType } from '@rea
 const adUnitIdInterstitial = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-9385763512190012/1734131761';
 const adUnitIdBanner = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9385763512190012/7161841978';
 
-const interstitial = InterstitialAd.createForAdRequest(adUnitIdInterstitial, {
-  requestNonPersonalizedAdsOnly: false,
-  keywords: ['fashion', 'clothing'],
-});
+// const interstitial = InterstitialAd.createForAdRequest(adUnitIdInterstitial, {
+//   requestNonPersonalizedAdsOnly: false,
+//   keywords: ['fashion', 'clothing'],
+// });
 
 class Search extends React.Component {
     // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
@@ -52,21 +52,21 @@ class Search extends React.Component {
          this._displayTranslation =  this._displayTranslation.bind(this)
          this._toggleLanguage = this._toggleLanguage.bind(this)
          this.resultElement = React.createRef()
-         this._showFullAdvert = this._showFullAdvert.bind(this)
+         // this._showFullAdvert = this._showFullAdvert.bind(this)
     }
 
     componentDidMount() {}
 
-    _showFullAdvert() {
-      interstitial.onAdEvent((type) => {
-        console.log('le type de la publicite '+type)
-          if (type === AdEventType.LOADED) {
-            interstitial.show();
-          }
-      });
-
-      interstitial.load();
-    }
+    // _showFullAdvert() {
+    //   interstitial.onAdEvent((type) => {
+    //     console.log('le type de la publicite '+type)
+    //       if (type === AdEventType.LOADED) {
+    //         interstitial.show();
+    //       }
+    //   });
+    //
+    //   interstitial.load();
+    // }
 
     _toggleLanguage() {
         const action = { type: "TOGGLE_LANGUAGE", value: this.state.target }
@@ -80,9 +80,9 @@ class Search extends React.Component {
 
         // gestion de l'affichage de la publicité plein ecrans
          this.countSearch ++
-         if (3 == this.countSearch || (this.countSearch % 10) == 0) {
-            this._showFullAdvert()
-         }
+         // if (3 == this.countSearch || (this.countSearch % 10) == 0) {
+         //    this._showFullAdvert()
+         // }
          console.log('compteur du nombre de recherche '+this.countSearch)
 
           //setState   récupère les modifications de vos données et indique
