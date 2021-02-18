@@ -5,8 +5,6 @@ import Lingala from '../components/Lingala'
 import Sango from '../components/Sango'
 import Touchable from 'react-native-platform-touchable';
 import ShareButton from '../components/ShareButton';
-import {BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
-const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9385763512190012/7161841978';
 
 export default class LinksScreen extends React.Component {
   // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render

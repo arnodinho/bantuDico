@@ -12,8 +12,7 @@ import {
   Picker} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import {createTranslation} from '../API/bantuDico'
-import {BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
-const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9385763512190012/7161841978';
+
 export default class AddScreen extends React.Component {
   static navigationOptions = {
     title: 'Ajout de traduction',
@@ -167,7 +166,6 @@ export default class AddScreen extends React.Component {
                       </LinearGradient>
                   </TouchableOpacity >
               </View>
-              <BannerAd unitId={adUnitId} size={BannerAdSize.SMART_BANNER} />
               {this._displayLoading()}
             </ScrollView>
     );

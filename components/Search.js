@@ -13,21 +13,14 @@ import {
   Keyboard,
   ActivityIndicator } from 'react-native'
 
+import RNPickerSelect from 'react-native-picker-select';
 import SearchItem from './SearchItem'
 import Result from './Result'
 import {searchTraduction,randomId,randomTranslation} from '../API/bantuDico'
 import { LinearGradient } from 'expo-linear-gradient';
 import { createStackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
-import {BannerAd, BannerAdSize,InterstitialAd, TestIds, AdEventType } from '@react-native-firebase/admob';
 
-const adUnitIdInterstitial = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-9385763512190012/1734131761';
-const adUnitIdBanner = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9385763512190012/7161841978';
-
-// const interstitial = InterstitialAd.createForAdRequest(adUnitIdInterstitial, {
-//   requestNonPersonalizedAdsOnly: false,
-//   keywords: ['fashion', 'clothing'],
-// });
 
 class Search extends React.Component {
     // Lorsque l'on crée un component custom, on doit obligatoirement réimplémenter la méthode render
@@ -35,7 +28,6 @@ class Search extends React.Component {
     constructor(props) {
       super(props)
          this.searchedText = "" // Initialisation de notre donnée searchedText en dehors du state. exemple de modification d'un props sans changer l'etat du component
-         this.countSearch = 0  // compteur pour le nombre de fois que l'utiliseur lance une recherche
       // On va donc initialiser notre state avec un tableau de definitions vide
       //pour modifier une donnée du state, on passe toujours par  setState
       //Dans le state, on ne gère que des données qui, une fois modifiées, peuvent affecter le rendu de notre component.
@@ -52,21 +44,9 @@ class Search extends React.Component {
          this._displayTranslation =  this._displayTranslation.bind(this)
          this._toggleLanguage = this._toggleLanguage.bind(this)
          this.resultElement = React.createRef()
-         // this._showFullAdvert = this._showFullAdvert.bind(this)
     }
 
     componentDidMount() {}
-
-    // _showFullAdvert() {
-    //   interstitial.onAdEvent((type) => {
-    //     console.log('le type de la publicite '+type)
-    //       if (type === AdEventType.LOADED) {
-    //         interstitial.show();
-    //       }
-    //   });
-    //
-    //   interstitial.load();
-    // }
 
     _toggleLanguage() {
         const action = { type: "TOGGLE_LANGUAGE", value: this.state.target }
@@ -78,12 +58,6 @@ class Search extends React.Component {
          // Hide that keyboard!
          Keyboard.dismiss()
 
-        // gestion de l'affichage de la publicité plein ecrans
-         this.countSearch ++
-         // if (3 == this.countSearch || (this.countSearch % 10) == 0) {
-         //    this._showFullAdvert()
-         // }
-         console.log('compteur du nombre de recherche '+this.countSearch)
 
           //setState   récupère les modifications de vos données et indique
           // à React que le component a besoin d'être re-rendu avec ces  nouvelles données.
@@ -224,29 +198,46 @@ class Search extends React.Component {
                              />
                           <View style={styles.searchSelect}>
                               <View style={styles.searchItem}>
-                                  <Picker
-                                      selectedValue={this.state.source}
-                                      style={{  height: 50, width: 125 }}
-                                      onValueChange={(itemValue, itemIndex) => this.setState({source: itemValue})}
-                                      >
-                                      <Picker.Item label="Français" value="french" />
-                                      <Picker.Item label="Sango" value="sango" />
-                                      <Picker.Item label="Lingala" value="lingala" />
-                                  </Picker>
+                                <RNPickerSelect
+                              style={{
+                                      ...pickerSelectStyles,
+                                      iconContainer: {
+                                        top: 5,
+                                        right: 3,
+                                        }
+                                      }}
+                                   placeholder={{ }}
+                                    onValueChange={(itemValue, itemIndex) => this.setState({source: itemValue})}
+                                    items={[
+                                        { label: 'Français', value: 'french' },
+                                        { label: 'Lingala', value: 'lingala' },
+                                        { label: 'Sango', value: 'sango' },
+
+                                    ]}
+
+                                  />
                               </View>
                               <View style={styles.searchArrow}>
                                   <View >{this._displayImageArrow()}</View>
                               </View>
                               <View style={styles.searchItem}>
-                                  <Picker
-                                      selectedValue={this.state.target}
-                                      style={{ height: 50, width: 125 }}
-                                      onValueChange={(itemTarget, itemIndex) => this.setState({target: itemTarget})}
-                                      >
-                                      <Picker.Item label="Français" value="french" />
-                                      <Picker.Item label="Sango" value="sango" />
-                                      <Picker.Item label="Lingala" value="lingala" />
-                                  </Picker>
+                                    <RNPickerSelect
+                                      style={{
+                                          ...pickerSelectStyles,
+                                          iconContainer: {
+                                            top: 20,
+                                            right: 10,
+                                          }
+                                        }}
+                                       placeholder={{ }}
+                                        onValueChange={(itemValue, itemIndex) => this.setState({source: itemValue})}
+                                        items={[
+                                            { label: 'Lingala', value: 'lingala' },
+                                            { label: 'Sango', value: 'sango' },
+                                            { label: 'Français', value: 'french' },
+                                        ]}
+                                      />
+
                               </View>
                           </View>
                       </View>
@@ -289,6 +280,28 @@ class Search extends React.Component {
     }
 }
 
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 10,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 0.5,
+    borderColor: 'purple',
+    borderRadius: 8,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+});
 const styles = StyleSheet.create({
     container: {
       flex: 9,
@@ -351,6 +364,8 @@ const styles = StyleSheet.create({
     searchSelect:{
         backgroundColor: '#eee',
         flexDirection: 'row',
+        marginTop: 15,
+        marginLeft: 15
     },
     searchButton:{
         flex:1,

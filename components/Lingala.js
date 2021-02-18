@@ -1,14 +1,11 @@
 import React from 'react';
 import { ScrollView, StyleSheet,Platform, View,Text} from 'react-native';
 import Touchable from 'react-native-platform-touchable';
-import {BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
-const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9385763512190012/7161841978';
 
 class Lingala extends React.Component {
   render() {
     return (
         <View>
-          <BannerAd unitId={adUnitId} size={BannerAdSize.FULL_BANNER} />
           <View style={styles.resulLangage}>
               <View style={{ flex:1, alignItems:'center' }} >
                   <Text style={styles.tabBarInfoText}>Français</Text>
@@ -255,7 +252,6 @@ class Lingala extends React.Component {
 
                           </View>
                       </Touchable>
-                      <BannerAd unitId={adUnitId} size={BannerAdSize.FULL_BANNER} />
                       <Touchable style={styles.optionSection}>
                           <View style={{ flexDirection: 'row' }}>
                               <View style={styles.optionTextContainer}>
@@ -550,8 +546,6 @@ class Lingala extends React.Component {
 
                           </View>
                       </Touchable>
-                      <BannerAd unitId={adUnitId} size={BannerAdSize.FULL_BANNER} />
-
                       <Touchable style={styles.optionSection}>
                           <View style={{ flexDirection: 'row' }}>
                               <View style={styles.optionTextContainer}>
@@ -724,8 +718,6 @@ class Lingala extends React.Component {
                               </View>
                           </View>
                       </Touchable>
-                      <BannerAd unitId={adUnitId} size={BannerAdSize.FULL_BANNER} />
-
                         <Touchable style={styles.optionSection}>
                             <View style={{ flexDirection: 'row' }}>
                                 <View style={styles.optionTextContainer}>
@@ -820,7 +812,6 @@ class Lingala extends React.Component {
                                 </View>
                             </View>
                         </Touchable>
-                        <BannerAd unitId={adUnitId} size={BannerAdSize.FULL_BANNER} />
         </View>
     )
 }
