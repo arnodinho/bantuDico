@@ -12,6 +12,8 @@ import {
   Picker} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import {createTranslation} from '../API/bantuDico'
+import RNPickerSelect from 'react-native-picker-select';
+import { Ionicons } from '@expo/vector-icons';
 
 export default class AddScreen extends React.Component {
   static navigationOptions = {
@@ -125,15 +127,26 @@ export default class AddScreen extends React.Component {
                   <View style={styles.traduction}>
                     <View style={{ flex: 1 }}>
                       <View>
-                          <Picker
-                            style={{  height: 50, width: 120 }}
-                            selectedValue={this.state.target}
-                            onValueChange={(itemTarget, itemIndex) => this.setState({target: itemTarget})}
 
-                            >
-                              <Picker.Item label="Sango" value="sango" />
-                              <Picker.Item label="Lingala" value="lingala" />
-                          </Picker>
+                          <RNPickerSelect
+                            style={{
+                                ...pickerSelectStyles,
+                                iconContainer: {
+                                  top: 12,
+                                  right: 15,
+                                }
+                              }}
+                             placeholder={{ }}
+                              onValueChange={(itemTarget, itemIndex) => this.setState({target: itemTarget})}
+                              items={[
+                                  { label: 'Lingala', value: 'lingala' },
+                                  { label: 'Sango', value: 'sango' },
+                              ]}
+                              Icon={() => {
+                                  return <Ionicons name="ios-arrow-down" size={24} color="#061646" />;
+                                }}
+                            />
+
                       </View>
 
                     </View>
@@ -171,6 +184,20 @@ export default class AddScreen extends React.Component {
     );
   }
 }
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+
+    borderRadius: 10,
+    color: '#061646',
+    fontWeight: 'bold',
+
+    paddingRight: 30, // to ensure the text is never behind the icon
+  }
+});
 
 const styles = StyleSheet.create({
   container: {

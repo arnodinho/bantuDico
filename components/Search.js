@@ -20,6 +20,7 @@ import {searchTraduction,randomId,randomTranslation} from '../API/bantuDico'
 import { LinearGradient } from 'expo-linear-gradient';
 import { createStackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
+import { Ionicons } from '@expo/vector-icons';
 
 
 class Search extends React.Component {
@@ -165,7 +166,7 @@ class Search extends React.Component {
                                           />
                 }
             />
-            <BannerAd unitId={adUnitIdBanner} size={BannerAdSize.SMART_BANNER} />
+
           </View>
         )
       }else{
@@ -199,11 +200,11 @@ class Search extends React.Component {
                           <View style={styles.searchSelect}>
                               <View style={styles.searchItem}>
                                 <RNPickerSelect
-                              style={{
+                                  style={{
                                       ...pickerSelectStyles,
                                       iconContainer: {
-                                        top: 5,
-                                        right: 3,
+                                        top: 12,
+                                        right: 15,
                                         }
                                       }}
                                    placeholder={{ }}
@@ -214,7 +215,9 @@ class Search extends React.Component {
                                         { label: 'Sango', value: 'sango' },
 
                                     ]}
-
+                                    Icon={() => {
+                                        return <Ionicons name="ios-arrow-down" size={24} color="#061646" />;
+                                      }}
                                   />
                               </View>
                               <View style={styles.searchArrow}>
@@ -225,17 +228,20 @@ class Search extends React.Component {
                                       style={{
                                           ...pickerSelectStyles,
                                           iconContainer: {
-                                            top: 20,
-                                            right: 10,
+                                            top: 12,
+                                            right: 15,
                                           }
                                         }}
                                        placeholder={{ }}
-                                        onValueChange={(itemValue, itemIndex) => this.setState({source: itemValue})}
+                                        onValueChange={(itemValue, itemIndex) => this.setState({target: itemValue})}
                                         items={[
                                             { label: 'Lingala', value: 'lingala' },
                                             { label: 'Sango', value: 'sango' },
                                             { label: 'Français', value: 'french' },
                                         ]}
+                                        Icon={() => {
+                                            return <Ionicons name="ios-arrow-down" size={24} color="#061646" />;
+                                          }}
                                       />
 
                               </View>
@@ -285,22 +291,14 @@ const pickerSelectStyles = StyleSheet.create({
     fontSize: 16,
     paddingVertical: 12,
     paddingHorizontal: 10,
-    borderWidth: 1,
-    borderColor: 'gray',
+
     borderRadius: 10,
-    color: 'black',
+    color: '#061646',
+    fontWeight: 'bold',
+    backgroundColor: '#E4E4E4',
+
     paddingRight: 30, // to ensure the text is never behind the icon
-  },
-  inputAndroid: {
-    fontSize: 16,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderWidth: 0.5,
-    borderColor: 'purple',
-    borderRadius: 8,
-    color: 'black',
-    paddingRight: 30, // to ensure the text is never behind the icon
-  },
+  }
 });
 const styles = StyleSheet.create({
     container: {
@@ -365,7 +363,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#eee',
         flexDirection: 'row',
         marginTop: 15,
-        marginLeft: 15
+        marginLeft: 10,
+        marginRight: 10
     },
     searchButton:{
         flex:1,
@@ -377,7 +376,7 @@ const styles = StyleSheet.create({
         flex: 4
     },
     searchArrow:{
-        flex: 1,
+        flex: 2,
         alignItems: 'center',
         justifyContent: "center",
     },
