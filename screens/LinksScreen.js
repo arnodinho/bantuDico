@@ -57,7 +57,7 @@ export default class LinksScreen extends React.Component {
                 </View>
             </View >
 
-            <View style={{  flex: 12}}>
+            <View style={{  flex: 8}}>
                 <ScrollView style={{  marginTop: 15}}>
                   {this._manageDisplay()}
                 </ScrollView>

@@ -152,7 +152,7 @@ class Search extends React.Component {
         return (
           <View style={styles.resultsModuleContainer}>
             <Text style={styles.infoTextResult}>
-              Cette definition comporte plusieurs traductions en Lingala
+              Cette définition comporte plusieurs traductions en {this.state.target}
             </Text>
               {/*Index de la FlatList - la propriété key du keyExtractor doit être une chaîne de caractères*/}
             <FlatList
@@ -288,7 +288,7 @@ class Search extends React.Component {
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
-    fontSize: 16,
+    fontSize: 14,
     paddingVertical: 12,
     paddingHorizontal: 10,
 
@@ -312,7 +312,7 @@ const styles = StyleSheet.create({
     },
 
     resultsModuleContainer: {
-        flex: 7,
+        flex: 5,
         backgroundColor: '#eee',
     },
     containerSearch: { //container du bloc recherche et bouton
