@@ -10,8 +10,7 @@ export default class ShareButton extends React.Component {
               style={styles.share_touchable_floatingactionbutton}
               onPress={() => Share.share({
                     title: 'Bantu-dico',
-                     message: 'Hello !  Je te recommande cette application : Le dictionnaire pratique Français - Lingala - Sango
-                     disponible sur apps store https://apps.apple.com/us/app/bantu-dico/id1555116636'
+                     message: 'Hello ! Je te recommande cette application : Le dictionnaire pratique Français - Lingala - Sango disponible sur apps store https://apps.apple.com/us/app/bantu-dico/id1555116636'
                    })}>
               <Ionicons name={'md-share'} size={30} color={'#d0d6d2'}/>
             </TouchableOpacity>

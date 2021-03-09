@@ -5948,5 +5948,29 @@ export default dataSango = [
         "updated_at": "2019-01-05T23:45:15+01:00",
         "description_source": "J'ai mal à la cheville",
         "description_target": "kûtugerê ti mbi a yéké sö"
+    },    
+    {
+        "id": 251,
+        "source": {
+            "word": "Enfant",
+            "url": "/bundles/main/audio/french/71.mp3",
+            "type": "nom"
+        },
+        "target": {
+            "word": "Môlengé",
+            "url": "/bundles/main/audio/sango/48.mp3",
+            "type": "pandôo",
+            "name": "Sango"
+        },
+        "status": true,
+        "likes": 0,
+        "user": {
+            "firstname": "admin",
+            "lastname": "admin"
+        },
+        "created_at": "2019-01-05T23:42:51+01:00",
+        "updated_at": "2019-01-05T23:45:14+01:00",
+        "description_source": "Cet enfant est malade",
+        "description_target": "tèrè ti Môlengé so a sö"
     }
 ]
