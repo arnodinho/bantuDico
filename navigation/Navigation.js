@@ -1,15 +1,18 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
-
+import {  createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack'
+import { createBottomTabNavigator } from 'react-navigation-tabs'
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import AddScreen from '../screens/AddScreen';
+import AutocompleteScreen from '../components/Autocomplete'
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
+  Search: AutocompleteScreen
 });
 
 HomeStack.navigationOptions = {
@@ -79,9 +82,11 @@ SettingsStack.navigationOptions = {
 };
 
 
-export default createAppContainer (createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  AddStack,
-  SettingsStack,
-}));
+export default createAppContainer (
+     createBottomTabNavigator({
+        HomeStack,
+        LinksStack,
+        AddStack,
+        SettingsStack
+      })
+);

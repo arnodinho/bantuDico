@@ -14,10 +14,11 @@ export default class HomeScreen extends React.Component {
   };
 
   render() {
+  
     return (
       <View style={styles.container}>
         <HeaderLogo/>
-        <Search/>
+        <Search navigation={this.props.navigation}/>
       </View>
     );
   }

@@ -28,7 +28,9 @@ class Search extends React.Component {
     // et retourner (return) les éléments graphiques
     constructor(props) {
       super(props)
-         this.searchedText = "" // Initialisation de notre donnée searchedText en dehors du state. exemple de modification d'un props sans changer l'etat du component
+
+
+        // this.searchedText = this.props.navigation.state.params.text ? this.props.navigation.state.params.text:"MAMA" // Initialisation de notre donnée searchedText en dehors du state. exemple de modification d'un props sans changer l'etat du component
       // On va donc initialiser notre state avec un tableau de definitions vide
       //pour modifier une donnée du state, on passe toujours par  setState
       //Dans le state, on ne gère que des données qui, une fois modifiées, peuvent affecter le rendu de notre component.
@@ -45,9 +47,16 @@ class Search extends React.Component {
          this._displayTranslation =  this._displayTranslation.bind(this)
          this._toggleLanguage = this._toggleLanguage.bind(this)
          this.resultElement = React.createRef()
+     //    this._initSearch = this._initSearch.bind(this)
+
+      //   this._initSearch()
     }
 
     componentDidMount() {}
+
+    _initSearch() {
+      this.props.navigation.setParams({source:null,target:null})
+    }
 
     _toggleLanguage() {
         const action = { type: "TOGGLE_LANGUAGE", value: this.state.target }
@@ -192,11 +201,11 @@ class Search extends React.Component {
                     {/* onSubmitEditing : validation text par le clavier*/}
 
                       <View style={{ flex:3 }} >
-                          <TextInput style={styles.textinput}
-                             placeholder='Barre de recherche'
-                             onChangeText = {(text)=>this._searchTextInputChanged(text)}
-                               onSubmitEditing={() => this._handleSearch()}
-                             />
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate("Search", {source: this.state.source, target: this.state.target})}>
+                         <Text style={styles.textinput}>
+                            Barre de recherche
+                          </Text>
+                        </TouchableOpacity>
                           <View style={styles.searchSelect}>
                               <View style={styles.searchItem}>
                                 <RNPickerSelect
@@ -389,11 +398,11 @@ const styles = StyleSheet.create({
         height: 50,
         borderColor: '#214c98',
         borderWidth: 2,
+        paddingTop: 6,
         paddingLeft: 5,
-        color:'white',
         backgroundColor: 'white',
         borderRadius:5,
-        color: '#061646',
+        color:  '#c5c2c2',
         fontSize: 20,
     },
 

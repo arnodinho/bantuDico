@@ -30,7 +30,6 @@ class Result extends React.Component {
       }
 
       componentDidMount() {
-
         if (this.state.id == 0) {
           console.log("on affiche error message")
           this._setErrorMesg()
@@ -42,7 +41,6 @@ class Result extends React.Component {
       }
 
     componentDidUpdate() {
-
     }
     _setErrorMesg() {
         this.setState({
@@ -86,6 +84,7 @@ class Result extends React.Component {
         })
       })
     }
+
     _displayLoading() {
        // Si isLoading vaut true, on affiche le chargement à l'écran
       if (this.state.isLoading) {
