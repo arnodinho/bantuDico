@@ -215,3 +215,14 @@ cat /proc/sys/fs/inotify/max_user_watches
 # config variable name (not runnable)
 fs.inotify.max_user_watches=524288
 ====================================================================================================================
+==========USELESS COMMANDS FOR IOS =============
+
+arch -x86_64 pod install --repo-update
+
+pod install
+
+npx react-native run-ios
+
+watchman watch-del-all
+
+sudo gem install cocoapods
