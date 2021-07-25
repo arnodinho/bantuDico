@@ -28,14 +28,17 @@ class Search extends React.Component {
     // et retourner (return) les éléments graphiques
     constructor(props) {
       super(props)
-         this.searchedText = "" // Initialisation de notre donnée searchedText en dehors du state. exemple de modification d'un props sans changer l'etat du component
+
+      this.searchedText = "" // Initialisation de notre donnée searchedText en dehors du state. exemple de modification d'un props sans changer l'etat du component
+
+
       // On va donc initialiser notre state avec un tableau de definitions vide
       //pour modifier une donnée du state, on passe toujours par  setState
       //Dans le state, on ne gère que des données qui, une fois modifiées, peuvent affecter le rendu de notre component.
          this.state = {
             definitions: [],
             source:"french",
-            target:"lingala" ,
+            target:"lingala",
             isLoading: false, // Par défaut à false car il n'y a pas de chargement tant qu'on ne lance pas de recherche
             detail: false,
             multipleResults: false,
@@ -45,17 +48,30 @@ class Search extends React.Component {
          this._displayTranslation =  this._displayTranslation.bind(this)
          this._toggleLanguage = this._toggleLanguage.bind(this)
          this.resultElement = React.createRef()
+        
+         console.log('longueur du text '+this.searchedText.length )
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+     
+      if (this.props.navigation.state.params) {
+        this.searchedText = this.props.navigation.state.params.text
+
+       
+       
+        this._handleSearch() 
+      }
+   
+    }
 
     _toggleLanguage() {
         const action = { type: "TOGGLE_LANGUAGE", value: this.state.target }
         this.props.dispatch(action)
     }
     _handleSearch(){
-       if (this.searchedText.length > 0) { // Seulement si le texte recherché n'est pas vide
-
+      console.log('text a chercher '+ this.searchedText)
+      console.log('source '+this.state.source)
+      console.log('target '+this.state.target)
          // Hide that keyboard!
          Keyboard.dismiss()
 
@@ -63,50 +79,40 @@ class Search extends React.Component {
           //setState   récupère les modifications de vos données et indique
           // à React que le component a besoin d'être re-rendu avec ces  nouvelles données.
           this.setState({ isLoading: true,  detail: false }) // Lancement du chargement
+          
+          if (this.searchedText.length > 0) { // Seulement si le texte recherché n'est pas vide
+              searchTraduction(this.searchedText, his.state.source, his.state.target).then(data =>{
+                // Dès lors que vous utilisez la fonction connect
+                // sur un component, Redux va mapper la fonction  dispatch  à votre component.
+                console.log(data)
+                if (this.state.multipleResults == true && data.length == 1) {
+                    var def = data.pop()
+                    var dataId = def.id
 
-          searchTraduction(this.searchedText,this.state.source,this.state.target).then(data =>{
-            // Dès lors que vous utilisez la fonction connect
-            // sur un component, Redux va mapper la fonction  dispatch  à votre component.
-            if (this.state.multipleResults == true && data.length == 1) {
-                var def = data.pop()
-                var dataId = def.id
-
-                if (def.id === undefined) {
-
-                  dataId = 0
-                }
-                this.setState({
-                   detail: true,
-                   id: dataId,
-                   isLoading: false,
-                 })
-            }else
-            if(data.length > 1) {
-            //on ne gère dans le state que des données qui, une fois modifiées, peuvent affecter le rendu de notre component.
-            this.setState({
-              definitions: data,
-               isLoading: false, // Arrêt du chargement
-               multipleResults:true
-             })
-           }else {
-             this.setState({
-               definitions: data,
-                isLoading: false, // Arrêt du chargement
-                multipleResults:false
-              })
-              if(data.length == 1) {
-                var def = data.pop()
-                var dataId = def.id
-                //dans le cas d'une errur on renvoi l'id 0
-                if (def.id == 'undefined') {
-                  dataId = 0
-                }
-               this.resultElement.current.changeId(dataId)
+                    if (def.id === undefined) {
+                      dataId = 0
+                    }
+                    
+                    this.setState({detail: true, id: dataId,isLoading: false})
+                }else
+                if(data.length > 1) {
+                //on ne gère dans le state que des données qui, une fois modifiées, peuvent affecter le rendu de notre component.
+                this.setState({definitions: data, isLoading: false, multipleResults:true})
+              }else {
+                this.setState({ definitions: data, isLoading: false, multipleResults:false})
+                  if(data.length == 1) {
+                    var def = data.pop()
+                    var dataId = def.id
+                    //dans le cas d'une errur on renvoi l'id 0
+                    if (def.id == 'undefined') {
+                      dataId = 0
+                    }
+                  this.resultElement.current.changeId(dataId)
+                  }
               }
-           }
-          });
-      }
-
+            
+            });
+        }
     }
     componentDidUpdate() {}
     _displayLoading() {
@@ -124,15 +130,8 @@ class Search extends React.Component {
     }
 
     _displayTranslation(idTranslation) {
-      this.setState({
-        detail: true,
-        definitions: [],
-        id: idTranslation,
-        multipleResults:false
-       })
+      this.setState({detail: true, definitions: [], id: idTranslation, multipleResults:false })
     }
-
-    _displayRandomTranslation(){}
 
     _manageDisplay()
     {
@@ -171,7 +170,6 @@ class Search extends React.Component {
         )
       }else{
         //gestion de l'affichage random
-
         return (
            <Result id ={randomId()} target ={this.state.target} random = {true} />
         )
@@ -182,31 +180,18 @@ class Search extends React.Component {
         return (
             <View style={styles.container}>
               <View style={styles.searchModuleContainer}>
-
-                  <View style={styles.containerTitle}>
-                      <Text style={styles.infoText}>Le Dictionnaire pratique</Text>
-                      <Text style={styles.infoTitle}>Français - Lingala - Sango</Text>
-                  </View>
-
+                  {this._displayTextHeader()}
                   <View style={styles.containerSearch}>
                     {/* onSubmitEditing : validation text par le clavier*/}
 
                       <View style={{ flex:3 }} >
-                          <TextInput style={styles.textinput}
-                             placeholder='Barre de recherche'
-                             onChangeText = {(text)=>this._searchTextInputChanged(text)}
-                               onSubmitEditing={() => this._handleSearch()}
-                             />
+                        <TouchableOpacity onPress={() => this.props.navigation.push("Search", {source: this.state.source, target: this.state.target})}>
+                          {this._displayText()}
                           <View style={styles.searchSelect}>
                               <View style={styles.searchItem}>
                                 <RNPickerSelect
-                                  style={{
-                                      ...pickerSelectStyles,
-                                      iconContainer: {
-                                        top: 12,
-                                        right: 15,
-                                        }
-                                      }}
+                                 value={this.state.source}
+                                  style={{...pickerSelectStyles,iconContainer: {top: 12,right: 15}}}
                                    placeholder={{ }}
                                     onValueChange={(itemValue, itemIndex) => this.setState({source: itemValue})}
                                     items={[
@@ -225,12 +210,8 @@ class Search extends React.Component {
                               </View>
                               <View style={styles.searchItem}>
                                     <RNPickerSelect
-                                      style={{
-                                          ...pickerSelectStyles,
-                                          iconContainer: {
-                                            top: 12,
-                                            right: 15,
-                                          }
+                                    value={this.state.target}
+                                      style={{...pickerSelectStyles, iconContainer: {top: 12,right: 15}
                                         }}
                                        placeholder={{ }}
                                         onValueChange={(itemValue, itemIndex) => this.setState({target: itemValue})}
@@ -246,30 +227,9 @@ class Search extends React.Component {
 
                               </View>
                           </View>
+                        </TouchableOpacity>
                       </View>
-
-                      <TouchableOpacity
-                        style={{  alignItems: 'center'}} onPress={this._handleSearch}>
-                         <LinearGradient
-                             colors={['#4c669f', '#3b5998', '#192f6a']}
-                             style={{
-                                 paddingTop: 35,
-                                 paddingBottom: 35,
-                                 paddingLeft: 15,
-                                 paddingRight: 15,
-                                 alignItems: 'center',
-                                 borderRadius: 5 }}>
-                             <Text
-                                 style={{
-                                     backgroundColor: 'transparent',
-                                     fontSize: 15,
-                                     color: '#fff',
-                                 }}>
-                                 Chercher
-                             </Text>
-                         </LinearGradient>
-                     </TouchableOpacity >
-
+                      {this._displaySearchButton()}
                   </View>
               </View>
 
@@ -283,6 +243,47 @@ class Search extends React.Component {
     _displayImageArrow(){
         sourceImage = require('../assets/images/double-24.png')
         return ( <Image   source={sourceImage}/>)
+    }
+
+    _displayText() {
+      if  (this.searchedText) {
+        return (<Text style={styles.textinput} >{this.searchedText}</Text>)
+      }else{
+        return(<Text style={[styles.textinput,{color:  '#c5c2c2'}]}>Barre de recherche</Text>)
+      }
+    }
+    _displayTextHeader() {
+      return(
+        <View style={styles.containerTitle}>
+          <Text style={styles.infoText}>Le Dictionnaire pratique</Text>
+          <Text style={styles.infoTitle}>Français - Lingala - Sango</Text>
+       </View>
+      )
+    }
+
+    _displaySearchButton(){
+      return(
+        <TouchableOpacity style={{  alignItems: 'center'}} onPress={this._handleSearch}>
+         <LinearGradient
+             colors={['#4c669f', '#3b5998', '#192f6a']}
+             style={{
+                 paddingTop: 35,
+                 paddingBottom: 35,
+                 paddingLeft: 15,
+                 paddingRight: 15,
+                 alignItems: 'center',
+                 borderRadius: 5 }}>
+             <Text
+                 style={{
+                     backgroundColor: 'transparent',
+                     fontSize: 15,
+                     color: '#fff',
+                 }}>
+                 Chercher
+             </Text>
+         </LinearGradient>
+        </TouchableOpacity >
+      )
     }
 }
 
@@ -389,11 +390,10 @@ const styles = StyleSheet.create({
         height: 50,
         borderColor: '#214c98',
         borderWidth: 2,
+        paddingTop: 6,
         paddingLeft: 5,
-        color:'white',
         backgroundColor: 'white',
         borderRadius:5,
-        color: '#061646',
         fontSize: 20,
     },
 

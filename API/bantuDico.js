@@ -49,7 +49,7 @@ export function getTranslationById (id, target) {
     .catch((error) => console.error(error));
 }
 
-//on genere un randi=om id pour les translations random
+//on genere un random id pour les translations random
 export function randomId(){
 // return Math.floor(Math.random() * 100) + 1;
 var min=1;
@@ -67,7 +67,7 @@ export function randomTranslation(language){
   return trad
 }
 
-
+//ajout d'une nouvelle translation
 export function createTranslation (language, source, target) {
 
   translate = language === 'sango' ? 'frenchsango' : 'frenchlingala';
