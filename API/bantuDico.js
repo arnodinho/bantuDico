@@ -88,3 +88,22 @@ export function createTranslation (language, source, target) {
             }).then((response) => response.json())
               .catch((error) => console.error(error));
 }
+//ajout d'une nouvelle translation
+export function search (text,language) {
+
+  url = 'https://bantu-dico.com/api/'+language+'/search';
+
+  return fetch(url, {
+              method: 'POST',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'X-Auth-Token': API_TOKEN
+              },
+              body: JSON.stringify({
+                identifier: "word",
+                search: text
+              }),
+            }).then((response) => response.json())
+              .catch((error) => console.error(error));
+}
